@@ -30,6 +30,7 @@
           type="number"
           step="0.01"
           [(ngModel)]="price"
+          (ngModelChange)="onPriceChange()"
           [readonly]="data.m_type !== 'match_odd'"
           class="form-control form-control-sm"
         />

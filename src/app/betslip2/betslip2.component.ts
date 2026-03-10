@@ -68,6 +68,7 @@ export class Betslip2Component implements OnInit {
 
   submitted_disabled = false;
   event_fees: any;
+  is_manual_price: number = 0;
   public classReference = Betslip2Component;
   @Input() data!: any;
 
@@ -1443,6 +1444,7 @@ export class Betslip2Component implements OnInit {
                   market_name: this.data.market_name,
                   g_type: this.data.g_type,
                   enable_draw: this.data.enable_draw,
+                  is_manual_price: this.is_manual_price
                 };
 
                 //console.log(this.exp_amount1, this.exp_amount2, this.exp_amount3);
@@ -1924,11 +1926,19 @@ export class Betslip2Component implements OnInit {
 
   increasePrice() {
     this.price = Number((this.price + 0.01).toFixed(2));
+    this.is_manual_price = 1;
   }
 
   decreasePrice() {
     if (this.price > 0.01) {
       this.price = Number((this.price - 0.01).toFixed(2));
+      this.is_manual_price = 1;
     }
   }
+
+  onPriceChange() {
+  if (this.data.m_type === 'match_odd'&& this.data.g_type == "cricket") {
+    this.is_manual_price = 1;
+  }
+}
 }
