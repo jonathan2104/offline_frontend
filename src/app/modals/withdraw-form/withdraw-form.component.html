@@ -1,0 +1,164 @@
+<div class="container-fluid p-0 m-0">
+  <div class="card border-0 p-0 m-0">
+    <div class="card-header"
+      style="display: flex; flex-direction: row;justify-content: space-between;">
+      WITHDRAW REQUEST
+      <!-- Close Button -->
+      <button class="material-symbols-outlined"
+        (click)="dismiss()"
+        style="cursor: pointer; color: #fff; background: none; border: none; font-size: 24px;">
+        cancel
+      </button>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="withdrawForm">
+        <div class="container">
+          <p
+            *ngIf="errorMsg"
+            class="alert alert-danger m-1 p-1">
+            {{ errorMsg }}
+          </p>
+          <div class="form-group">
+            <label>
+              <input type="radio" formControlName="txn_type" value="upi" (click)="toggleUpiTextbox()"> UPI
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="radio" formControlName="txn_type" value="bank"
+                (click)="toggleBankbox()"> Bank
+            </label>
+          </div>
+          <div class="form-group" *ngIf="showUpiTextbox">
+            <label for="inputName">UPI</label>
+            <input type="text" formControlName="upi" class="form-control"
+              name="upi"
+              placeholder="Enter UPI address">
+            <span
+              class="text-danger"
+              *ngIf=" showUpiTextbox &&
+                withdrawFormControl.upi.touched &&
+                withdrawFormControl.upi.errors?.required">
+              UPI is required
+            </span>
+          </div>
+
+          <div *ngIf="showUpiOtherbox">
+            <div class="form-group">
+              <label>Account Holder Name</label>
+              <input type="text" formControlName="account_name"
+                class="form-control" placeholder="Account Holder Name">
+              <span
+                class="text-danger"
+                *ngIf=" showUpiOtherbox &&
+                (withdrawFormControl.account_name.touched ) &&
+                withdrawFormControl.account_name.errors?.required">
+                Account Holder Name is required
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Account No.</label>
+              <input type="number" formControlName="account_id"
+                class="form-control" placeholder="Account No.">
+              <span
+                class="text-danger"
+                *ngIf=" showUpiOtherbox &&
+                (withdrawFormControl.account_id.touched ) &&
+                withdrawFormControl.account_id.errors?.required">
+                Account Number is required
+              </span>
+            </div>
+            <div class="form-group">
+              <label>IFSC Code</label>
+              <input type="text" formControlName="ifsc_code"
+                class="form-control" placeholder="IFSC Code">
+              <span
+                class="text-danger"
+                *ngIf="
+                (withdrawFormControl.ifsc_code.touched ) &&
+                withdrawFormControl.ifsc_code.errors?.required">
+                IFSC code is required
+              </span>
+              <span class="text-danger"
+                *ngIf="withdrawFormControl.ifsc_code.touched && withdrawFormControl.ifsc_code.errors?.minlength">
+                IFSC code must be 11 digits
+              </span>
+              <span class="text-danger"
+                *ngIf="withdrawFormControl.ifsc_code.touched && withdrawFormControl.ifsc_code.errors?.maxlength">
+                IFSC code not more than 11 digits
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Bank Name</label>
+              <input type="text" formControlName="bank_name"
+                class="form-control" placeholder="Bank Name">
+              <span
+                class="text-danger"
+                *ngIf="
+                (withdrawFormControl.bank_name.touched ) &&
+                withdrawFormControl.bank_name.errors?.required">
+                Bank Name is required
+              </span>
+            </div>
+            <input type="hidden" formControlName="branch">
+            <!-- <div class="form-group">
+              <label>Branch</label>
+              <input type="text" formControlName="branch" class="form-control" placeholder="Branch Name">
+              <span
+                class="text-danger"
+                *ngIf="
+                (withdrawFormControl.branch.touched ) &&
+                withdrawFormControl.branch.errors?.required">
+              Branch is required
+            </span>
+            </div> -->
+          </div>
+          <div class="form-group">
+            <label for="inputName">Amount</label>
+            <input type="number" formControlName="amount" class="form-control"
+              id="inputName"
+              placeholder="Enter amount">
+            <span
+              class="text-danger"
+              *ngIf="
+                (withdrawFormControl.amount.touched || submitted) &&
+                withdrawFormControl.amount.errors?.required">
+              Amount is required
+            </span>
+            <span class="text-danger"
+              *ngIf="(withdrawFormControl.amount.touched || submitted) && withdrawFormControl.amount.errors?.min">
+              Amount must be at least 500
+            </span>
+          </div>
+          <!-- <div class="form-group">
+            <label>Username</label>
+            <input type="text" formControlName="username" class="form-control"
+                   placeholder="Enter Username">
+            <div
+              *ngIf="withdrawFormControl.username.touched && withdrawFormControl.username.errors"
+              class="help-block text-danger"
+            >
+              <div class="help-block text-danger" *ngIf="withdrawFormControl.username.errors.required">
+                Username is required
+              </div>
+            </div>
+          </div> -->
+          <input type="hidden" formControlName="username">
+          <div class="text-left">
+            <button class="btn btn-danger" (click)="dismiss()">CANCEL</button>
+            <button class="btn btn-success ml-2" [disabled]="clicked"
+              (click)="addWithdrawRequest()">SUBMIT</button>
+          </div>
+          <!--        <div class="container" style="text-align:center;"><a style="color:yellow;">Forgot password?</a></div>-->
+          <!--        <div class="text-center" style="margin: -3.5%;">-->
+          <!--          <button class="btn rounded-pill button_new " (click)="register()">Register</button>-->
+          <!--        </div>-->
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--  <div class="d-flex justify-content-between">-->
+  <!--    <h3 class="text-warning">Bet Slip</h3>-->
+  <!--    <span (click)="closeDialog()" class="material-symbols-outlined">close</span>-->
+  <!--  </div>-->
+</div>

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+
+  <div class="card mt-2">
+    <div class="card-header" routerLink="/dashboard/profile"><span class="material-symbols-outlined">
+      account_circle
+      </span>{{userDetails.username}}</div>
+    <div class="card-body">
+      <div class="account-details">
+        <div routerLink="/dashboard/profile"><span class="span-head">My Profile</span>  <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <!-- <div><span class="span-head">Multi Markets</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <div><span class="span-head">Rolling Commission</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div> -->
+        <div routerLink="/dashboard/ledger"><span class="span-head">Account Statement</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <div routerLink="/dashboard/my-bets"><span class="span-head">My bets</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <div routerLink="/dashboard/unsettled-bets"><span class="span-head">Unsettled Bets</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <!-- <div routerLink="/dashboard/bet-history"><span class="span-head">Bet History</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div> -->
+        <div routerLink="/dashboard/profit-loss"><span class="span-head">Profit Loss</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <div routerLink="/dashboard/bonus-report"><span class="span-head">Bonus Report</span>  <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <!-- <div routerLink="/dashboard/password-history"><span class="span-head">Password History</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div>
+        <div routerLink="/dashboard/activity-log"><span class="span-head">Activity Log</span> <span class="material-symbols-outlined">arrow_forward_ios</span></div> -->
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="logout-div" (click)="logout()">
+    LOGOUT
+    <span class="material-symbols-outlined">
+      logout
+      </span>
+  </div>
+  </div>

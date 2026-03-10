@@ -1,0 +1,29 @@
+
+.container-fluid{
+  background-color: #EDEDED;
+  min-height: 100vh;
+}
+
+.card-header{
+  background: linear-gradient(180deg, #2E4B5E 0%, #243A48 82%);
+  color: #fff;
+  height: 35px;
+  padding: 5px !important;
+}
+
+.card-body {
+  background-color: #fff;
+}
+
+.table thead th {
+  padding: 7px;
+  text-align: center;
+  border: 1px solid #C8CED3;
+  background-color: #E0E6E6;
+  color: #000000;
+  font-size: 12px;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  font-weight: 700;
+}

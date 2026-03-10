@@ -1,0 +1,167 @@
+::ng-deep .modal {
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog {
+  width: 95%;
+  max-width: 800px;
+}
+
+/* Header */
+.modern-header {
+  background: #ffffff;
+  color: #222;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+}
+
+.modal-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, #4a90e2, #50c9c3);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+.close {
+  color: #444;
+  opacity: 0.8;
+  font-size: 24px;
+}
+.close:hover { opacity: 1; }
+
+/* Modal */
+::ng-deep .modal-dialog {
+  width: 95%;
+  max-width: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Grid */
+.referral-stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Cards */
+.stat-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e0e0e0, #c9d6ff);
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.icon-box {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 10px;
+  background: #f4f6f8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-box i {
+  font-size: 22px;
+  color: #4a90e2;
+}
+
+.stat-card h5 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.stat-card h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Center last box if odd */
+.referral-stats-container > .stat-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 80%;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .referral-stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .icon-box {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-box i {
+    font-size: 18px;
+  }
+
+  .stat-card h2 {
+    font-size: 22px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+  }
+}
+
+.lossbacks-table h5 {
+  font-weight: 600;
+  color: #333;
+}
+
+.lossbacks-table table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.lossbacks-table th {
+  background-color: #f4f6f8;
+  font-weight: 500;
+}
+
+.lossbacks-table td {
+  vertical-align: middle;
+}

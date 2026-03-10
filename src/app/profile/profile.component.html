@@ -1,0 +1,85 @@
+<div class="container-fluid">
+
+  <!-- 🧾 Account Details Card -->
+  <div class="card mt-2">
+    <div class="card-header">Account Details</div>
+    <div class="card-body">
+      <div class="account-details">
+        <div><span class="span-head">Name</span> <span>{{userDetails.username}}</span></div>
+        <div><span class="span-head">Commission</span> <span>{{userDetails.match_commission}}</span></div>
+        <div><span class="span-head">Exposure Limit</span> <span>{{userDetails.exposure_limit}}</span></div>
+        <div>
+          <span class="span-head">Password</span>
+          <span>********
+            <span class="material-symbols-outlined">edit_square</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="canReferal">
+    <!-- 🌟 Referral URL Card -->
+    <div class="card mt-2">
+      <div class="card-header">Referral Link</div>
+      <div class="card-body referral-card">
+        <div class="referral-link">
+          <input type="text" [value]="baseUrl + '/register?referby=' + userDetails.referCode" readonly #referralInput>
+          <button (click)="copyReferral(referralInput)">Copy</button>
+          <button (click)="shareReferral('/register?referby=' + userDetails.referCode)">Share</button>
+        </div>
+        <small class="referral-note">
+          Invite your friends and earn bonuses when they join using your link.
+        </small>
+      </div>
+    </div>
+
+    <!-- 💰 Deposit & Withdraw Summary Popup Boxes -->
+    <div class="summary-box-container mt-3">
+      <div class="summary-box">
+        <div class="summary-title">Total Deposit</div>
+        <div class="summary-amount">₹{{ userReport.total_deposit || 0 }}</div>
+      </div>
+      <div class="summary-box">
+        <div class="summary-title">Total Withdraw</div>
+        <div class="summary-amount withdraw">₹{{ userReport.total_withdrawal || 0 }}</div>
+      </div>
+    </div>
+
+    <!-- Referral Users Table -->
+    <div class="card mt-2">
+      <div class="card-header">Referral Users ({{ referralUserList.length || 0 }})</div>
+      <div class="card-body referral-card">
+        <table class="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Join Date</th>
+              <th>Mobile</th>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let client of referralUserList">
+              <td>{{ client.username }}</td>
+              <td>{{ client.created_at | date:'d MMM yy, h:mm a' | uppercase }}</td>
+              <td>{{ client.contact }}</td>
+              <td>
+                <button (click)="openReport(client)" class="claim-btn">
+                  Open
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 🪙 If no referral users -->
+    <div class="card mt-2" *ngIf="!referralUserList?.length">
+      <div class="card-body text-center text-muted py-3">
+        No referral bonus yet — start sharing your link!
+      </div>
+    </div>
+  </ng-container>
+</div>

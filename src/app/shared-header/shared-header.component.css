@@ -1,0 +1,157 @@
+
+.container-fluid{
+  background-color: #EDEDED;
+  min-height: 100vh;
+}
+
+.card-header{
+  background: linear-gradient(180deg, #2E4B5E 0%, #243A48 82%);
+  color: #fff;
+  height: 35px;
+  padding: 5px !important;
+}
+
+.card-body {
+  background-color: #fff;
+  padding: 0px !important;
+}
+
+.table thead th {
+  padding: 7px;
+  text-align: center;
+  border: 1px solid #C8CED3;
+  background-color: #E0E6E6;
+  color: #000000;
+  font-size: 12px;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  font-weight: 700;
+}
+
+.account-details{
+  display: flex;
+  flex-direction: column;
+}
+
+.account-details div{
+  border-bottom: 1px solid #CCCCCC;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.account-details div .span-head{
+  font-weight: bold;
+  font-size: 16px;
+  flex: 0 0 40%;
+}
+
+.account-details div span:last-child {
+  width: 60%;
+  display: inline-block;
+  word-break: break-word;
+}
+
+.material-symbols-outlined{
+  margin-left: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.game-list2{
+  background-color: #43b4f2;
+  gap: 15px;
+  white-space: nowrap;
+  overflow: auto;
+  padding: 8px 5px 0px 5px;
+  width: 100%;
+  height: 43px;
+ }
+
+ .game-list2 span{
+  padding: 5px 10px 15px 10px;
+  /* border-radius: 5px 5px 0px 0px; */
+  background: transparent;
+  color: #000;
+  font-weight: 700;
+  margin-left: 10px;
+ }
+
+ .game-list2 span:hover, .active-link{
+  border-radius: 5px 5px 0px 0px;
+  background-color: #000;
+  color: #fff;
+ }
+
+ .game-list2 span:hover img{
+  background: transparent;
+  filter: brightness(0) invert(1);
+ }
+
+ 
+
+ @media (max-width: 600px) {
+  .game-list2 {
+    display: block !important;
+  }
+  .game-list {
+    display: none !important;
+  }
+}
+ 
+ @media (min-width: 600px) {
+  .game-list2 {
+    display: none !important;
+  }
+  .game-list {
+    display: flex !important;
+  }
+}
+
+.game-list2 span img{
+  width: 25px;
+  background: transparent;
+  margin-right: 5px;
+}
+
+.aviator {
+  border-radius: 5px 5px 0px 0px;
+  background-color: #000 !important;
+  color: #fff;
+  /* display: inline-flex;  */
+  /* overflow: hidden; */
+  /* display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #000;
+  border-radius: 5px 5px 0 0;
+  padding: 6px 10px; */
+  animation: pulseZoom 2s infinite ease-in-out;
+  transform-origin: center;
+  /* max-height: 20px; */
+}
+
+.aviator span{
+  border-radius: 5px 5px 0px 0px;
+  background-color: #000 !important;
+  color: #fff;
+  display: inline-flex; 
+  /* overflow: hidden; */
+  /* display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #000;
+  border-radius: 5px 5px 0 0;
+  padding: 6px 10px; */
+  animation: pulseZoom 2s infinite ease-in-out;
+  transform-origin: center;
+  /* max-height: 20px; */
+}
+
+.aviator img {
+  width: 24px;
+  height: 24px;
+  animation: pulseZoom 2s infinite ease-in-out;
+  transform-origin: center;
+}

@@ -1,0 +1,206 @@
+.userscreen-title{
+  background: #846f1e;
+  margin-bottom: 5px;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 5px;
+  color: #fff;
+}
+.back-page{
+  background: #000000;
+  color: #fff;
+}
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #d2d2d2;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 4px solid #272727;
+    background: #fff;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+input[type="checkbox"],
+input[type="radio"]{
+	width: 1.2em;
+	height: 1.2em;
+	margin-right: 0.65rem;
+  accent-color: #1d1d1d;
+  color-scheme: dark;
+}
+
+.redtablehead .table thead th {
+  padding: 7px;
+  text-align: center;
+  border: none;
+  background: #000000;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+
+.redtablehead .table tbody td {
+  background: #fff;
+  color: #000;
+}
+.card{
+  color: #000;
+  background: #fff;
+}
+.color-hh{
+  color: #cfcccc;
+}
+.entries-pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 15px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .entries-pagination-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .entries-wrapper,
+  .pagination-wrapper {
+    justify-content: center;
+  }
+}
+.table-pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  background-color: #2b2b2b;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  border-top: 1px solid #444;
+}
+
+.rows-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rows-per-page select {
+  padding: 0.3rem 0.5rem;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.table-green .lay-border {
+  border-left: 5px solid #f994ba !important;
+}
+.table-green .lay-border > td {
+  background:#f7d5e2 !important;
+}
+
+.table-green .back-border {
+  border-left: 5px solid #72bbef !important;
+}
+.table-green .back-border > td {
+  background:#c6dded !important;
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.pagination-controls button {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.5rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-controls button.active {
+  background-color: #007bff;
+  border-color: #0056b3;
+}
+
+.pagination-controls button:disabled {
+  background-color: #555;
+  color: #888;
+  cursor: not-allowed;
+}
+
+pagination-controls ::ng-deep .ngx-pagination .current {
+  background-color: #1f5887;
+  color: #fff;
+
+  border-radius: 5px;
+}
+
+pagination-controls ::ng-deep .ngx-pagination a {
+  color: #fff; /* Page numbers */
+  background: #5b5a5a;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+pagination-controls ::ng-deep .ngx-pagination a:hover {
+  color: #9f9d9d;
+  text-decoration: underline;
+}

@@ -1,0 +1,167 @@
+/* === WITHDRAWAL DARK THEME === */
+.withdraw-container {
+  background: #121212;
+  min-height: 100vh;
+  padding: 10px;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+}
+
+/* Top title bar */
+.userscreen-title {
+  background: #1e1e1e;
+  margin-bottom: 5px;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 5px;
+  color: #f5f5f5;
+}
+.back-page {
+  background: #2b2b2b;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* === Cards === */
+.card {
+  background: #1e1e1e;
+  color: #ddd;
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+.card-header {
+  background: #2a2a2a !important;
+  border-bottom: 1.5px dashed #444;
+  color: #f5f5f5;
+}
+.card-body {
+  background: #1a1a1a;
+  color: #ddd;
+}
+
+/* Rules box inside Withdraw */
+.text-card-box {
+  border-radius: 12px;
+  background: #1c1c1c;
+  border: 1px solid #333;
+}
+.text-card p {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #ff6b6b;
+}
+
+/* === Withdrawal warning section === */
+.withdrawal-warning {
+  background: #1c1917;
+  padding: 20px;
+  border-radius: 6px;
+  color: #fff;
+  border: 1px solid #333;
+}
+.withdrawal-warning h4 {
+  color: #ff4c4c;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.withdrawal-warning .disclaimer {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+.whatsapp-btn {
+  background: #25d366;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.whatsapp-btn:hover {
+  background: #1da851;
+}
+
+/* === Buttons === */
+.btn-primary {
+  background: #3c7eb6 !important;
+  color: #fff !important;
+  border: none;
+}
+.btn-success {
+  background: #28a745 !important;
+  border: none;
+}
+.btn-danger {
+  background: #dc3545 !important;
+  border: none;
+}
+
+/* === Tables === */
+.redtablehead .table thead th {
+  padding: 7px;
+  text-align: center;
+  border: none;
+  background: #2b2b2b;
+  color: #f1f1f1;
+  font-size: 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+.redtablehead .table tbody td {
+  padding: 7px;
+  text-align: center;
+  background: #1a1a1a;
+  color: #ddd;
+  border: 1px solid #333;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.btn-primary.btn-sm {
+  background: #3c7eb6 !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* === Blink effect === */
+.blink {
+  animation: blinkText 1.2s infinite;
+}
+@keyframes blinkText {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+.help-card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #eaeaea;
+}
+
+.help-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.help-text h6 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.help-text p {
+  font-size: 12px;
+  color: #ccc;
+  line-height: 1.4;
+}

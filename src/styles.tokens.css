@@ -1,0 +1,96 @@
+:root {
+  /* Brand / Accent (from UI: orange primary, blue secondary) */
+  --accent-primary: #f26d25;
+  --accent-primary-contrast: #0e0e0e;
+  --accent-secondary: #43b4f2;
+  --accent-secondary-contrast: #081017;
+
+  /* Semantic */
+  --semantic-success: #1db954;
+  --semantic-error: #ff4d4f;
+  --semantic-warning: #f5a524;
+  --semantic-info: #2bb0ed;
+
+  /* Surfaces (dark theme) */
+  --surface-0: #0f1419;   /* page */
+  --surface-1: #121820;   /* section */
+  --surface-2: #161d25;   /* cards */
+  --surface-3: #1b242e;   /* elevated */
+  --surface-contrast: #ffffff;
+
+  /* Text */
+  --text-strong: #e6e6e6;
+  --text-default: #c8d1dc;
+  --text-muted: #9aa7b4;
+  --text-inverse: #0f1419;
+
+  /* Borders */
+  --border-default: #2b3946;
+  --border-subtle: #1e2935;
+
+  /* Spacing scale */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* Odds and UI pills from screenshot */
+  --odds-blue-bg: #bfe3ff;   /* light sky blue */
+  --odds-blue-text: #0b2a3b;
+  --odds-pink-bg: #f6c7d4;   /* soft pink */
+  --odds-pink-text: #3a2330;
+
+  /* List area per screenshot (dark brown rows) */
+  --list-card-bg: #3a2c22;   /* row card */
+  --list-card-border: #574437;
+  --list-chip-bg: #2d231c;   /* small meta chips */
+  --list-chip-text: #f2e9d8;
+
+  /* Yellow circular chips in screenshot */
+  --chip-yellow-bg: #f1cd3e;
+  --chip-yellow-text: #1a120a;
+}
+
+/* Bridge tokens → existing app variables */
+:root {
+  --primary-text-color: var(--text-default);
+  --primary-text2-color: var(--text-muted);
+  --primary-text3-color: var(--surface-contrast);
+  --primary-side-text-color: var(--text-default);
+
+  --primary-bg-color: var(--surface-0);
+  --primary-bg2-color: var(--surface-1);
+  --primary-bg3-color: var(--surface-0);
+  --primary-bg4-color: var(--surface-1);
+  --primary-bg5-color: var(--surface-2);
+  --primary-bg6-color: var(--surface-3);
+  --primary-bg7-color: var(--surface-0);
+  --primary-bg8-color: var(--surface-2);
+  --primary-footer-bg-color: var(--surface-0);
+}
+
+/* Utility classes mapped to Figma */
+.accent {
+  background: var(--accent-primary);
+  color: var(--accent-primary-contrast);
+}
+
+.surface-card {
+  background: var(--surface-2);
+  color: var(--text-default);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.text-muted { color: var(--text-muted); }
+.text-strong { color: var(--text-strong); }
+

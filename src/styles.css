@@ -1,0 +1,122 @@
+/* Import design tokens mapped from Figma */
+@import url('./styles.tokens.css');
+
+/* You can add global styles to this file, and also import other style files */
+* {
+    /*background-color:black;*/
+    /*color: black;*/
+    /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";*/
+    /*font-size: 1rem;*/
+    font-weight: 400;
+    /*line-height: 1.5;*/
+
+}
+
+/* Shared chips */
+.live-pill{
+    background: #e03636 !important;
+    color: #fff;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+}
+.time-pill, .time-box{
+    background: var(--list-chip-bg);
+    color: var(--list-chip-text);
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-size: 10px;
+}
+.small-subtime{
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+/* Global dark theme variables used across components */
+:root {
+    --primary-text-color: #e6e6e6;
+    --primary-text2-color: #c8d1dc;
+    --primary-text3-color: #ffffff;
+    --primary-side-text-color: #c7d0db;
+
+    --primary-bg-color: #0f1419;
+    --primary-bg2-color: #161d25;
+    --primary-bg3-color: #0f1419;
+    --primary-bg4-color: #121820;
+    --primary-bg5-color: #1b242e;
+    --primary-bg6-color: #243140;
+    --primary-bg7-color: #0b1015;
+    --primary-bg8-color: #18212b;
+    --primary-footer-bg-color: #0b1015;
+}
+
+.border-body {
+    /*border-radius: 6px;*/
+    /*border: 1px solid gray;*/
+}
+
+.flexitem {
+    width: 16%;
+    text-align: center;
+    /* border-radius: 3px; */
+    line-height: 20px;
+    margin: 2px 0;
+    font-weight: 600;
+    border: 1px solid grey;
+    height: 33px;
+}
+
+.card-body {
+    font-size: 12px;
+
+}
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url("assets/fonts/BebasNeue.ttf");
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url("assets/fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Mukta';
+    src: url("assets/fonts/Mukta-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Titillium Web';
+    src: url("assets/fonts/TitilliumWeb-SemiBold.ttf");
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #0f1419;
+    color: #e6e6e6;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+* {
+    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none;  /* IE/Edge */
+  }
+  
+  *::-webkit-scrollbar {
+    display: none;             /* Chrome/Safari */
+  }

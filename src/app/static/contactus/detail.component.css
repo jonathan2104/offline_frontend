@@ -1,0 +1,29 @@
+* {
+  background-color: #f5f5f5;
+  color: #000;
+}
+.underline{
+  position: relative;
+  margin-bottom: 20px;
+}
+.underline:after {
+    background: #296ca3;
+    bottom: 0;
+    content: " ";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 30%;
+}
+
+.social-icons{
+  display: flex;
+  list-style: none;
+}
+.social-icons li{
+  width: 4%;
+  margin-left: 5px;
+}
+.social-icons img{
+  width: 100%;
+}

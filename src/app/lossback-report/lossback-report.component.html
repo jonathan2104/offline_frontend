@@ -1,0 +1,77 @@
+<h2 class="userscreen-title mt-1">
+  <span class="h6 ml-2">Bonus Report</span>
+</h2>
+
+<div class="container-fluid p-0 m-0">
+
+  <!-- Top Summary Boxes + Global Transfer -->
+  <div class="row mt-3 g-3 align-items-center">
+    <div class="col-md-3">
+      <div class="stat-card shadow-sm p-3 rounded bg-dark-card text-center">
+        <h6>Total Unclaimed</h6>
+        <h3 class="text-success">₹{{ totalUnclaimed.toFixed(2) }}</h3>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="stat-card shadow-sm p-3 rounded bg-dark-card text-center">
+        <h6>Total Claimed</h6>
+        <h3 class="text-warning">₹{{ totalClaimed.toFixed(2) }}</h3>
+      </div>
+    </div>
+    <div class="col-md-6 text-end">
+      <button class="btn btn-transfer-all mt-2" 
+              [disabled]="totalUnclaimed === 0 || !canTransfer || loadingTransfer"
+              (click)="transferAllToBalance()">
+        Transfer All to Balance
+      </button>
+    </div>
+  </div>
+
+  <!-- LossBack Table -->
+  <div class="mt-3" *ngIf="lossBacks.length > 0; else nodata">
+    <div class="w-100 overflow-auto mt-2 ledger-table">
+      <table class="table table-dark table-hover table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-right">Sr no</th>
+            <th>Username</th>
+            <th>Date & Time</th>
+            <th class="text-right">Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lb of lossBacks.slice().reverse() | paginate:{ itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index">
+            <td class="text-right">{{ i + 1 }}</td>
+            <td>{{ lb.username }}</td>
+            <td>{{ lb.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+            <td class="text-right">{{ lb.amount | number:'1.2-2' }}</td>
+            <td>
+              <span [ngClass]="{'text-success': lb.status === 1, 'text-warning': lb.status === 0}">
+                {{ lb.status === 1 ? 'Claimed' : 'Unclaimed' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination & Entries -->
+      <div class="table-pagination-wrapper">
+        <div class="rows-per-page">
+          <label for="itemsPerPage">Show</label>
+          <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onEntriesChange()">
+            <option *ngFor="let option of entriesOptions" [value]="option">{{ option }}</option>
+          </select>
+          <span>entries</span>
+        </div>
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #nodata>
+    <div class="text-center text-muted mt-3">
+      No Bonus records found.
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,172 @@
+<div class="homepage">
+  <!-- Promo Section -->
+  <!-- <div class="promo-section">
+    <div (click)="openDWlink('deposit')" class="promo-box">
+      <picture>
+        <source srcset="assets/images/joining-bonus-mobile.webp" media="(max-width: 767px)">
+        <img loading="lazy" src="assets/images/joining-bonus.webp" alt="Joining Bonus">
+      </picture>
+    </div>
+
+    <div class="promo-box">
+      <picture>
+        <source srcset="assets/images/affiliate-mobile.webp" media="(max-width: 767px)">
+        <img loading="lazy" src="assets/images/affiliate.webp" alt="Affiliate Program">
+      </picture>
+    </div>
+  </div> -->
+
+  <!-- Sports Section -->
+  <section class="sports">
+    <h2>Sports</h2>
+    <div class="sports-scroll">
+      <div class="sport-card" *ngFor="let s of sports" routerLink="{{ s.linkerLink }}">
+        <img loading="lazy" [src]="s.icon" [alt]="s.name" style="background: #fff; border-radius: 20px;">
+        <span style="cursor: pointer;">{{ s.name }}</span>
+      </div>
+    </div>
+  </section>
+
+ <!-- Top Matches -->
+  <section class="matches">
+    <h2>Top Matches</h2>
+    <div class="matches-scroll">
+      <div class="match-card" *ngFor="let m of matches" (click)="openMatchDetails(m.event_id)">
+        <div class="match-header">
+          <img loading="lazy" src="assets/icons/cricket.svg" alt="cricket">
+          <span>CRICKET</span>
+          <span class="tag">BM</span>
+          <span class="tag">F</span>
+          <span class="live" *ngIf="m.inplay == 1">LIVE</span>
+        </div>
+        <div class="match-body">
+          <p class="teams">{{ m.runner1 }} v {{ m.runner2 }}</p>
+          <p class="time">{{ m.start_time | date : "MMM dd, h:mm a" : "IST" }}</p>
+        </div>
+
+        <div class="odds-row">
+          <div class="odds-capsule">
+            <div class="half back">
+              <span class="rate">{{ m.back0_price || '--' }}</span>
+              <span class="volume">{{ m.back0_size || '--' }}</span>
+            </div>
+            <div class="half lay">
+              <span class="rate">{{ m.lay0_price || '--' }}</span>
+              <span class="volume">{{ m.lay0_size || '--' }}</span>
+            </div>
+          </div>
+          <div class="odds-capsule">
+            <div class="half back">
+              <span class="rate">{{ m.back1_price || '--' }}</span>
+              <span class="volume">{{ m.back1_size || '--' }}</span>
+            </div>
+            <div class="half lay">
+              <span class="rate">{{ m.lay1_price || '--' }}</span>
+              <span class="volume">{{ m.lay1_size || '--' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="games">
+    <h2>New Launch</h2>
+    <div class="game-slider" (scroll)="onLoopScroll($event)" #loopSlider>
+      <div (click)="openNewGameTab(g.casinoGameId, g.provider)" class="game" *ngFor="let g of getLooped(gameSections['newLaunch'])">
+       <div class="img-wrapper"><img lazyLoad loading="lazy" [src]="g.logo_square" alt="Game" (load)="onImageLoad($event)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="games p-2">
+    <h2>Trending Games</h2>
+    <div class="game-grid">
+      <div (click)="openNewGameTab(g.casinoGameId, g.provider)" class="game2" *ngFor="let g of trendingGames">
+        <div class="img-wrapper"><img lazyLoad loading="lazy" [src]="g.logo_square" alt="Game" (load)="onImageLoad($event)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="games">
+    <h2>Recommended Games</h2>
+    <div class="game-slider" (scroll)="onLoopScroll($event)" #loopSlider>
+      <div (click)="openNewGameTab(g.casinoGameId, g.provider)" class="game" *ngFor="let g of getLooped(gameSections['recommendedGames'])">
+       <div class="img-wrapper"><img lazyLoad loading="lazy" [src]="g.logo_square" alt="Game" (load)="onImageLoad($event)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="games">
+    <h2>Live Casino Games</h2>
+    <div class="game-slider" (scroll)="onLoopScroll($event)" #loopSlider>
+      <div (click)="openNewGameTab(g.casinoGameId, g.provider)" class="game" *ngFor="let g of getLooped(gameSections['liveCasino'])">
+       <div class="img-wrapper"><img lazyLoad loading="lazy" [src]="g.logo_square" alt="Game" (load)="onImageLoad($event)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="games">
+    <h2>Slots</h2>
+    <div class="game-slider" (scroll)="onLoopScroll($event)" #loopSlider>
+      <div (click)="openNewGameTab(g.casinoGameId, g.provider)" class="game" *ngFor="let g of getLooped(gameSections['slots'])">
+        <div class="img-wrapper"><img lazyLoad loading="lazy" [src]="g.logo_square" alt="Game" (load)="onImageLoad($event)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="games casino-lobby">
+    <div class="section-header">
+      <h2>Casino Lobby</h2>
+      <div class="scroll-buttons">
+        <button class="scroll-btn left" (click)="scrollLobby('left')">&#8249;</button>
+        <button class="scroll-btn right" (click)="scrollLobby('right')">&#8250;</button>
+      </div>
+    </div>
+
+    <div class="lobby-scroll" #casinoLobby (scroll)="onLobbyScroll()">
+      <div (click)="openNewGameTab(g.casinoGameId, g.provider)" 
+          class="lobby-game" 
+          *ngFor="let g of getLoopedLobby(gameSections['casinoLobby'])">
+        <div class="img-wrapper">
+          <img lazyLoad loading="lazy" 
+              [src]="g.logo_square" 
+              alt="Game" 
+              style="height: 100px;"
+              (load)="onImageLoad($event)">
+        </div>
+      </div>
+    </div>
+  </section>
+ <!-- Footer -->
+  <footer class="site-footer">
+    <div (click)="openWhatsapp()" class="support-box">
+      <p>Need help? Our 24/7 support team is here for you anytime!</p>
+      <div class="whatsapp">
+        <img loading="lazy" src="assets/icons/whatsapp.svg" alt="WhatsApp">
+      </div>
+    </div>
+
+    <div class="secure-box">
+      <img loading="lazy" src="assets/images/secure.png" alt="SSL Secure">
+      <div class="secure-text">
+        <h4>100% Safe</h4>
+        <p>Your data is safe with encrypted protection. Enjoy a secure and private connection.</p>
+      </div>
+    </div>
+
+    <p class="desc">
+      Premio provides a smooth and secure betting experience with a variety of reliable payment options. 
+      Whether you're placing bets on casino games or sports, our platform ensures quick and hassle-free transactions. 
+      Enjoy the convenience of seamless deposits and withdrawals, and focus on the thrill of the game.
+    </p>
+
+    <div class="footer-bottom">
+      <p>All Rights Reserved. Copyright {{ currentYear }}. All Rights Reserved. Powered by Premio.</p>
+      <div class="footer-icons d-flex">
+        <img loading="lazy" src="assets/images/gamcare.png" alt="GamCare">
+        <img loading="lazy" src="assets/images/18plus.png" alt="18+">
+      </div>
+    </div>
+  </footer>
+</div>

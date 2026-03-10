@@ -1,0 +1,345 @@
+<mat-sidenav-container fullscreen>
+  <!-- (click)="sidenav.toggle()" -->
+  <mat-sidenav
+    #sidenav
+    role="navigation"
+    mode="over"
+    position="start"
+    class="navbar-bg"
+  >
+    <app-sidenav (sidenavToggle)="sidenav.toggle()"></app-sidenav>
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <!-- Mobile overlay for sidebar -->
+    <div class="sidebar-overlay" [class.active]="sidebarVisible" (click)="closeSidebar()"></div>
+    
+    <app-navbar (sidenavToggle)="toggleSidebar()"></app-navbar>
+    
+    <!-- Left Sidebar - Outside Bootstrap grid -->
+    <div
+      class="left-sidebar"
+      [class.sidebar-open]="sidebarVisible"
+      (click)="$event.stopPropagation()"
+    >
+             <div class="logo-section">
+              <a routerLink="/dashboard/home" class="logo-link">
+                <img src="assets/images/jogobet3N.png" width="160px" class="logo-image" alt="premio99" />
+              </a>
+            </div>
+              <!-- Sports Categories -->
+              <div class="sports-categories">
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('cricket')"
+                     routerLink="/dashboard/cricket"
+                     (click)="closeSidebarOnNavigate()">
+                  <i class="sport-icon cricket-icon">🏏</i>
+                  <span class="sport-name">Cricket</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('football')"
+                     routerLink="/dashboard/football"
+                     (click)="closeSidebarOnNavigate()">
+                  <i class="sport-icon football-icon">⚽</i>
+                  <span class="sport-name">Football</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('tennis')"
+                     routerLink="/dashboard/tennis"
+                     (click)="closeSidebarOnNavigate()">
+                  <i class="sport-icon tennis-icon">🎾</i>
+                  <span class="sport-name">Tennis</span>
+                </div>
+                
+                <!-- <div class="sport-item" 
+                     [class.active]="isActiveSport('kabaddi')"
+                     routerLink="/dashboard/kabaddi">
+                  <i class="sport-icon kabaddi-icon">🥋</i>
+                  <span class="sport-name">Kabaddi</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('basketball')"
+                     routerLink="/dashboard/basketball">
+                  <i class="sport-icon basketball-icon">🏀</i>
+                  <span class="sport-name">Basketball</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('baseball')"
+                     routerLink="/dashboard/baseball">
+                  <i class="sport-icon baseball-icon">⚾</i>
+                  <span class="sport-name">Baseball</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('greyhound')"
+                     routerLink="/dashboard/greyhound">
+                  <i class="sport-icon greyhound-icon">🐕</i>
+                  <span class="sport-name">GreyHound</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('horse-race')"
+                     routerLink="/dashboard/horse-race">
+                  <i class="sport-icon horse-icon">🐎</i>
+                  <span class="sport-name">Horse Race</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('volleyball')"
+                     routerLink="/dashboard/volleyball">
+                  <i class="sport-icon volleyball-icon">🏐</i>
+                  <span class="sport-name">Volleyball</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('darts')"
+                     routerLink="/dashboard/darts">
+                  <i class="sport-icon darts-icon">🎯</i>
+                  <span class="sport-name">Darts</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('futsal')"
+                     routerLink="/dashboard/futsal">
+                  <i class="sport-icon futsal-icon">⚽</i>
+                  <span class="sport-name">Futsal</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('table-tennis')"
+                     routerLink="/dashboard/table-tennis">
+                  <i class="sport-icon table-tennis-icon">🏓</i>
+                  <span class="sport-name">Table Tennis</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('binary')"
+                     routerLink="/dashboard/binary">
+                  <i class="sport-icon binary-icon">📊</i>
+                  <span class="sport-name">Binary</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('politics')"
+                     routerLink="/dashboard/politics">
+                  <i class="sport-icon politics-icon">🏛️</i>
+                  <span class="sport-name">Politics</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('ice-hockey')"
+                     routerLink="/dashboard/ice-hockey">
+                  <i class="sport-icon ice-hockey-icon">🏒</i>
+                  <span class="sport-name">Ice Hockey</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('mma')"
+                     routerLink="/dashboard/mma">
+                  <i class="sport-icon mma-icon">🥊</i>
+                  <span class="sport-name">MMA</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('rugby')"
+                     routerLink="/dashboard/rugby">
+                  <i class="sport-icon rugby-icon">🏉</i>
+                  <span class="sport-name">Rugby</span>
+                </div>
+                
+                <div class="sport-item" 
+                     [class.active]="isActiveSport('multi-markets')"
+                     routerLink="/dashboard/multi-markets">
+                  <i class="sport-icon multi-markets-icon">📈</i>
+                  <span class="sport-name">Multi Markets</span>
+                </div> -->
+              </div>
+
+              <!-- Other Menu Section -->
+              <div class="other-menu-section">
+                <div class="other-menu-title">OTHER MENU</div>
+                
+                <div class="other-menu-items">
+                  <div class="other-menu-item" routerLink="/dashboard/home" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">home</i>
+                    <span>Home</span>
+                  </div>
+                  
+                  <div class="other-menu-item deposit-bg" (click)="openDWlink('deposit'); closeSidebarOnNavigate();">
+                    <img class="menu-icons" src="assets/icons/deposit-icon.png" />
+                    <span>Deposit</span>
+                  </div>
+                  
+                  <div class="other-menu-item withdraw-bg" (click)="openDWlink('withdraw'); closeSidebarOnNavigate();">
+                    <img class="menu-icons" src="assets/icons/withdrawal-icon.png" />
+                    <span>Withdraw</span>
+                  </div>
+                  
+                  <div class="other-menu-item" routerLink="/dashboard/profile" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">group</i>
+                    <span>My Profile</span>
+                  </div>
+
+                  <div class="other-menu-item" routerLink="/dashboard/my-bets" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">mystery</i>
+                    <span>My Bets</span>
+                  </div>
+                  
+                  <div class="other-menu-item" routerLink="/dashboard/profit-loss" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">signal_cellular_alt</i>
+                    <span>Profit & Loss</span>
+                  </div>
+                  
+                  <div class="other-menu-item" routerLink="/dashboard/unsettled-bets" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">signal_cellular_alt</i>
+                    <span>Unsettled Bets</span>
+                  </div>
+                  
+                  <div class="other-menu-item" routerLink="/dashboard/ledger" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">monitoring</i>
+                    <span>Account Statement</span>
+                  </div>
+                  <div class="other-menu-item" routerLink="/dashboard/bonus-report" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">monitoring</i>
+                    <span>Bonus Report</span>
+                  </div>
+                  
+                  <div class="other-menu-item" *ngIf="username != 'demo' && isLoggedIn()" (click)="changePassword(); closeSidebarOnNavigate();">
+                    <i class="material-symbols-outlined">settings</i>
+                    <span>Change Password</span>
+                  </div>
+                  
+                  <div class="other-menu-item" routerLink="/dashboard/terms-conditions" (click)="closeSidebarOnNavigate()">
+                    <i class="material-symbols-outlined">gavel</i>
+                    <span>Terms & Conditions</span>
+                  </div>
+                  
+                  <div *ngIf="isLoggedIn()" class="other-menu-item" (click)="logout()">
+                    <i class="material-symbols-outlined">logout</i>
+                    <span>Logout</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WhatsApp Follow Button - Fixed at bottom of sidebar -->
+              <div class="whatsapp-follow-section">
+                <button (click)="openWhatsapp()" class="whatsapp-follow-btn">
+                  <img style="width:20px; border-radius: 20px;" src="data:image/png;base64,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" alt="">
+                  <span>FOLLOW ON WHATSAPP</span>
+                </button>
+              </div>
+    </div>
+
+    <!-- Main Content Area - Outside Bootstrap grid -->
+    <main
+      class="container-fluid mat-app-background bg-container zero-margin-desktop margin-mobile main-content-area"
+      [class.sidebar-hidden]="!sidebarVisible"
+    >
+      <div class="container-fluid p-0">
+        <div class="">
+          <div class="row m-0 col-12 col-md-12 col-lg-12 col-sm-12 p-0">
+            <div
+              [class.col-md-9]="!casino_sidebar_visible && !fullview"
+              [class.col-md-12]="casino_sidebar_visible && !fullview"
+              [class.col-md-12]="fullview"
+              class="col-sm-12 m-0 p-0"
+            >
+            <div style="padding: -0px 10px;" class="sub-nav d-flex align-items-center justify-content-center pt-2" *ngIf="isLoggedIn() && candepositShow"> 
+                <div class="sub-old sub-menu-item"
+                    style="background: darkgreen;width: 100%; border: none; color:#fff !important;border: 1px solid #fff;"
+                    (click)="openDWlink('deposit')"><img
+                        class="tab-icon" src="assets/icons/depositicon.svg"> DEPOSIT
+                </div>
+                <div class="sub-old sub-menu-item"
+                    style="background: darkred; margin-left:3px; width: 100%; border: none; color:#fff !important;border: 1px solid #fff;"
+                    (click)="openDWlink('withdraw')"><img class="tab-icon"
+                        src="assets/icons/withdrawalicon.svg"> WITHDRAW
+                </div>
+            </div>
+              <router-outlet></router-outlet>
+            </div>
+            <div
+              *ngIf="!fullview"
+              [class.col-md-3]="!casino_sidebar_visible"
+              style="max-height: 100vh; overflow-y: auto"
+              [class.col-md-2]="casino_sidebar_visible"
+              class="m-0 p-0 col-md-block col-lg-block d-sm-block d-none"
+            >
+              <div *ngIf="!casino_sidebar_visible">
+                <!-- Live Stream Section -->
+                <div class="right-panel-section">
+                  <button class="live-stream-btn">
+                    <span>Live Stream</span>
+                  </button>
+                </div>
+
+                <!-- Right Tabs: Bet Slip / Open Bets / Trending -->
+                <div class="right-panel-section">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" (click)="$event.preventDefault(); activeRightTab = 'open'" href="#">Open Bets</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link " (click)="$event.preventDefault(); activeRightTab = 'bet'" href="#">Bet Slip</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content p-2">
+                    <div class="tab-pane" [ngClass]="{ 'show active': activeRightTab === 'bet' }">
+                      <div *ngIf="betslip_visible">
+                        <div style="position: absolute; right: 10px; cursor: pointer" (click)="closeBet()" class="text-light h3">&times;</div>
+                        <app-casino-bet-slip-plain [data]="betdata"></app-casino-bet-slip-plain>
+                      </div>
+                      <div *ngIf="!betslip_visible" class="no-bets-message">
+                        <i class="material-symbols-outlined">block</i>
+                        <span>No selections yet.</span>
+                      </div>
+                    </div>
+                    <div class="tab-pane" [ngClass]="{ 'show active': activeRightTab === 'open' }">
+                      <app-currentbets></app-currentbets>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="betslip_visible">
+                  <div
+                    style="position: absolute; right: 10px; cursor: pointer"
+                    (click)="closeBet()"
+                    class="text-light h3"
+                  >
+                    &times;
+                  </div>
+                  <app-casino-bet-slip-plain [data]="betdata"></app-casino-bet-slip-plain>
+                </div>
+                <div *ngIf="casino_betslip_visible">
+                  <div
+                    style="position: absolute; right: 10px; cursor: pointer"
+                    (click)="closeCasinoBet()"
+                    class="text-light h3"
+                  >
+                    &times;
+                  </div>
+                  <app-casino-bet-slip-plain [data]="betdata">
+                  </app-casino-bet-slip-plain>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br> <br>
+      <footer class="footer-section">
+          <div class="footer-content">
+              <div class="footer-text">
+                  RULES & REGULATIONS © 2025-26
+              </div>
+          </div>
+      </footer>
+    </main>
+  
+    <app-footer class="sticky-bottom">
+    </app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

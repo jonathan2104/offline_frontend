@@ -1,0 +1,50 @@
+<div class="content-wrapper" style="min-height: 368px">
+  <div class="pt-2 pb-2">
+    <div class="card m-2">
+      <div class="card-body" style="padding: 5px;">
+        <h1 style="text-decoration: underline;" class="card-title text-center">
+          Play Casino
+        </h1>
+        <div class="pagination">
+          <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">previous</button>
+        
+          <ng-container *ngFor="let page of getPaginationRange()">
+            <ng-container *ngIf="page === '...'">
+              <span>...</span>
+            </ng-container>
+            <ng-container *ngIf="page !== '...'">
+              <button 
+                (click)="page !== currentPage && changePage(page)" 
+                [ngClass]="{'active-page': page === currentPage}"
+              >
+                {{ page }}
+              </button>
+            </ng-container>
+          </ng-container>
+        
+          <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">next</button>
+        </div>
+        <div *ngIf="is_active; else notActive" id="game_container">
+          <div *ngIf="isloading; else gamelist">
+            <mat-spinner diameter="40"></mat-spinner>
+          </div>
+          <ng-template #gamelist>
+            <div class="list" style="display: flex; overflow-y:hidden; white-space: nowrap; max-height: 100vh; overflow-y: auto;">
+              <div *ngFor="let game of gameList" class="col-lg-2 col-md-3 col-6 p-0" (click)="openGametab(game)">
+                <img class="game_banner" [src]="game.image" alt="{{ game.name }}" />
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <ng-template #notActive>
+          <div class="pt-4 text-center" id="contact_us">
+            <h3 class="contact_notice">Notice: Your casino account is not active, click to activate.</h3>
+            <br />
+            <button type="button" [disabled]="clicked" (click)="activateAccount(); clicked = true;" class="btn btn-primary btn-lg mt-3 text-dark">Activate account</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

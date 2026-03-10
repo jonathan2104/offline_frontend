@@ -1,0 +1,68 @@
+<h2 class="userscreen-title mt-1"><button (click)="backClicked()" class="btn-xs back-page">Back</button><span class="h6 ml-2"> My bets</span></h2>
+<div class="card p-2 redtablehead" style="background-color: #353A40;">
+    <div class="p-2 overflow-auto table-green">
+        <table class="table table-sm table-bordered table-striped table-responsive text-white">
+            <thead>
+                <tr>
+                  <th>Sports</th>
+                  <th>Type</th>
+                  <th>Event Name</th>
+                  <th>Market Name</th>
+                  <th>Nation</th>
+                  <th>User Rate</th>
+                  <th>Amount</th>
+                  <th>Place Date</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="filter_bets.length>0; else noResult">
+                <tr
+                  *ngFor="let bet of filter_bets | paginate: { itemsPerPage, currentPage };"
+                  [class.lay-border]="bet.type == 'Lay'"
+                  [class.back-border]="bet.type == 'Back'"
+                >
+                  <td><img src="/assets/icons/{{bet.matchtype}}"></td>
+                  <td>{{bet.type}}</td>
+                  <td>{{ bet.event_name }}</td>
+                  <td>{{ bet.main_type == "fancy" ? "toss" : bet.main_type }}</td>
+                  <td>{{ bet.runner_name }}</td>
+                  <td>
+                    {{
+                      bet.main_type == "session" || bet.main_type == "meter"
+                        ? bet.size
+                        : bet.price
+                    }}
+                  </td>
+                  <td>{{ bet.bet_amount }}</td>
+                  <td>{{ bet.updated_at | date : "MMM d, y h:mm a" }}</td>
+                </tr>
+            </tbody>
+            <ng-template #noResult>
+                <tbody >
+                    <tr >
+                        <td colspan="100" class="text-white" style="background: #353A40;">No data found</td>
+                    </tr>
+                </tbody>
+            </ng-template>
+        </table>
+        <div class="entries-pagination-wrapper">
+            <div class="entries-wrapper">
+              <label class="color-hh" for="itemsPerPage">Show</label>
+              <select
+                id="itemsPerPage"
+                [(ngModel)]="itemsPerPage"
+                (change)="onEntriesChange()"
+              >
+                <option *ngFor="let option of entriesOptions" [value]="option">
+                  {{ option }}
+                </option>
+              </select>
+              <span class="color-hh">entries</span>
+            </div>
+            <div class="pagination-wrapper">
+              <pagination-controls
+                (pageChange)="currentPage = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+    </div>
+</div> 

@@ -1,0 +1,106 @@
+::ng-deep .modal {
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog {
+  width: 90%;
+}
+
+/* Card Container */
+.card {
+  background: #1e1e1e !important;
+  border: 1px solid #333 !important;
+  border-radius: 6px;
+  color: #f1f1f1 !important;
+}
+
+/* Header */
+.card-header {
+  background: #B35442 !important;
+  color: #fff !important;
+  font-weight: 600;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Body */
+.card-body {
+  background: #1e1e1e !important;
+  color: #eaeaea !important;
+}
+
+/* Labels */
+label {
+  font-weight: 500;
+  color: #ddd !important;
+  margin-bottom: 5px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+.form-control {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 0px 0 12px 0;
+  display: inline-block;
+  background: #2c2c2c !important;
+  color: #f1f1f1 !important;
+  border: 1px solid #444 !important;
+  border-radius: 5px !important;
+  outline: none;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  text-indent: 8px;
+  height: 38px;
+  transition: border 0.2s ease-in-out;
+}
+
+input:focus,
+.form-control:focus {
+  border: 1px solid #B35442 !important;
+  background: #252525 !important;
+  box-shadow: 0 0 6px rgba(179, 84, 66, 0.5) !important;
+}
+
+/* Error messages */
+.text-danger {
+  font-size: 12px;
+  color: #ff6b6b !important;
+  margin-top: -6px;
+  display: block;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 5px;
+  padding: 8px 14px;
+  font-weight: 500;
+  border: none;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-danger {
+  background: #444 !important;
+  color: #fff !important;
+}
+
+.btn-danger:hover {
+  background: #666 !important;
+}
+
+.btn-success {
+  background: #B35442 !important;
+  color: #fff !important;
+}
+
+.btn-success:hover {
+  background: #933d30 !important;
+}
+
+/* Radio buttons */
+input[type="radio"] {
+  margin-right: 6px;
+  accent-color: #B35442;
+}

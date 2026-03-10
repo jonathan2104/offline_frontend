@@ -1,0 +1,41 @@
+::ng-deep .modal {
+    z-index: 1055;
+  }
+  
+  ::ng-deep .modal-dialog {
+    /*max-width: 90%;*/
+    width: 90%;
+  }
+  
+  ::ng-deep .mat-dialog-container {
+    padding: 0px !important;
+    border: none !important;
+  }
+  
+  .cell{
+    background: #ccc;
+  }
+  
+  .card-header {
+    /* background: transparent linear-gradient(94deg,#b6842d,#ebda8d 55%,#b7862f); */
+    background-color: #000;
+    /* color: #2e2e2d !important; */
+    color: #fff;
+    padding: 3px;
+  }
+  
+  .card-body {
+    background-color: #ffffff !important;
+    color: #aaafb5 !important;
+  }
+  
+  input::placeholder {
+    color:#2d2d2d;
+  }
+  input:focus{
+    border:2px solid #00FF5A;
+  }
+  .text-red{
+    color: red !important;
+    cursor: default;
+  }

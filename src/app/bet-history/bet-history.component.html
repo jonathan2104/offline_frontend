@@ -1,0 +1,134 @@
+<!-- <h2 class="userscreen-title mt-0" (click)="backClicked()"><span class="material-symbols-outlined">
+    arrow_back_ios
+    </span><span class="h6 ml-2" style="color: #F26C20;"> PROFIT LOSS STATEMENT</span></h2> -->
+    <div class="container-fluid" style="padding-left: 0px;padding-right: 0px">
+    <div class="card p-2 redtablehead" style="border: none !important;">
+    <div class="rows">
+        <form class="w-100" [formGroup]="profitFilterForm">
+            <div class="container row col-sm-12 col-12 pr-0">
+              <div class="form-group col-sm-4 col-6 mt-1">
+                <select formControlName="source" id="sports" class="form-control">
+                    <option value="data" >Data Source</option>
+                    <option value="data" >Live Data</option>
+                    <option value="data" >Backup Data</option>
+                    <option value="data" >Old Data</option>
+                    <!-- <option value="cricket">Cricket</option>
+                    <option value="soccer">Football</option>
+                    <option value="tennis">Tennis</option> -->
+                </select>
+              </div>
+              <div class="form-group col-sm-4 col-6 mt-1">
+                <select formControlName="sports" id="sports" class="form-control">
+                    <!-- <option value="all" >All sports</option> -->
+                    <option value="cricket">Cricket</option>
+                    <option value="soccer">Football</option>
+                    <option value="tennis">Tennis</option>
+                    <option value="casino">Casino</option>
+                    <option value="horceracing">Horse Racing</option>
+                    <option value="grehoundracing">Greyhound Racing</option>
+                    <option value="basketball">Basketball</option>
+                    <option value="lottery">Lottery</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4 col-6 mt-1">
+                <select formControlName="status" id="sports" class="form-control">
+                    <option value="0" >Settled</option>
+                    <option value="1">Unsettled</option>
+                    <option value="-1">Void</option>
+                </select>
+              </div>
+            </div>
+            <div class="container row col-sm-12 col-12 pr-0">
+              <!-- <div class="form-group col-sm-6 col-6">
+                <label for="sports">Sports Type</label>
+                <select formControlName="sports" id="sports" [(ngModel)]="yourModelName" class="form-control">
+                    <option value="all" >All sports</option>
+                    <option value="cricket">Cricket</option>
+                    <option value="soccer">Football</option>
+                    <option value="tennis">Tennis</option>
+                </select>
+              </div> -->
+              <div class="form-group col-sm-4 col-6 mt-1">
+                <!-- <label for="fromDate">From Date</label> -->
+                <input type="date" formControlName="from" class="form-control" id="fromDate">
+                <span
+                    class="text-danger"
+                    *ngIf="
+                    (filterFormControl.from.touched || submitted) &&
+                    filterFormControl.from.errors?.required">
+                    From date is required
+                </span>
+              </div>
+              <div class="form-group col-sm-4 col-6 mt-1">
+                <!-- <label for="toDate">To Date</label> -->
+                <input type="date" formControlName="to" class="form-control" id="toDate">
+                <span
+                    class="text-danger"
+                    *ngIf="
+                    (filterFormControl.to.touched || submitted) &&
+                    filterFormControl.to.errors?.required">
+                    To date is required
+                </span>
+              </div>
+              <div class="text-left form-group col-sm-4 col-6 mt-1">
+                    <!-- <label for="toDate" style="color:black;">&nbsp;</label> -->
+                <button class="btn btn-block apply-btn" (click)="getHistory()">Get History</button>
+              </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Bet History</div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered table-responsive table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Sport Name</th>
+                        <th>Event name</th>
+                        <th>Market Name</th>
+                        <th>Selection</th>
+                        <th>Type</th>
+                        <th>Odds Req.</th>
+                        <th>Stack</th>
+                        <th>Placed Time</th>
+                        <th>Matched time</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="bet_history.length>0; else noResult">
+                    <tr [class.tr-green]="bet.is_won==1" [class.tr-grey]="bet.is_won==2" [class.tr-red]="bet.is_won==0" *ngFor="let bet of bet_history; let i = index;">
+                        <!-- <td>{{i+1}}</td>
+                        <td>{{bet.type}}</td>
+                        <td>{{bet.updated_at | date:'MMM d, y h:mm a'}}</td>
+                        <td>{{bet.type}}</td>
+                        <td>{{bet.event_name}}</td>
+                        <td>{{bet.is_won=="1"?bet.win_amount:bet.is_won=="2"?bet.bet_amount:bet.loss_amount}}</td> -->
+                        <!-- <td>{{bet.main_type=="fancy"?"toss":bet.main_type}}</td>
+                        <td>{{bet.is_won=="1"?"win":bet.is_won=="2"?"canceled":"lose"}}</td>
+                        <td>{{bet.runner_name}}</td> -->
+
+                        <td>{{bet.sports}}</td>
+                        <td>{{bet.event_name}}</td>
+                        <td>{{bet.main_type}}</td>
+                        <td>{{bet.runner_name}}</td>
+                        <td>{{bet.type}}</td>
+                        <td>{{bet.price}}</td>
+                        <td>{{bet.bet_amount}}</td>
+                        <td>{{bet.created_at | date:'MMM d, y h:mm a'}}</td>
+                        <td>{{bet.created_at | date:'MMM d, y h:mm a'}}</td>
+
+                    </tr>
+                </tbody>
+                <ng-template #noResult>
+                    <tbody >
+                        <tr>
+                            <td colspan="100" cclass="text-dark text-center" style="background-color: #ffffff;">No Data To Display</td>
+                        </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+
+</div> 
+</div>

@@ -1,0 +1,36 @@
+::ng-deep .modal {
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog {
+  /*max-width: 90%;*/
+  width: 90%;
+}
+
+
+.card-header {
+  background: #adadad !important;
+  color: black !important;
+}
+
+.card-body {
+  background-color: #f1f0f5 !important;
+  color: black !important;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 0px 0 8px 0;
+  display: inline-block;
+  color: black !important;
+  border-radius: 0px !important;
+  outline: 0;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2) !important;
+  letter-spacing: 0.4px !important;
+  font-size: 14px !important;
+  /*font-family: "open-sans-semibold" !important;*/
+  text-indent: 15px;
+  height: 35px;
+  /*font-weight: 600;*/
+}

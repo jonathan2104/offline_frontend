@@ -1,0 +1,67 @@
+<!-- Main Header -->
+<nav class="main-header">
+  <div class="header-container">
+    <!-- Sidebar Toggle Button - Always visible -->
+    <button
+      class="navbar-sidebar-toggle"
+      (click)="onToggleSidenav()"
+      title="Toggle Sidebar"
+    >
+      <i class="material-symbols-outlined">menu</i>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a routerLink="/dashboard/home" class="nav-link">Home</a>
+      <a routerLink="/dashboard/inplay-match" class="nav-link">Inplay</a>
+      <a routerLink="/dashboard/sportsbook" class="nav-link">Sportsbook</a>
+      <a routerLink="/dashboard/livecasino" class="nav-link">Casino</a>
+      <a routerLink="/dashboard/multi-markets" class="nav-link"
+        >Multi Markets</a
+      >
+    </div>
+
+    <!-- <div class="apk-download">
+      <button class="apk-btn" (click)="downloadApk()">
+        <span class="apk-icon">⬇</span>
+        <span class="apk-text">Premio Fantasy APK</span>
+      </button>
+    </div> -->
+
+    <!-- User Section -->
+    <div class="user-section">
+      <!-- WhatsApp Icon -->
+      <div (click)="openWhatsapp()" class="whatsapp-icon">
+        <img
+          style="width: 100%; border-radius: 20px"
+          src="/assets/images/chat24.png"
+          alt=""
+        />
+      </div>
+
+      <!-- User Balance and Info -->
+      <div class="user-info" *ngIf="isLoggedIn">
+        <div class="username-info"></div>
+        <div class="balance-info">
+          <span class="balance-label">Bal:</span>
+          <span class="balance-amount">{{ netBalance | number: ".2-2" }}</span>
+          <span class="username-label">{{ username }}</span>
+        </div>
+        <div class="exposure-info" *ngIf="exposure.length > 0">
+          <span class="exposure-label">Exp:</span>
+          <span class="exposure-amount">{{
+            exposure[0].exp_amount | number: ".2-2"
+          }}</span>
+          <span class="bonus-label">Bonus:</span>
+          <span class="bonus-amount">{{ bonus | number: ".2-2" }}</span>
+        </div>
+      </div>
+
+      <!-- Login/Register Buttons -->
+      <div class="auth-buttons" *ngIf="!isLoggedIn">
+        <button class="login-btn" (click)="openlogin()">Login</button>
+        <button class="register-btn" (click)="openRegister()">Register</button>
+      </div>
+    </div>
+  </div>
+</nav>

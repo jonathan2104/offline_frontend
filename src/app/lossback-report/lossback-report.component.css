@@ -1,0 +1,215 @@
+/* Base Font */
+* {
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+/* Backgrounds & Theme */
+.bg-dark {
+  background: #000;
+  color: #fff;
+}
+
+.bg-theme {
+  background: #fff !important;
+  border: none;
+  color: #000 !important;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+/* Table & Header */
+.userscreen-title {
+  background: #846f1e;
+  margin-bottom: 5px;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 5px;
+  color: #fff;
+}
+
+.ledertablehead .table thead th {
+  color: #fff !important;
+  background: #1f5887;
+}
+
+.ledertablehead .table tbody td {
+  color: #fff;
+}
+
+.table-bordered {
+  border-color: #555;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #2b2b2b;
+}
+
+/* Entries & Pagination */
+.entries-pagination-wrapper,
+.table-pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 15px;
+}
+
+.rows-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rows-per-page select,
+.entries-wrapper select {
+  padding: 0.3rem 0.5rem;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+}
+
+.pagination-controls,
+.pagination-wrapper {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.pagination-controls button {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.5rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-controls button.active {
+  background-color: #007bff;
+  border-color: #0056b3;
+}
+
+.pagination-controls button:disabled {
+  background-color: #555;
+  color: #888;
+  cursor: not-allowed;
+}
+
+pagination-controls ::ng-deep .ngx-pagination .current {
+  background-color: #1f5887;
+  color: #fff;
+  border-radius: 5px;
+}
+
+pagination-controls ::ng-deep .ngx-pagination a {
+  color: #fff;
+  background: #5b5a5a;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+pagination-controls ::ng-deep .ngx-pagination a:hover {
+  color: #9f9d9d;
+  text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+  background-color: #343435;
+  color: #fff;
+}
+
+.btn:hover {
+  background-color: #000000;
+}
+
+.btn-primary1 {
+  background: #846f1e;
+  color: #fff;
+}
+
+.btn-darkest {
+  background: #000;
+  color: #fff;
+}
+
+/* Modal & Card */
+.stat-card {
+  background: #1f1f1f;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
+
+.stat-card h6 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #bbb;
+  margin-bottom: 5px;
+}
+
+.stat-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.referral-stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.referral-stats-container > .stat-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .entries-pagination-wrapper,
+  .table-pagination-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .referral-stats-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* Global Transfer Button */
+.btn-transfer-all {
+  background: #28a745;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.btn-transfer-all:hover {
+  background: #218838;
+}
+
+.btn-transfer-all:disabled {
+  background: #444;
+  cursor: not-allowed;
+  color: #888;
+}

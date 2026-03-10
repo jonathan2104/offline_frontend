@@ -1,0 +1,32 @@
+::ng-deep .modal {
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog {
+  /*max-width: 90%;*/
+  width:90%;
+  margin: 0 auto;
+}
+
+
+.card-header-grey {
+  background: #343435 !important;
+  color: #fff !important;
+  height: 35px;
+}
+
+.card-body p.imp {
+  color: rgb(220,53,69,0.9);
+}
+
+.btn-primary{
+  background: darkred;
+}
+
+.card-details p{
+  border-bottom: 1px solid #e4e4e4;
+  margin: 10px;
+  color: grey;
+}
+
+

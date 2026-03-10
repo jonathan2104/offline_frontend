@@ -1,0 +1,281 @@
+<h2 class="userscreen-title mt-1">
+  <button (click)="backClicked()" class="btn-xs back-page">Back</button
+  ><span class="h6 ml-2"> Account Statement</span>
+</h2>
+<div class="container-fluid p-0 m-0">
+  <div class="container-fluid pt-0 pb-0 mt-0 p-2 bg-dark">
+    <div class="mt-2">
+      <form
+        class="w-100"
+        [formGroup]="FilterForm"
+        (ngSubmit)="filter()"
+        class="search_form"
+      >
+        <div class="container row col-sm-12 col-12 pr-0">
+          <div class="form-group col-sm-3 col-6">
+            <label for="fromDate" class="text-white1">From Date</label>
+            <input
+              type="date"
+              formControlName="from"
+              class="form-control"
+              id="fromDate"
+              [max]="today"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (filterFormControl.from.touched || submitted) &&
+                filterFormControl.from.errors?.required
+              "
+            >
+              From date is required
+            </span>
+          </div>
+          <div class="form-group col-sm-3 col-6">
+            <label for="toDate" class="text-white1">To Date</label>
+            <input
+              type="date"
+              formControlName="to"
+              class="form-control"
+              id="toDate"
+              [max]="today"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                (filterFormControl.to.touched || submitted) &&
+                filterFormControl.to.errors?.required
+              "
+            >
+              To date is required
+            </span>
+          </div>
+          <div class="form-group col-sm-3 col-6">
+            <label for="typefilter" class="text-white1">Type</label>
+            <select
+              [(ngModel)]="type_filter"
+              id="typefilter"
+              class="form-control"
+              formControlName="typefilter"
+            >
+              <option value="all">All</option>
+              <option value="deposit-withdraw">Deposit/Withdraw</option>
+              <option value="sports">Sports</option>
+              <option value="casino">Casino</option>
+            </select>
+          </div>
+          <!-- <div class="form-group col-sm-3 col-6">
+            <label for="typefilter">&nbsp;</label>
+            <button
+              type="button"
+              class="btn btn-block bg-warning ml-2"
+              (click)="exportToPDF()"
+            >
+              Export
+            </button>
+          </div> -->
+          <div class="text-left col-sm-12 col-12">
+            <button class="btn btn-primary1 btn-block btn-outline-dark ml-2">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="mt-3" *ngIf="updated_ledger_data.length > 0; else nodata">
+      <div class="w-100 overflow-auto mt-2 ledertablehead">
+        <table class="table table-bordered table-sm table-hover">
+          <thead>
+            <tr>
+              <th class="text-right">Sr no</th>
+              <th>Date</th>
+              <!-- <th>Runner</th> -->
+              <th class="text-right">Total</th>
+              <th class="text-right">Balance</th>
+              <th>D/C</th>
+              <th>Description</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="updated_ledger_data.length > 0; else nodata">
+            <tr  *ngFor="let data of updated_ledger_data.slice().reverse() | paginate: { itemsPerPage,currentPage }; index as i">
+              <!-- <td class="text-right">{{ updated_ledger_data.length - i }}</td> -->
+              <td class="text-right">{{ i + 1 }}</td>
+              <td>
+                {{ data.created_at | date : "dd/MM/Y H:mm:ss" }} (UTC+05:30)
+              </td>
+              <!-- <td>{{data.event_id!=null ? data.event_id+'-':''}} {{data.runner_name}}</td> -->
+              <td class="text-right" [class.text-danger]="data.profit_loss < 0" [class.text-success]="data.profit_loss >= 0">
+                {{ data.profit_loss >= 0 ? data.profit_loss : "" }}
+                {{ data.profit_loss <= 0 ? data.profit_loss : "" }}
+              </td>
+              <td class="text-right">{{ (data.pts).toFixed(1) }}</td>
+              <td>{{ data.profit_loss >= 0 ? "Credit" : "Debit" }}</td>
+              <td *ngIf="['cricket', 'soccer', 'tennis'].includes(data.type)">
+                {{ data.type }}/{{ data.event_name }}/{{ data.subtype }}/{{
+                  data.runner_name
+                }}{{
+                  data.subtype == "session" ? "/" + data.session_result : ""
+                }}
+              </td>
+              <td *ngIf="data.subtype == 'casino'">
+                <!-- {{ data.type | gamename }}
+                {{ "/ R.No.: " + data.event_id + "/" }}
+                {{ data.win | winnername : data.type }} -->
+              </td>
+              <td
+                *ngIf="
+                  !['cricket', 'soccer', 'tennis'].includes(data.type) &&
+                  data.subtype != 'casino'
+                "
+              >
+                {{ data.runner_name }}
+              </td>
+              <td><button *ngIf="data.event_id!=null" class="btn btn-sm btn-darkest" (click)="openbetDetails(data)">Show Bet</button><button class="btn btn-sm btn-darkest" *ngIf="data.event_id==null">-</button></td>
+            </tr>
+          </tbody>
+          <ng-template #nodata>
+            <tbody>
+              <td>no data found</td>
+            </tbody>
+          </ng-template>
+        </table>
+        <div class="entries-pagination-wrapper">
+          <div class="entries-wrapper">
+            <label class="color-hh" for="itemsPerPage">Show</label>
+            <select
+              id="itemsPerPage"
+              [(ngModel)]="itemsPerPage"
+              (change)="onEntriesChange()"
+            >
+              <option *ngFor="let option of entriesOptions" [value]="option">
+                {{ option }}
+              </option>
+            </select>
+            <span class="color-hh">entries</span>
+          </div>
+          <div class="pagination-wrapper">
+            <pagination-controls
+              (pageChange)="currentPage = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+      <!-- <mat-accordion *ngFor="let data of updated_ledger_data">
+        <mat-expansion-panel
+          [class.border-success]="data.profit_loss >= 0"
+          [class.border-danger]="data.profit_loss < 0"
+          class="border rounded mt-2"
+          style="border-width: 2px !important"
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="text-white mr-3">{{
+                data.type != null
+                  ? data.subtype
+                  : (data.runner_name | titlecase)
+              }}</span>
+              <div>{{ data.updated_at | date : "MMM d, y h:mm:ss a" }}</div>
+            </mat-panel-title>
+            <mat-panel-description>
+              <span
+                class="font-weight-bold"
+                [class.text-success]="data.profit_loss >= 0"
+                [class.text-danger]="data.profit_loss < 0"
+              >
+                {{ data.profit_loss }}
+              </span>
+              <span class="text-white ml-3">{{ data.new_limit }}</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <hr class="border border-success" />
+            <div class="row">
+              <div class="col-4" *ngIf="data.event_id != null">
+                <span class="text-success d-block text-break"
+                  >{{ data.event_id }}-{{ data.runner_name }}</span
+                >
+                <span>{{ data.event_id }}</span
+                ><span> - {{ data.subtype }}</span>
+              </div>
+              <div class="col-4" *ngIf="data.event_name != null">
+                {{ data.event_name }}
+              </div>
+              <div class="col-4" *ngIf="data.event_id != null">
+                <span class="d-block">{{ data.new_limit }}</span
+                ><span class="d-block"> {{ data.profit_loss }}</span
+                ><span class="d-block text-break">{{ data.runner_name }}</span>
+              </div>
+              <div class="col-8 mt-2">
+                <span class="font-weight-bold">Description: </span>Balance
+                updated. Old Limit: {{ data.old_limit }}. New Limit:
+                {{ data.new_limit }}
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion> -->
+    </div>
+
+    <!-- <div class="mt-3" *ngIf="updated_casino_ledger_data.length > 0">
+      <mat-accordion *ngFor="let data of updated_casino_ledger_data">
+        <mat-expansion-panel
+          [class.border-success]="data.profit_loss >= 0"
+          [class.border-danger]="data.profit_loss < 0"
+          class="border rounded mt-2"
+          style="border-width: 2px !important"
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="text-white mr-3">{{ data.gameid | titlecase }}</span>
+              <div>{{ data.created_at | date : "MMM d, y h:mm:ss a" }}</div>
+            </mat-panel-title>
+            <mat-panel-description>
+              <span
+                class="font-weight-bold"
+                [class.text-success]="data.profit_loss >= 0"
+                [class.text-danger]="data.profit_loss < 0"
+              >
+                {{ data.profit_loss }}
+              </span>
+              <span class="text-white ml-3">{{ data.new_limit }}</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <hr class="border border-success" />
+            <div class="row">
+              <div class="col-4" *ngIf="data.roundid != null">
+                <span class="text-success d-block text-break"
+                  >{{ data.type }}-{{ data.roundid }}</span
+                >
+                <span>{{ data.event_id }}</span
+                ><span> - {{ data.sub_type }}</span>
+              </div>
+              <div class="col-4" *ngIf="data.event_name != null">
+                {{ data.event_name }}
+              </div>
+              <div class="col-4" *ngIf="data.event_id != null">
+                <span class="d-block">{{ data.new_limit }}</span
+                ><span class="d-block"> {{ data.profit_loss }}</span
+                ><span class="d-block text-break">{{ data.runner_name }}</span>
+              </div>
+              <div class="col-8 mt-2">
+                <span class="font-weight-bold">Description: </span>Balance
+                updated. Old Limit: {{ data.old_limit }}. New Limit:
+                {{ data.new_limit }}
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div> -->
+
+    <ng-template #nodata>
+      <div class="text-center">No data found</div>
+    </ng-template>
+  </div>
+</div>

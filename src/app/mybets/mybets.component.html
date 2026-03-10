@@ -1,0 +1,209 @@
+<div class="box">
+  <!--  open match bets-->
+  <div *ngFor="let match_bet of match_bets">
+    <div class="card mt-3 border border-warning rounded">
+      <div class="text-white bg-black d-flex justify-content-between border border-warning card-header">
+        <div class="title text-center" (click)="openMatchDetails(match_bet.event_id)">
+          <span>{{match_bet.event_name}}</span><br>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class=" d-flex justify-content-between p-2 border-secondary">
+          <div class="title">
+            <span>{{match_bet.runner1}}</span><br>
+            <span class="font-weight-bold" [class.text-danger]="match_bet.exp_amount1<0"
+                  [class.text-success]="match_bet.exp_amount1>=0">{{match_bet.exp_amount1}}</span>
+          </div>
+          <button #btn mat-button
+                  class="btn mbtn bg-blue p-0 font-weight-bold">
+            <b>{{match_bet.back0_price}}</b><br><span>{{match_bet.back0_size}}</span>
+          </button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{match_bet.lay0_price}}
+            <br><small>{{match_bet.lay0_size}}</small></button>
+          <br>
+        </div>
+        <div class=" d-flex justify-content-between p-2 border-secondary border-top">
+          <div class="title">
+            <span>{{match_bet.runner2}}</span><br>
+            <span class="font-weight-bold" [class.text-danger]="match_bet.exp_amount2<0"
+                  [class.text-success]="match_bet.exp_amount2>=0">{{match_bet.exp_amount2}}</span>
+          </div>
+          <button
+            class="btn mbtn bg-blue p-0 font-weight-bold">{{match_bet.back1_price}}
+            <br>{{match_bet.back1_size}}</button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{match_bet.lay1_price}}
+            <br>{{match_bet.lay1_size}}</button>
+          <br>
+        </div>
+        <div *ngIf="match_bet.back2_price!=null"
+             class="d-flex justify-content-between p-2 border-secondary border-top">
+          <div class="title">
+            <span>Draw</span><br>
+            <span class="font-weight-bold" [class.text-danger]="match_bet.exp_amount3<0"
+                  [class.text-success]="match_bet.exp_amount3>=0">{{match_bet.exp_amount3}}</span>
+          </div>
+          <button
+            class="btn mbtn bg-blue p-0 font-weight-bold">{{match_bet.back2_price}}
+            <br>{{match_bet.back2_size}}</button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{match_bet.lay2_price}}
+            <br>{{match_bet.lay2_size}}</button>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  open session bets-->
+  <div *ngFor="let session_bet of session_bets">
+    <div class="card mt-3  border border-warning rounded" *ngIf="session_bets.length>0" (click)="openMatchDetails(session_bet.event_id)">
+      <div class="text-white bg-black d-flex justify-content-between border border-warning  card-header">
+        <div class="title text-center">
+          <span>{{session_bet.event_name}}</span><br>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class=" d-flex justify-content-between p-2 border-secondary border-bottom">
+          <div class="title">
+            <span>{{session_bet.runner_name}}</span><br>
+            <span [class.text-danger]="session_bet.type=='Lay' && session_bet.exp_amount1<0"
+                  [class.text-danger]="session_bet.type=='Back' && session_bet.exp_amount2<0"
+                  [class.text-success]="session_bet.type=='Lay' && session_bet.exp_amount1>=0"
+                  [class.text-success]="session_bet.type=='Back' && session_bet.exp_amount2>=0">{{session_bet.type == 'Lay' ? session_bet.exp_amount1 : session_bet.exp_amount2}}</span>
+          </div>
+          <div class="title">
+            <div class="d-flex justify-content-between">
+              <button class="btn mbtn bg-pink   p-0 font-weight-bold">{{session_bet.lay_price}}
+                <br><small>{{session_bet.lay_size}}</small></button>
+              <br>
+              <button class="btn mbtn  bg-blue p-0 ml-2 font-weight-bold">{{session_bet.back_price}}
+                <br><small>{{session_bet.back_size}}</small></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  open tennis bets-->
+  <div *ngFor="let tennis_bet of tennis_bets">
+    <div class="card mt-3 border border-warning rounded">
+      <div class="text-white bg-black d-flex justify-content-between border border-warning card-header">
+        <div class="title text-center" (click)="openTennisDetails(tennis_bet.event_id)">
+          <span>{{tennis_bet.event_name}}</span><br>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class=" d-flex justify-content-between p-2 border-secondary">
+          <div class="title">
+            <span>{{tennis_bet.runner1}}</span><br>
+            <span class="font-weight-bold" [class.text-danger]="tennis_bet.exp_amount1<0"
+                  [class.text-success]="tennis_bet.exp_amount1>=0">{{tennis_bet.exp_amount1}}</span>
+          </div>
+          <button #btn mat-button
+                  class="btn mbtn bg-blue p-0 font-weight-bold">
+            <b>{{tennis_bet.back0_price}}</b><br><span>{{tennis_bet.back0_size}}</span>
+          </button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{tennis_bet.lay0_price}}
+            <br><small>{{tennis_bet.lay0_size}}</small></button>
+          <br>
+        </div>
+        <div class=" d-flex justify-content-between p-2 border-secondary border-top">
+          <div class="title">
+            <span>{{tennis_bet.runner2}}</span><br>
+            <span class="font-weight-bold" [class.text-danger]="tennis_bet.exp_amount2<0"
+                  [class.text-success]="tennis_bet.exp_amount2>=0">{{tennis_bet.exp_amount2}}</span>
+          </div>
+          <button
+            class="btn mbtn bg-blue p-0 font-weight-bold">{{tennis_bet.back1_price}}
+            <br>{{tennis_bet.back1_size}}</button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{tennis_bet.lay1_price}}
+            <br>{{tennis_bet.lay1_size}}</button>
+          <br>
+        </div>
+        <div *ngIf="tennis_bet.runner3!=null"
+             class="d-flex justify-content-between p-2 border-secondary border-top">
+          <div class="title">
+            <span>Draw</span><br>
+            <span class="font-weight-bold" [class.text-danger]="tennis_bet.exp_amount3<0"
+                  [class.text-success]="tennis_bet.exp_amount3>=0">{{tennis_bet.exp_amount3}}</span>
+          </div>
+          <button
+            class="btn mbtn bg-blue p-0 font-weight-bold">{{tennis_bet.back2_price}}
+            <br>{{tennis_bet.back2_size}}</button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{tennis_bet.lay2_price}}
+            <br>{{tennis_bet.lay2_size}}</button>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  open soccer bets-->
+  <div *ngFor="let soccer_bet of soccer_bets">
+    <div class="card mt-3 border border-warning rounded">
+      <div class="text-white bg-black d-flex justify-content-between border border-warning card-header">
+        <div class="title text-center" (click)="openSoccerDetails(soccer_bet.event_id)">
+          <span>{{soccer_bet.event_name}}</span><br>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class=" d-flex justify-content-between p-2 border-secondary">
+          <div class="title">
+            <span>{{soccer_bet.runner1}}</span><br>
+            <span class="font-weight-bold" [class.text-danger]="soccer_bet.exp_amount1<0"
+                  [class.text-success]="soccer_bet.exp_amount1>=0">{{soccer_bet.exp_amount1}}</span>
+          </div>
+          <button #btn mat-button
+                  class="btn mbtn bg-blue p-0 font-weight-bold">
+            <b>{{soccer_bet.back0_price}}</b><br><span>{{soccer_bet.back0_size}}</span>
+          </button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{soccer_bet.lay0_price}}
+            <br><small>{{soccer_bet.lay0_size}}</small></button>
+          <br>
+        </div>
+        <div class=" d-flex justify-content-between p-2 border-secondary border-top">
+          <div class="title">
+            <span>{{soccer_bet.runner2}}</span><br>
+            <span class="font-weight-bold" [class.text-danger]="soccer_bet.exp_amount2<0"
+                  [class.text-success]="soccer_bet.exp_amount2>=0">{{soccer_bet.exp_amount2}}</span>
+          </div>
+          <button
+            class="btn mbtn bg-blue p-0 font-weight-bold">{{soccer_bet.back1_price}}
+            <br>{{soccer_bet.back1_size}}</button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{soccer_bet.lay1_price}}
+            <br>{{soccer_bet.lay1_size}}</button>
+          <br>
+        </div>
+        <div *ngIf="soccer_bet.runner3!=null"
+             class="d-flex justify-content-between p-2 border-secondary border-top">
+          <div class="title">
+            <span>Draw</span><br>
+            <span class="font-weight-bold" [class.text-danger]="soccer_bet.exp_amount3<0"
+                  [class.text-success]="soccer_bet.exp_amount3>=0">{{soccer_bet.exp_amount3}}</span>
+          </div>
+          <button
+            class="btn mbtn bg-blue p-0 font-weight-bold">{{soccer_bet.back2_price}}
+            <br>{{soccer_bet.back2_size}}</button>
+          <br>
+          <button
+            class="btn mbtn bg-pink p-0 ml-2 font-weight-bold">{{soccer_bet.lay2_price}}
+            <br>{{soccer_bet.lay2_size}}</button>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1399 @@
+<div class="box">
+  <div class="ballbyshow">
+    <h4 class="text-light d-flex">
+      <!-- <div class="material-symbols-outlined">info</div>
+      <div class="ballby ml-1">Ball By Ball</div> -->
+    </h4>
+  </div>
+  <app-animated-progress-bar [value]="counter"></app-animated-progress-bar>
+
+  <div class="casino-table teenpatti20" *ngIf="live_data.hasOwnProperty('t2')">
+    <div class="casino-video">
+      <div class="casino-video-title">
+        <span class="casino-name"> Andar Bahar</span>
+        <span class="casino-video-rid"
+          >Round ID: {{ this.last_market_id }}</span
+        >
+      </div>
+      <div class="video-box-container">
+        <div class="video-box">
+          <iframe src="https://jmdapi.com/tablevideo/?id=3053"></iframe>
+        </div>
+      </div>
+      <div
+        class="casino-video-cards"
+        [class.hide-cards]="ar_all_cards.length == 0 && br_all_cards"
+      >
+        <div class="casino-cards-shuffle">
+          <i class="fas fa-grip-lines-vertical"></i>
+        </div>
+        <div class="casino-video-cards-container">
+          <div class="lastCards-container">
+            <section tabindex="0" class="lastCards hooper is-rtl">
+              <div class="hooper-list">
+                <ul
+                  class="hooper-track"
+                  [ngStyle]="{
+                    transform: 'translateX(' + position_andar + 'px)'
+                  }"
+                >
+                  <li
+                    class="hooper-slide is-active is-current"
+                    style="width: 25px"
+                    *ngFor="let i of ar_all_cards"
+                  >
+                    <img src="/assets/casino/cards/{{ i }}.png" />
+                  </li>
+                  <!-- <li class="hooper-slide is-active" style="width: 25px">
+                    <img
+                      src="https://wver.sprintstaticdata.com/v88/static/front/img/cards/5SS.png"
+                    />
+                  </li>
+                  <li class="hooper-slide is-active" style="width: 25px">
+                    <img
+                      src="https://wver.sprintstaticdata.com/v88/static/front/img/cards/KSS.png"
+                    />
+                  </li>
+                  <li
+                    aria-hidden="true"
+                    class="hooper-slide is-next"
+                    style="width: 25px"
+                  >
+                    <img
+                      src="https://wver.sprintstaticdata.com/v88/static/front/img/cards/3HH.png"
+                    />
+                  </li>
+                  <li
+                    aria-hidden="true"
+                    class="hooper-slide is-next"
+                    style="width: 25px"
+                  >
+                    <img
+                      src="https://wver.sprintstaticdata.com/v88/static/front/img/cards/JCC.png"
+                    />
+                  </li> -->
+                </ul>
+                <div class="hooper-navigation is-rtl">
+                  <button
+                    type="button"
+                    (click)="translateLeft('andar')"
+                    [disabled]="position_andar >= 0"
+                    class="hooper-prev is-disabled"
+                  >
+                    <svg
+                      class="icon icon-arrowRight"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      height="24px"
+                    >
+                      <title>Arrow Right</title>
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+                      ></path>
+                    </svg></button
+                  ><button
+                    type="button"
+                    (click)="translateRight('andar')"
+                    [disabled]="position_andar <= -300"
+                    class="hooper-next"
+                  >
+                    <svg
+                      class="icon icon-arrowLeft"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      height="24px"
+                    >
+                      <title>Arrow Left</title>
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+                <!-- <div
+                  aria-live="polite"
+                  aria-atomic="true"
+                  class="hooper-liveregion hooper-sr-only"
+                >
+                  Item 1 of 5
+                </div> -->
+              </div>
+            </section>
+          </div>
+          <div class="lastCards-container">
+            <section tabindex="0" class="lastCards hooper is-rtl">
+              <div class="hooper-list">
+                <ul
+                  class="hooper-track"
+                  [ngStyle]="{
+                    transform: 'translateX(' + position_bahar + 'px)'
+                  }"
+                >
+                  <li
+                    class="hooper-slide is-active is-current"
+                    style="width: 25px"
+                    *ngFor="let i of br_all_cards"
+                  >
+                    <img src="/assets/casino/cards/{{ i }}.png" />
+                  </li>
+                </ul>
+                <div class="hooper-navigation is-rtl">
+                  <button
+                    type="button"
+                    (click)="translateLeft('bahar')"
+                    [disabled]="position_bahar >= 0"
+                    class="hooper-prev is-disabled"
+                  >
+                    <svg
+                      class="icon icon-arrowRight"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      height="24px"
+                    >
+                      <title>Arrow Right</title>
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+                      ></path>
+                    </svg></button
+                  ><button
+                    type="button"
+                    (click)="translateRight('bahar')"
+                    [disabled]="position_bahar <= -300"
+                    class="hooper-next"
+                  >
+                    <svg
+                      class="icon icon-arrowLeft"
+                      viewBox="0 0 24 24"
+                      width="24px"
+                      height="24px"
+                    >
+                      <title>Arrow Left</title>
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+                <!-- <div
+                  aria-live="polite"
+                  aria-atomic="true"
+                  class="hooper-liveregion hooper-sr-only"
+                >
+                  Item 1 of 6
+                </div> -->
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-right-icons">
+        <div title="Home" class="casino-video-home-icon">
+          <a routerLink="/dashboard/casino" class="" style="color: #fff"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
+        <!-- <div title="Rules" class="casino-video-rules-icon">
+          <i class="fas fa-info-circle"></i>
+        </div> -->
+        <!---->
+      </div>
+    </div>
+    <ng-template #suspended>
+      <img src="assets/casino/cards/ab0.png" alt="ab-0" class="cards" />
+    </ng-template>
+    <div class="casino-detail">
+      <div class="d-flex flex-wrap col-md-12">
+        <div class="col-md-6">
+          <div class="andar-cards-box">
+            <h5 class="text-playera">Andar</h5>
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Box Code Start Here-->
+                <div
+                  style="
+                    padding: 5px;
+                    width: 100%;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  <div class="casino-content-table">
+                    <div class="m-t-10">
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[0]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/abA.png"
+                            *ngIf="
+                              live_data.t2[0].gstatus == 1 ||
+                                ar_cards[0] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[0].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat7" class="text-danger">{{
+                                exp_amount1
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[1]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab2.png"
+                            *ngIf="
+                              live_data.t2[1].gstatus == 1 ||
+                                ar_cards[1] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[1].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat8" class="text-danger">{{
+                                exp_amount2
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[2]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab3.png"
+                            *ngIf="
+                              live_data.t2[2].gstatus == 1 ||
+                                ar_cards[2] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[2].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat9" class="text-danger">{{
+                                exp_amount3
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[3]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab4.png"
+                            *ngIf="
+                              live_data.t2[3].gstatus == 1 ||
+                                ar_cards[3] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[3].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat10" class="text-danger">{{
+                                exp_amount4
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[4]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab5.png"
+                            *ngIf="
+                              live_data.t2[4].gstatus == 1 ||
+                                ar_cards[4] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[4].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat11" class="text-danger">{{
+                                exp_amount5
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[5]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab6.png"
+                            *ngIf="
+                              live_data.t2[5].gstatus == 1 ||
+                                ar_cards[5] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[5].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat12" class="text-danger">{{
+                                exp_amount6
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[6]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab7.png"
+                            *ngIf="
+                              live_data.t2[6].gstatus == 1 ||
+                                ar_cards[6] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[6].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat13" class="text-danger">{{
+                                exp_amount7
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[7]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab8.png"
+                            *ngIf="
+                              live_data.t2[7].gstatus == 1 ||
+                                ar_cards[7] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[7].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat14" class="text-danger">{{
+                                exp_amount8
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[8]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab9.png"
+                            *ngIf="
+                              live_data.t2[8].gstatus == 1 ||
+                                ar_cards[8] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[8].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat15" class="text-danger">{{
+                                exp_amount9
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[9]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab10.png"
+                            *ngIf="
+                              live_data.t2[9].gstatus == 1 ||
+                                ar_cards[9] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[9].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat16" class="text-danger">{{
+                                exp_amount10
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[10]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab11.png"
+                            *ngIf="
+                              live_data.t2[10].gstatus == 1 ||
+                                ar_cards[10] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[10].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat17" class="text-danger">{{
+                                exp_amount11
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[11]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab12.png"
+                            *ngIf="
+                              live_data.t2[11].gstatus == 1 ||
+                                ar_cards[11] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[11].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat18" class="text-danger">{{
+                                exp_amount12
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[12]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab13.png"
+                            *ngIf="
+                              live_data.t2[12].gstatus == 1 ||
+                                ar_cards[12] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[12].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat19" class="text-danger">{{
+                                exp_amount13
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Box Code end here-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="andar-cards-box">
+            <h5 class="text-playerb">Bahar</h5>
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Box Code Start Here-->
+                <div
+                  style="
+                    padding: 5px;
+                    width: 100%;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  <div class="casino-content-table">
+                    <div class="m-t-10">
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[13]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/abA.png"
+                            *ngIf="
+                              live_data.t2[13].gstatus == 1 ||
+                                br_cards[0] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[13].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat7" class="text-danger">{{
+                                exp_amount21
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[14]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab2.png"
+                            *ngIf="
+                              live_data.t2[14].gstatus == 1 ||
+                                br_cards[1] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[14].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat8" class="text-danger">{{
+                                exp_amount22
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[15]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab3.png"
+                            *ngIf="
+                              live_data.t2[15].gstatus == 1 ||
+                                br_cards[2] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[15].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat9" class="text-danger">{{
+                                exp_amount23
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[16]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab4.png"
+                            *ngIf="
+                              live_data.t2[16].gstatus == 1 ||
+                                br_cards[3] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[16].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat10" class="text-danger">{{
+                                exp_amount24
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[17]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab5.png"
+                            *ngIf="
+                              live_data.t2[17].gstatus == 1 ||
+                                br_cards[4] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[17].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat11" class="text-danger">{{
+                                exp_amount25
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[18]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab6.png"
+                            *ngIf="
+                              live_data.t2[18].gstatus == 1 ||
+                                br_cards[5] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[18].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat12" class="text-danger">{{
+                                exp_amount26
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[19]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab7.png"
+                            *ngIf="
+                              live_data.t2[19].gstatus == 1 ||
+                                br_cards[6] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[19].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat13" class="text-danger">{{
+                                exp_amount27
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[20]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab8.png"
+                            *ngIf="
+                              live_data.t2[20].gstatus == 1 ||
+                                br_cards[7] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[20].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat14" class="text-danger">{{
+                                exp_amount28
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[21]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab9.png"
+                            *ngIf="
+                              live_data.t2[21].gstatus == 1 ||
+                                br_cards[8] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[21].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat15" class="text-danger">{{
+                                exp_amount29
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[22]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab10.png"
+                            *ngIf="
+                              live_data.t2[22].gstatus == 1 ||
+                                br_cards[9] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[22].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat16" class="text-danger">{{
+                                exp_amount30
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[23]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab11.png"
+                            *ngIf="
+                              live_data.t2[23].gstatus == 1 ||
+                                br_cards[10] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[23].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat17" class="text-danger">{{
+                                exp_amount31
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[24]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab12.png"
+                            *ngIf="
+                              live_data.t2[24].gstatus == 1 ||
+                                br_cards[11] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[24].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat18" class="text-danger">{{
+                                exp_amount32
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          (click)="
+                            openDialog(
+                              'ab20',
+                              live_data.t1[0].mid,
+                              live_data.t2[25]
+                            )
+                          "
+                        >
+                          <img
+                            src="assets/casino/cards/ab13.png"
+                            *ngIf="
+                              live_data.t2[25].gstatus == 1 ||
+                                br_cards[12] != '0';
+                              else suspended
+                            "
+                            class="cards"
+                          />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[25].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span id="livestat19" class="text-danger">{{
+                                exp_amount33
+                              }}</span></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Box Code end here-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-last-results d-flex flex-wrap">
+        <span
+          *ngFor="let data of result_history.data"
+          class="resultb"
+          (click)="openCasinoDetails(data)"
+        >
+          R
+        </span>
+        <!--                <span class="resulta"> A </span>-->
+        <!--                <span class="resultb"> B </span>-->
+        <!--                <span class="resulta"> A </span>-->
+        <!--                <span class="resulta"> A </span>-->
+        <!--                <span class="resultb"> B </span>-->
+        <!--                <span class="resulta"> A </span>-->
+        <!--                <span class="resulta"> A </span>-->
+        <!--                <span class="resultb"> B </span>-->
+        <!--                <span class="resulta"> A </span>-->
+        <!--                <a href="/report/casinoresult/teen20" class="result-more">-->
+        <!--                    ...-->
+        <!--                </a>-->
+      </div>
+      <!-- <div class="mt-4">
+        <h5 class="thead">Pair Plus</h5>
+        <table class="table table-sm">
+          <tr>
+            <td>Pair</td>
+            <td>1 TO 1</td>
+          </tr>
+          <tr>
+            <td>Flush</td>
+            <td>1 TO 4</td>
+          </tr>
+          <tr>
+            <td>Straight</td>
+            <td>1 TO 6</td>
+          </tr>
+          <tr>
+            <td>Trio</td>
+            <td>1 TO 30</td>
+          </tr>
+          <tr>
+            <td>Straight Flush</td>
+            <td>1 TO 40</td>
+          </tr>
+        </table>
+      </div> -->
+    </div>
+  </div>
+</div>

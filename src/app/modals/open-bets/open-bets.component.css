@@ -1,0 +1,66 @@
+::ng-deep .modal{
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog{
+  /*max-width: 90%;*/
+  /*width: 100%;*/
+  background-color: #fff;
+  height: 90vh;
+}
+
+::ng-deep .modal-content{
+  border: none !important;
+}
+
+
+.card-header {
+  /* background: transparent linear-gradient(94deg,#b6842d,#ebda8d 55%,#b7862f); */
+  background: #43b4f2;
+  color: rgb(0, 0, 0) !important;
+  align-items: center;
+  height: 40px;
+  font-weight: 700;
+}
+
+.card-body {
+  background-color: #ffffff !important;
+  color: #000 !important;
+  min-height: 100%;
+  border: none !important;
+}
+
+.card{
+  border: none !important;
+}
+
+.head{
+  background-color: #E0E6E6;
+  height: 35px;
+  display: flex;
+  padding-top: 5px;
+}
+
+.head span{
+  background-color: #fff;
+  height: 35px;
+  min-height: 100%;
+  padding: 5px;
+  font-size: 16px;
+}
+
+table{
+  width: 100%;
+}
+
+tbody .lay-row{
+  background-color: #F6E6EA;
+  height: 30px;
+  border-bottom: 1px solid #FAA9BA;
+}
+
+tbody .back-row{
+  background-color: #D7E8F4;
+  height: 30px;
+  border-bottom: 1px solid #72BBEF;
+}

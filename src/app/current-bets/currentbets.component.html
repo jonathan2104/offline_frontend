@@ -1,0 +1,147 @@
+<ng-container *ngIf="match_bets.length == 0 && bookmaker_bets.length == 0 && fancy_bets.length == 0 && session_bets.length == 0">
+  <div class="open-bets-info text-center">
+    <span class="open-bets-text">(OPEN BETS) (0)</span>
+  </div>
+  <div class="no-bets-message">
+    <i class="material-symbols-outlined">block</i>
+    <span>No bets placed yet</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="match_bets.length > 0 || bookmaker_bets.length > 0 || fancy_bets.length > 0 || session_bets.length > 0">
+
+  <!-- Match Bets -->
+  <div class="bet-card" *ngIf="match_bets.length > 0">
+    <div class="bet-header">Match Bets</div>
+    <div class="bet-body">
+      <div *ngFor="let matchbet of match_bets" class="bet-row">
+        <div class="bet-info">
+          <span class="runner">{{ matchbet.runner_name }}</span>
+          <span class="status-badge"
+                [ngClass]="{
+                  'badge-success': matchbet.is_won == 1,
+                  'badge-danger': matchbet.is_won == 0,
+                  'badge-secondary': matchbet.is_won == 2
+                }"
+                *ngIf="matchbet.status == 0">
+            {{ matchbet.is_won == 1 ? "Won" : matchbet.is_won == 2 ? "Draw" : "Lose" }}
+          </span>
+          <div class="badges">
+            <span class="type-badge"
+                  [ngClass]="{ 'badge-info': matchbet.type == 'Back', 'badge-danger': matchbet.type == 'Lay' }">
+              {{ matchbet.type }}
+            </span>
+            <span class="badge-warning">{{ matchbet.status == 1 ? "OPEN" : "CLOSED" }}</span>
+          </div>
+          <small class="created">{{ matchbet.created_at | date: "dd/MMM/YYYY, h:mm:ss a" : "UTC" }}</small>
+        </div>
+        <div class="bet-meta">
+          <div>Odds: Match Odds</div>
+          <div>Stake: {{ matchbet.bet_amount }}</div>
+          <div>P&L: {{ matchbet.price }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookmaker Bets -->
+  <div class="bet-card" *ngIf="bookmaker_bets.length > 0">
+    <div class="bet-header">Bookmaker Bets</div>
+    <div class="bet-body">
+      <div *ngFor="let bookmakerbet of bookmaker_bets" class="bet-row">
+        <div class="bet-info">
+          <span class="runner">{{ bookmakerbet.runner_name }}</span>
+          <span class="status-badge"
+                [ngClass]="{
+                  'badge-success': bookmakerbet.is_won == 1,
+                  'badge-danger': bookmakerbet.is_won == 0,
+                  'badge-secondary': bookmakerbet.is_won == 2
+                }"
+                *ngIf="bookmakerbet.status == 0">
+            {{ bookmakerbet.is_won == 1 ? "Won" : bookmakerbet.is_won == 2 ? "Draw" : "Lose" }}
+          </span>
+          <div class="badges">
+            <span class="type-badge"
+                  [ngClass]="{ 'badge-info': bookmakerbet.type == 'Back', 'badge-danger': bookmakerbet.type == 'Lay' }">
+              {{ bookmakerbet.type }}
+            </span>
+            <span class="badge-warning">{{ bookmakerbet.status == 1 ? "OPEN" : "CLOSED" }}</span>
+          </div>
+          <small class="created">{{ bookmakerbet.created_at | date: "dd/MMM/YYYY, h:mm:ss a" : "UTC" }}</small>
+        </div>
+        <div class="bet-meta">
+          <div>Odds: Bookmaker Odds</div>
+          <div>Stake: {{ bookmakerbet.bet_amount }}</div>
+          <div>P&L: {{ bookmakerbet.price }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fancy Bets -->
+  <div class="bet-card" *ngIf="fancy_bets.length > 0">
+    <div class="bet-header">Fancy Bets</div>
+    <div class="bet-body">
+      <div *ngFor="let fancybet of fancy_bets" class="bet-row">
+        <div class="bet-info">
+          <span class="runner">{{ fancybet.runner_name }} ({{ fancybet.price }})</span>
+          <span class="status-badge"
+                [ngClass]="{
+                  'badge-success': fancybet.is_won == 1,
+                  'badge-danger': fancybet.is_won == 0
+                }"
+                *ngIf="fancybet.status == 0">
+            {{ fancybet.is_won == 1 ? "Won" : "Lose" }}
+          </span>
+          <div class="badges">
+            <span class="type-badge"
+                  [ngClass]="{ 'badge-info': fancybet.type == 'Back', 'badge-danger': fancybet.type == 'Lay' }">
+              {{ fancybet.type }}
+            </span>
+            <span class="badge-warning">{{ fancybet.status == 1 ? "OPEN" : "CLOSED" }}</span>
+          </div>
+          <small class="created">{{ fancybet.created_at | date: "dd/MMM/YYYY, h:mm:ss a" : "UTC" }}</small>
+        </div>
+        <div class="bet-meta">
+          <div>Odds: Fancy Odds</div>
+          <div>Stake: {{ fancybet.bet_amount }}</div>
+          <div>P&L: {{ fancybet.price }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session Bets -->
+  <div class="bet-card" *ngIf="session_bets.length > 0">
+    <div class="bet-header">Session Bets</div>
+    <div class="bet-body">
+      <div *ngFor="let sessionbet of session_bets" class="bet-row">
+        <div class="bet-info">
+          <span class="runner">{{ sessionbet.runner_name }} ({{ sessionbet.price }})</span>
+          <span class="status-badge"
+                [ngClass]="{
+                  'badge-success': sessionbet.is_won == 1,
+                  'badge-danger': sessionbet.is_won == 0
+                }"
+                *ngIf="sessionbet.status == 0">
+            {{ sessionbet.is_won == 1 ? "Won" : "Lose" }}
+          </span>
+          <div class="badges">
+            <span class="type-badge"
+                  [ngClass]="{ 'badge-info': sessionbet.type == 'Back', 'badge-danger': sessionbet.type == 'Lay' }">
+              {{ sessionbet.type }}
+            </span>
+            <span class="badge-warning">{{ sessionbet.status == 1 ? "OPEN" : "CLOSED" }}</span>
+          </div>
+          <small class="created">{{ sessionbet.created_at | date: "dd/MMM/YYYY, h:mm:ss a" : "UTC" }}</small>
+        </div>
+        <div class="bet-meta">
+          <div>Odds: Session Odds</div>
+          <div>Stake: {{ sessionbet.bet_amount }}</div>
+          <div>P&L: {{ sessionbet.size }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

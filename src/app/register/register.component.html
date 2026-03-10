@@ -1,0 +1,159 @@
+<div class="signup-wrapper d-flex align-items-center justify-content-center flex-column">
+  <!-- Logo -->
+  <div class="imgcontainer mb-4">
+    <img src="assets/images/premio993N.png" style="width: 200px;" alt class="logo_size">
+  </div>
+
+  <!-- WhatsApp Image Button -->
+  <div class="whatsapp-image-button text-center">
+    <a (click)="openWhatsapp()" >
+      <img src="assets/images/create-new-id.png" 
+          alt="Message on WhatsApp" 
+          class="img-fluid whatsapp-btn-img" />
+    </a>
+  </div>
+
+   <!-- OR Separator -->
+  <div class="or-separator my-3 d-flex align-items-center justify-content-center">
+    <span class="line"></span>
+    <span class="or-text mx-2">OR</span>
+    <span class="line"></span>
+  </div>
+  <!-- Signup Card -->
+  <div class="signup-card">
+    <!-- Back -->
+    <div class="d-flex align-items-center mb-3">
+      <a class="back-link" routerLink="/"><i class="material-icons mr-1">arrow_back</i> Back</a>
+    </div>
+
+    <!-- Heading -->
+    <h2 class="text-center signup-title">Sign Up</h2>
+    <p class="text-center signup-subtitle">Create your account by following these simple steps.</p>
+
+    <!-- Error Messages -->
+    <p *ngIf="errorMsg" class="alert alert-danger m-1 p-1">{{ errorMsg }}</p>
+    <p *ngIf="successMsg" class="alert alert-success m-1 p-1">{{ successMsg }}</p>
+
+    <!-- Form -->
+    <form [formGroup]="registerForm">
+      <!-- Username -->
+      <div class="form-group mt-3">
+        <label>Username *</label>
+        <input type="text" 
+              class="form-control" 
+              formControlName="username" 
+              placeholder="Enter username" />
+
+        <!-- Error: Required -->
+        <div class="error-text"
+            *ngIf="(registerForm.get('username')?.touched || submitted) 
+                    && registerForm.get('username')?.errors?.['required']">
+          Username is required
+        </div>
+
+        <!-- Error: Pattern -->
+        <div class="error-text"
+            *ngIf="registerForm.get('username')?.errors?.['pattern'] 
+                    && (registerForm.get('username')?.touched || submitted)">
+          Username must be alphanumeric only
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group mt-3 password-wrapper">
+        <label>Password *</label>
+        <input [type]="showPassword ? 'text' : 'password'" 
+              formControlName="password" 
+              class="form-control" 
+              placeholder="Password" />
+        <span class="toggle-password" (click)="togglePasswordVisibility()">
+          <i class="material-icons">{{ showPassword ? 'visibility_off' : 'visibility' }}</i>
+        </span>
+
+        <!-- Error: Required -->
+        <div class="error-text"
+            *ngIf="(registerForm.get('password')?.touched || submitted) 
+                    && registerForm.get('password')?.errors?.['required']">
+          Password is required
+        </div>
+
+        <!-- Error: Pattern -->
+        <div class="error-text"
+            *ngIf="registerForm.get('password')?.errors?.['pattern'] 
+                    && (registerForm.get('password')?.touched || submitted)">
+          Password must be at least 6 characters and include letters and numbers
+        </div>
+      </div>
+
+      <!-- Campaign Code -->
+      <div class="form-group mt-3">
+        <label>Campaign Code</label>
+        <input type="text" class="form-control" formControlName="refererCode" placeholder="Enter Campaign Code" />
+
+         <!-- Error: Required -->
+        <div class="error-text"
+            *ngIf="(registerForm.get('refererCode')?.touched || submitted) 
+                    && registerForm.get('refererCode')?.errors?.['required']">
+          Referer name is required
+        </div>
+      </div>
+
+      <!-- Mobile + OTP -->
+      <div class="form-group mt-3">
+        <label>Phone Number / WhatsApp</label>
+        <div class="d-flex">
+          <select class="form-control" style="max-width:80px;" formControlName="countryCode">
+            <option value="+91">+91</option>
+          </select>
+          <input type="text" class="form-control" placeholder="Enter phone number" formControlName="contact" />
+          <button *ngIf="3>6" type="button" class="btn btn-otp ml-2">Send OTP</button>
+        </div>
+
+         <!-- Error: Required -->
+        <div class="error-text"
+            *ngIf="(registerForm.get('contact')?.touched || submitted) 
+                    && registerForm.get('contact')?.errors?.['required']">
+          Contact is required
+        </div>
+         <!-- Error: Pattern -->
+        <div class="error-text"
+            *ngIf="registerForm.get('contact')?.errors?.['pattern'] 
+                    && (registerForm.get('contact')?.touched || submitted)">
+          Contact must be Valid Phone number
+        </div>
+      </div>
+
+      <!-- Already have account -->
+      <div class="text-center mt-2">
+        <span class="text-light">Have an account? </span>
+        <a class="signup-link" routerLink="/">Sign In</a>
+      </div>
+
+      <!-- Register -->
+      <button type="submit" class="btn btn-orange w-100 mt-3" (click)="register()">SIGN UP</button>
+    </form>
+  </div>
+
+  <!-- Outside Buttons -->
+ <button
+  (click)="openWhatsapp()"
+  class="btn whatsapp-btn w-20 my-3 d-flex align-items-center justify-content-center">
+  
+  <i class="material-icons mr-2">chat</i>
+  Follow on WhatsApp
+</button>
+
+
+  <!-- <div class="outside-buttons text-center mt-4" style="width:400px;">
+    <button (click)="openWhatsapp()" class="btn back-link w-100 d-flex align-items-center justify-content-center">
+      <i class="material-icons mr-2">chat</i> Follow on WhatsApp
+    </button>
+  </div> -->
+
+  <!-- Disclaimer -->
+  <p class="disclaimer text-center mt-3" style="max-width:400px;">
+    Disclaimer: Please note that Gambling involves a financial risk and could be addictive over time if not practised within limits. 
+    Only 18+ people should use the services and should use it responsibly. 
+    Players should be aware of any financial risk and govern themselves accordingly.
+  </p>
+</div>

@@ -1,0 +1,103 @@
+<h2 class="userscreen-title mt-1 mb-0"><button (click)="backClicked()" class="btn-xs back-page">Back</button><span class="h6 ml-2"> Profit & loss</span></h2>
+<div class="card pt-0 pb-0 mt-0 p-2 redtablehead bg-dark">
+    <div class="row">
+        <form class="w-100" [formGroup]="profitFilterForm" (ngSubmit)="filter()" class="search_form">
+            <div class="container row col-sm-12 col-12 pr-0">
+              <div class="form-group col-sm-6 col-6">
+                <label for="sports" class="text-white1">Sports Type</label>
+                <select formControlName="sports" id="sports" [(ngModel)]="yourModelName" class="form-control">
+                    <option value="all" >All Games</option>
+                    <option value="cricket">Cricket</option>
+                    <option value="soccer">Football</option>
+                    <option value="tennis">Tennis</option>
+                    <option value="casino">Casino</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-6 col-6">
+                <label for="fromDate" class="text-white1">From Date</label>
+                <input type="date" formControlName="from" class="form-control" id="fromDate" [max]="today">
+                <span
+                    class="text-danger"
+                    *ngIf="
+                    (filterFormControl.from.touched || submitted) &&
+                    filterFormControl.from.errors?.required">
+                    From date is required
+                </span>
+              </div>
+              <div class="form-group col-sm-6 col-6">
+                <label for="toDate" class="text-white1">To Date</label>
+                <input type="date" formControlName="to" class="form-control" id="toDate" [max]="today">
+                <span
+                    class="text-danger"
+                    *ngIf="
+                    (filterFormControl.to.touched || submitted) &&
+                    filterFormControl.to.errors?.required">
+                    To date is required
+                </span>
+              </div>
+              <div class="text-left form-group col-sm-6 col-6">
+                    <label for="toDate" style="color:black;">&nbsp;</label>
+                <button class="btn btn-primary1 btn-block btn-outline-dark ml-2" >Submit</button>
+              </div>
+            </div>
+        </form>
+        <div>
+          <h4><span class="text-light">Total P/L : {{userPl}}</span> </h4>
+        </div>
+    </div>
+    <div class="p-2 overflow-auto">
+        <table class="table table-sm table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>.</th>
+                    <th>Sub Type</th>
+                    <th>Type</th>
+                    <th>Result</th>
+                    <th>Event Name</th>
+                    <th>Runner</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="marge_bets.length>0; else noResult">
+                <tr [class.tr-green]="bet.is_won==1" [class.tr-grey]="bet.is_won==2" [class.tr-red]="bet.is_won==0" *ngFor="let bet of marge_bets | paginate: { itemsPerPage,currentPage }; let i = index;">
+                    <td><img src="/assets/icons/{{bet.matchtype}}"></td>
+                    <td>{{bet.main_type=="fancy"?"toss":bet.main_type}}</td>
+                    <td>{{bet.type}}</td>
+                    <td>{{bet.is_won=="1"?"win":bet.is_won=="2"?"canceled":"lose"}}</td>
+                    <td>{{bet.event_name}}</td>
+                    <td>{{bet.runner_name}}</td>
+                    <td>{{bet.is_won=="1"?bet.win_amount:bet.is_won=="2"?bet.bet_amount:bet.loss_amount}}</td>
+                    <td>{{bet.updated_at | date:'MMM d, y h:mm a'}}</td>
+                </tr>
+            </tbody>
+            <ng-template #noResult>
+                <tbody >
+                    <tr>
+                        <td colspan="100" class="text-white1">No data found</td>
+                    </tr>
+                </tbody>
+            </ng-template>
+        </table>
+        <div class="entries-pagination-wrapper">
+            <div class="entries-wrapper">
+              <label class="color-hh" for="itemsPerPage">Show</label>
+              <select
+                id="itemsPerPage"
+                [(ngModel)]="itemsPerPage"
+                (change)="onEntriesChange()"
+              >
+                <option *ngFor="let option of entriesOptions" [value]="option">
+                  {{ option }}
+                </option>
+              </select>
+              <span class="color-hh">entries</span>
+            </div>
+            <div class="pagination-wrapper">
+              <pagination-controls
+                (pageChange)="currentPage = $event"
+              ></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,147 @@
+<h2 class="userscreen-title mt-0">
+    <button (click)="backClicked()" class="btn-xs back-page" style="background-color: #F26C20;border-radius: 5px; border: 1px solid #fff;">Back</button>
+</h2>
+<div class="container-fluid">
+
+</div>
+
+
+<div class="card" >
+    
+    <div class="d-flex">
+        <div class="card-body d-flex flex-column  m-3" >
+            <div><label for="">amount</label>
+                <div class="d-flex">
+                    <input type="number">
+                    <button class="btn submit-btn" (click)="addDepositRequest('gpay')">Submit</button>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <ul class="rule-list">
+                    <li>1. Deposit money only in the below available accounts to get the fastest credits and avoid possible delays.</li>
+                    <li>2. Deposits made 45 minutes after the account removal from the site are valid & will be added to their wallets.</li>
+                    <li>3. Site is not responsible for money deposited to Old, Inactive or Closed accounts.</li>
+                    <li>4. After deposit, add your UTR and amount to receive balance.</li>
+                    <li>5. NEFT receiving time varies from 40 minutes to 2 hours.</li>
+                    <li>6. In case of account modification: payment valid for 1 hour after changing account details in deposit page.</li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <div class="card-body m-3 overflow-auto">
+            <table class="table table-sm table-bordered table-striped table-responsive table-hover clearfix">
+                <thead>
+                <tr>
+                    <th>TRANSACTION NO</th>
+                    <th>AMOUNT</th>
+                    <th>STATUS</th>
+                    <th>DATE</th>
+                    <th>DATE UPDATED</th>
+                </tr>
+                </thead>
+                <tbody class="text-center" *ngIf="deposit_requests.length>0 || deposit_requests !=null">
+                   
+                <tr *ngFor="let deposit_request of deposit_requests; let i = index">
+                    <td>{{deposit_request.transaction_id}}</td>
+                    <td>{{deposit_request.amount}}</td>
+                    <!--          <td>{{deposit_request.status == 0 ? 'Pending' : (deposit_request.status == -1 ? 'Declined' : 'Approved')}}</td>-->
+                    <td *ngIf="deposit_request.status==1"><button style="background: #28A745; ; border-radius: 5px; font-size: 10px; color: #ffffff; border: none;">APPROVED</button></td>
+                    <td *ngIf="deposit_request.status==-1"><button style="background: #ff2121; ; border-radius: 5px; font-size: 10px; color: #ffffff; border: none;">DECLINED</button></td>
+                    <td *ngIf="deposit_request.status==0"><button  style="background: #ffe62d; ; border-radius: 5px; font-size: 10px; color: #ffffff; border: none;">PENDING</button></td>
+                    <!-- <td>{{deposit_request.updated_at | date:'medium':'IST' }}</td> -->
+                    <td>{{deposit_request.created_at | date : "MMM/dd/YYYY h:mma \'(IST)\'" : "IST" }}</td>
+                    <td>{{deposit_request.status == 0 ? '-' : deposit_request.updated_at | date : "MMM/dd/YYYY h:mma \'(IST)\'" : "IST" }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- <div class="mt-3 d-flex">
+        <button class="btn flex-grow-1 btn-success">Instant Pay</button>
+        <button class="btn btn flex-grow-1 btn-primary" (click)="changeManual('manual')">Manaul Pay</button>
+    </div> -->
+    <div class="card-body redtablehead" *ngIf="3>6" >
+        <!-- <div class="card bg-dark border-0 mb-2">
+            <div class="container">
+                <div class="row mt-3 d-flex justify-content-center">
+                    <div class="col-md-4 col-6" *ngIf="is_manual" >
+                        <div class="card mbox-shawdow mb-2" (click)="addDepositRequest('gpay')">
+                            Content for the first column
+                            <div class="card-body" style="border-radius: 10px;">
+                                <img class="img-fluid" src="/assets/pay-method/gpay.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-4 col-6" *ngIf="is_manual">
+                        <div class="card mbox-shawdow mb-2"  (click)="addDepositRequest('paytm')">
+                            Content for the first column
+                            <div class="card-body" style="border-radius: 10px;">
+                                <img class="img-fluid" src="/assets/pay-method/paytm.jpg">
+                            </div>
+                        </div>
+                    </div>
+                      <div class=" col-md-4 col-6" *ngIf="is_manual">
+                        <div class="card mbox-shawdow mb-2" (click)="addDepositRequest('phonepe')">
+                            Content for the first column
+                            <div class="card-body" style="border-radius: 10px;">
+                                <img class="img-fluid" src="/assets/pay-method/phonepe.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-4 col-6" *ngIf="is_manual">
+                        <div class="card mbox-shawdow mb-2" (click)="addDepositRequest('qrcode')">
+                            Content for the first column
+                            <div class="card-body" style="border-radius: 10px;">
+                                <img class="img-fluid" src="/assets/pay-method/qrcode.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-4 col-6" *ngIf="is_manual">
+                        <div class="card mbox-shawdow mb-2" (click)="addDepositRequest('bank')">
+                            Content for the first column
+                            <div class="card-body" style="border-radius: 10px;">
+                                <img class="img-fluid" src="/assets/pay-method/bank.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-4 col-6" *ngIf="!is_manual">
+                        <div class="card mbox-shawdow mb-2" (click)="addDepositRequest('auto-deposit')">
+                            Content for the first column
+                            <div class="card-body" style="border-radius: 10px;">
+                                <img class="img-fluid" src="/assets/pay-method/instantpay.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div class="overflow-auto" style="height: 200px;">
+            <table class="table table-sm table-bordered table-striped table-hover clearfix">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Method</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody class="text-center" *ngIf="deposit_requests.length>0 || deposit_requests !=null">
+                <tr *ngFor="let deposit_request of deposit_requests; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{deposit_request.method}}</td>
+                    <td>{{deposit_request.amount}}</td>
+                    <!--          <td>{{deposit_request.status == 0 ? 'Pending' : (deposit_request.status == -1 ? 'Declined' : 'Approved')}}</td>-->
+                    <td>{{deposit_request.curr_status}}</td>
+                    <!-- <td>{{deposit_request.updated_at | date:'medium':'IST' }}</td> -->
+                    <td>{{deposit_request.updated_at | date : "MMM/dd/YYYY h:mma \'(IST)\'" : "IST" }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

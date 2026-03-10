@@ -1,0 +1,23 @@
+<div class="container-fluid p-0 m-0">
+  <div class="card border-0 p-0 m-0">
+    <div class="card-header-grey">
+      <div class="h4 ml-2">Rules</div>
+    </div>
+    <div class="card-body p-2" style="background: white !important; border-radius: 5px;">
+      <div *ngFor="let section of sections">
+        <button
+          type="button"
+          class="btn btn-block btn-primary text-left"
+          (click)="toggleCollapse(section.name)"
+          [attr.aria-expanded]="!section.state"
+          [attr.aria-controls]="section.name"
+        >
+          {{ section.fullname }}
+        </button>
+        <div [attr.id]="section.name" #collapseSection="ngbCollapse" class="p-2 card-details" [(ngbCollapse)]="section.state">
+          <p [class.imp]="data.isImportant" *ngFor="let data of section.data">{{ data.text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

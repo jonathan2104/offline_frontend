@@ -1,0 +1,23 @@
+::ng-deep .modal {
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog {
+  /*max-width: 90%;*/
+  width:90%;
+  margin: 0 auto;
+}
+
+
+.card-header-marron {
+  background: #333332  !important;
+  color: white !important;
+  height: 120px;
+}
+
+.card-body {
+  background-color: #f1f0f5 !important;
+  color: black !important;
+}
+
+

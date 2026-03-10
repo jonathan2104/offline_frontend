@@ -1,0 +1,35 @@
+<div class="container-fluid p-0 m-0">
+  <div class="card border-0 p-0 m-0">
+    <div class="card-header">
+      <span class="btn " (click)="closeDialog()" style="float: right;color:#fff;" class="material-symbols-outlined">close</span>
+      <!-- ladder {{runnerName}} -->
+      Book
+    </div>
+    <div class="card-body p-1">
+      <table class="table table-bordered m-0">
+        <thead>
+        <tr>
+          <th class="cell head-cell" >Run</th>
+          <th class="cell session-head-cell"><span class="d-block">Amount</span>
+          </th>
+        </tr>
+        </thead >
+        <tbody *ngIf="ladderArray.length>0; else elseblock">
+          <tr *ngFor="let ladder of ladderArray;">           
+            <td><span style="color:#414243;">{{ladder.ladder}}</span></td>
+            <td  [ngStyle]="{'color': ladder.bet_amount >= 0 ? '#39ff39' : '#f7505e'}">
+              {{ ladder.bet_amount > 0 ? '+' : '' }}{{ ladder.bet_amount }}
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #elseblock>
+          <tbody>
+            <tr >
+              <td colspan="2">No result found</td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </table>
+    </div>
+  </div>
+</div>

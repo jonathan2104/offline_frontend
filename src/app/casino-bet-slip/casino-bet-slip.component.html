@@ -1,0 +1,105 @@
+<div class="container p-0">
+  <div
+    style="background: #43b4f2; padding-right: 10px; padding-top: 2px"
+    class="d-flex justify-content-between"
+  >
+    <h3 class="text-heading ml-2">Place Bet</h3>
+    <span (click)="closeDialog()" class="text-light h3">&times;</span>
+  </div>
+
+  <div
+    class="bg-default mt-3"
+    *ngIf="
+      data.bet &&
+      (data.bet.hasOwnProperty('nat') || data.bet.hasOwnProperty('nation'))
+    "
+  >
+    <div>
+      <div
+        class="p-1 small border-top-0 border-start-0 border-end-0 border-grey d-inline-flex justify-content-between w-100"
+      >
+        <div class="text-grey fw-bold">{{ data.bet.nat }}</div>
+        <div class="text-grey fw-bold">{{ data.bet.rate }}</div>
+      </div>
+      <div class="p-1 mt-1">
+        <div class="d-flex justify-content-between">
+          <!-- <a (click)="decre()"><span style="height: 35px;" class="btn btn-primary material-symbols-outlined">remove</span></a> -->
+          <div>
+            <input
+              type="text"
+              style="
+                color: white !important;
+                background: #444;
+                border-radius: 0%;
+              "
+              (ngModelChange)="calculate()"
+              [autofocus]="true"
+              [(ngModel)]="count"
+              placeholder="Amount"
+              pattern="[0-9]*"
+              step="1"
+              class="form-control form-control-sm border-0"
+            />
+          </div>
+          <!-- <a (click)="incre()"><span style="height: 35px;" class="btn btn-primary material-symbols-outlined">add</span></a> -->
+          <!--          <div *ngIf="finalLoss!=0 && data.type=='Back'" class="text-dark" style="font-size: 14px;">Profit <br> {{finalProfit | number : '.2-2'}}</div>-->
+          <!--          <div *ngIf="finalProfit!=0 && data.type=='Lay'" class="text-dark" style="font-size: 14px;">Profit <br> {{finalProfit | number : '.2-2'}}</div>-->
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="p-1">
+        <table class="mytable w-100">
+          <tr *ngFor="let row of buttonData">
+            <td *ngFor="let button of row">
+              <div
+                class="btn text-dark mytable-tr"
+                (click)="incre(button.price_value)"
+              >
+                {{ button.price_label }}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="d-flex mt-3 justify-content-between">
+        <!-- <button style="background: #fa7072;" (click)="dismiss()" class="btn btn-outline mr-1">Cancel</button>
+                <button style="background: #fa7072;" (click)="clear()" class="btn btn-outline mr-1">Clear</button> -->
+        <!--    <button class="btn btn-warning" (click)="submit()" [disabled]="submitted_disabled">PLACE BET</button>-->
+        <!-- <button
+          class="btn btn-block btn-green text-light w-100"
+          (click)="openTimerOverlay()"
+          [disabled]="timerActive"
+        >
+          Submit
+        </button> -->
+        <button
+          class="btn btn-block btn-green text-light w-100"
+          (click)="submit()"
+          [disabled]="count <= 0 || submitted_disabled"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--    <div class="d-flex mt-3 justify-content-between p-2">-->
+  <!--        <div>-->
+  <!--            <span class="team-name">{{data.runner_name}}</span><br>-->
+  <!--            <span class="team-name">{{(['Draw', 'The Draw'].includes(data.runner_name)) ? other_runner_name[0] : other_runner_name}}</span><br>-->
+  <!--            <span *ngIf="data.enable_draw"-->
+  <!--                  class="team-name">{{(['Draw', 'The Draw'].includes(data.runner_name)) ? other_runner_name[1] : 'Draw'}}</span>-->
+  <!--        </div>-->
+  <!--        <div class="text-right">-->
+  <!--            <span [class.text-success]="data.type=='Back'"-->
+  <!--                  [class.text-danger]="data.type=='Lay'">{{(data.type == 'Back' ? finalProfit : finalLoss) | number : '.2-2'}}</span><br>-->
+  <!--            <span [class.text-danger]="data.type=='Back'"-->
+  <!--                  [class.text-success]="data.type=='Lay'">{{(data.type == 'Lay' ? finalProfit : finalLoss) | number : '.2-2'}}</span><br>-->
+  <!--            <span *ngIf="data.enable_draw" [class.text-danger]="data.type=='Back'"-->
+  <!--                  [class.text-success]="data.type=='Lay'">{{(data.type == 'Lay' ? finalProfit : finalLoss) | number : '.2-2'}}</span>-->
+  <!--        </div>-->
+  <!--    </div>-->
+</div>
+<app-timer-overlay *ngIf="showTimerOverlay"></app-timer-overlay>

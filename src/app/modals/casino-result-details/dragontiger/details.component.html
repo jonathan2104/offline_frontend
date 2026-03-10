@@ -1,0 +1,191 @@
+<div class="container-fluid p-0 m-0">
+  <div class="card border-0 p-0 m-0">
+    <div class="card-header">
+      <span
+        class="btn"
+        (click)="dismiss()"
+        style="float: right; color: #fff"
+        class="material-symbols-outlined"
+        >close</span
+      >
+      {{ gamename }} Result
+    </div>
+    <div class="card-body p-1 pb-4">
+      <div>
+        <div class="casino-result-round">
+          <div>Round-Id: {{ data.mid }}</div>
+          <div>
+            Match Time:
+            <span>{{
+              filter_bets.length > 0
+                ? (filter_bets[0].updated_at | date : "dd/MM/y H:mm:ss")
+                : data?.stored_data?.updated_at
+                ? (data.stored_data.updated_at | date : "dd/MM/y H:mm:ss")
+                : ""
+            }}</span>
+          </div>
+        </div>
+        <div class="row row5">
+          <div class="col-12 col-lg-7">
+            <div class="casino-result-content">
+              <div class="casino-result-content-item text-center">
+                <div class="casino-result-cards">
+                  <div *ngIf="winner == '1'" class="casino-result-cards-item">
+                    <img src="/assets/icons/winner.png" class="winner-icon" />
+                  </div>
+                  <div class="d-inline-block">
+                    <h4>Dragon</h4>
+                    <div
+                      *ngFor="let player of player1"
+                      class="casino-result-cards-item"
+                    >
+                      <img src="/assets/casino/cards/{{ player + '.png' }}" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="casino-result-content-diveder"></div>
+              <div class="casino-result-content-item text-center">
+                <div class="casino-result-cards">
+                  <div *ngIf="winner == '2'" class="casino-result-cards-item">
+                    <img src="/assets/icons/winner.png" class="winner-icon" />
+                  </div>
+                  <div class="d-inline-block">
+                    <h4>Tiger</h4>
+                    <div
+                      *ngFor="let player of player2"
+                      class="casino-result-cards-item"
+                    >
+                      <img src="/assets/casino/cards/{{ player + '.png' }}" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="casino-result-desc">
+              <div class="casino-result-desc-item">
+                <div>Winner</div>
+                <div>
+                  {{ winner == 1 ? "Dragon" : winner == 2 ? "Tiger" : "Tie" }}
+                </div>
+              </div>
+              <div class="casino-result-desc-item">
+                <div>Pair</div>
+                <div>{{ pair }}</div>
+              </div>
+              <div class="casino-result-desc-item">
+                <div>Odd/Even</div>
+                <div>{{ oddeven }}</div>
+              </div>
+              <div class="casino-result-desc-item">
+                <div>Color</div>
+                <div>{{ color }}</div>
+              </div>
+              <div class="casino-result-desc-item">
+                <div>Cards</div>
+                <div>{{ cards }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--    //filters-->
+
+      <div class="mt-2" *ngIf="casino_bets.length > 0">
+        <div class="d-flex flex-column justify-content-between">
+          <div>
+            <span>
+              <input
+                type="radio"
+                name="filter_type"
+                value="all"
+                id="filter_all"
+                (input)="filterBetsByType($event)"
+                checked
+              />
+              <label for="filter_all">All</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="filter_type"
+                value="Back"
+                id="filter_back"
+                (input)="filterBetsByType($event)"
+              />
+              <label for="filter_back">Back</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="filter_type"
+                value="Lay"
+                id="filter_lay"
+                (input)="filterBetsByType($event)"
+              />
+              <label for="filter_lay">Lay</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="filter_type"
+                value="deleted"
+                id="filter_deleted"
+                (input)="filterBetsByType($event)"
+              />
+              <label for="filter_deleted">Deleted</label>
+            </span>
+          </div>
+          <div class="d-block mt-2">
+            Total bets:
+            <span [class.text-success]="totalbets > 0">{{ totalbets }}</span>
+            &nbsp; Total Amount:
+            <span
+              [class.text-success]="totalAmount >= 0"
+              [class.text-danger]="totalAmount < 0"
+              >{{ totalAmount }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <!--        filtered data-->
+      <div class="w-100 overflow-auto mt-2" *ngIf="filter_bets.length > 0">
+        <table class="table table-sm table-hover table-green">
+          <thead>
+            <tr>
+              <th>Nation</th>
+              <th class="text-right">Rate</th>
+              <th class="">Amount</th>
+              <th class="">Win</th>
+              <th class="">Date</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="filter_bets.length > 0; else nodata">
+            <tr
+              *ngFor="let data of filter_bets; index as i"
+              [class.lay-border]="data.type == 'Lay'"
+              [class.back-border]="data.type == 'Back'"
+            >
+              <td>{{ data.runner_name }}</td>
+              <td class="text-right">{{ data.odds }}</td>
+              <td class="text-right">{{ data.bet_amount }}</td>
+              <td class="text-right">{{ data.profit_loss }}</td>
+              <td>
+                {{ data.created_at | date : "dd/MM/Y H:mm:ss" }} (UTC+05:30)
+              </td>
+            </tr>
+          </tbody>
+          <ng-template #nodata>
+            <tbody>
+              <tr>
+                <td>no data found</td>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

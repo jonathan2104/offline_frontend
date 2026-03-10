@@ -1,0 +1,97 @@
+input{
+    width:80%;
+}
+.bg-yellow{
+  background: #ffc701;
+  min-width: 7%;
+  text-align: center;
+  color: black;
+
+}
+.team-name{
+  color:var(--primary-side-text-color)
+}
+.ml-2{
+  margin-left: 10px;
+}
+
+*{
+  color: #aaafb5;
+}
+
+input[type="text"],input[type="number"]{
+  background-color: #BEBEBE;
+  border: 2px solid black;
+  color: #dfdede !important;
+  font-size:14px ;
+  height: 35px;
+
+}
+
+.bg-dark{
+  background-color: #000 !important;
+  color:#fff;
+}
+
+.btn-green{
+  background: #0e684e;
+  color: #fff !important;
+}
+
+.btn:disabled{
+  border:none;
+}
+
+.mytable-tr{
+  background: #0e684e;
+  color: #fff !important;
+  width: 100%;
+}
+
+.text-red{
+  color: red !important;
+}
+
+.text-heading{
+  color: #fff !important;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.text-grey{
+  /*color: #141414 !important;*/
+  color: #AAAFB5 !important;
+}
+::placeholder {
+  color: #FFFFFF !important;
+  opacity: 1; /* Firefox */
+}
+.border-grey{
+  border:1px solid #AAAFB5;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+.bg-blue {
+  background: #72BBEF !important;
+  color: #000 !important;
+}
+
+.bg-pink {
+  background: #F994BA;
+  color: #000;
+}
+
+.bg-default {
+  color: #AAAFB5;
+}
+.text-success{
+  color: #39ff39 !important;
+}
+.text-right{
+  text-align: right !important;
+}

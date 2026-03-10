@@ -1,0 +1,141 @@
+<div class="login-wrapper d-flex align-items-center justify-content-center flex-column">
+  <!-- Logo -->
+  <div class="imgcontainer">
+    <img src="assets/images/jogobet3N.png" style="width: 210px;" alt class="logo_size">
+  </div>
+
+  <!-- Login Card -->
+  <div class="login-card mt-3">
+    <!-- Back + Demo -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <a class="back-link" (click)="goBack()">← Back</a>
+      <button type="button" class="demo-btn" (click)="demologin()" [disabled]="isDemoLoading">
+        <ng-container *ngIf="isDemoLoading; else demoText">
+          <span class="spinner-border spinner-border-sm"></span> Logging in...
+        </ng-container>
+        <ng-template #demoText>Demo login</ng-template>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <p *ngIf="errorMsg" class="alert alert-danger m-1 p-1">{{ errorMsg }}</p>
+    <p *ngIf="successMsg" class="alert alert-success m-1 p-1">{{ successMsg }}</p>
+
+    <!-- Login Form -->
+    <ng-container *ngIf="canlogin">
+      <h2 class="text-center login-title">Sign in</h2>
+      <p class="text-center login-subtitle">Please enter your login details below.</p>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <!-- Username -->
+        <div class="form-group mt-3">
+          <input type="text" formControlName="username" class="form-control" placeholder="Username">
+        </div>
+        <div class="error-text"
+          *ngIf="(loginFormControl.username.touched || submitted) && loginFormControl.username.errors?.required">
+          Username is required
+        </div>
+
+        <!-- Password -->
+        <div class="form-group mt-3 position-relative">
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control"
+            placeholder="Password">
+          <span class="toggle-password" (click)="togglePasswordVisibility()">
+            <i class="material-icons">{{ showPassword ? 'visibility_off' : 'visibility' }}</i>
+          </span>
+        </div>
+        <div class="error-text"
+          *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.required">
+          Password is required
+        </div>
+
+        <!-- Forgot Password -->
+        <div class="text-right mt-2">
+          <a href="#" class="forgot-link" >Forgot Username/Password?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="btn btn-gold w-100 mt-3" [disabled]="isLoginLoading">
+          <ng-container *ngIf="isLoginLoading; else loginText">
+            <span class="spinner-border spinner-border-sm"></span> Logging in...
+          </ng-container>
+          <ng-template #loginText>LOGIN</ng-template>
+        </button>
+
+        <!-- Signup Link -->
+        <div class="text-center mt-3">
+          <span class="text-light">Don't have an account? </span>
+          <a class="signup-link" (click)="register()">Sign Up</a>
+        </div>
+      </form>
+    </ng-container>
+
+    <!-- Change Password Form -->
+    <ng-container *ngIf="!canlogin">
+      <h2 class="text-center login-title">Change Password</h2>
+      <form [formGroup]="changePassForm" (ngSubmit)="ChangePassword()">
+        <!-- Old Password -->
+        <div class="form-group mt-3">
+          <input type="password" formControlName="oldPassword" class="form-control" placeholder="Old Password">
+        </div>
+        <div class="error-text"
+          *ngIf="(formControl2.oldPassword.touched || submitted) && formControl2.oldPassword.errors?.required">
+          Old Password is required
+        </div>
+
+        <!-- New Password -->
+        <div class="form-group mt-3">
+          <input type="password" formControlName="newPassword" class="form-control" placeholder="New Password">
+        </div>
+        <div class="error-text"
+          *ngIf="(formControl2.newPassword.touched || submitted) && formControl2.newPassword.errors?.required">
+          New Password is required
+        </div>
+        <div class="error-text"
+          *ngIf="(formControl2.newPassword.touched || submitted) && formControl2.newPassword.errors?.pattern">
+          Password is not strong enough
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group mt-3">
+          <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm Password">
+        </div>
+        <div class="error-text"
+          *ngIf="(formControl2.confirmPassword.touched || submitted) && formControl2.confirmPassword.errors?.required">
+          Confirm Password is required
+        </div>
+        <div class="error-text"
+          *ngIf="(formControl2.confirmPassword.touched || submitted) && formControl2.confirmPassword.errors?.passwordMismatch">
+          Passwords do not match
+        </div>
+
+        <!-- Change Password Button -->
+        <button type="submit" class="btn btn-gold w-100 mt-3">Change Password</button>
+      </form>
+    </ng-container>
+  </div>
+
+  <!-- Outside Buttons -->
+  <div class="outside-buttons text-center mt-4" style="width:400px;">
+    <!-- <button class="btn btn-download w-100 mb-2 d-flex align-items-center justify-content-center" (click)="downloadApk()">
+      <i class="material-icons mr-2">android</i> Download .apk ⬇
+    </button> -->
+    <button
+  (click)="openWhatsapp()"
+  class="btn whatsapp-btn w-100 d-flex align-items-center justify-content-center">
+  
+  <i class="material-icons mr-2">chat</i>
+  Follow on WhatsApp
+</button>
+
+    <!-- <button (click)="openWhatsapp()" class="btn back-link w-100 d-flex align-items-center justify-content-center">
+      <i class="material-icons mr-2">chat</i> Follow on WhatsApp
+    </button> -->
+  </div>
+
+  <!-- Disclaimer -->
+  <p class="disclaimer text-center mt-3" style="max-width:400px;">
+    Disclaimer: Please note that Gambling involves a financial risk and could be addictive over time if not practised within limits. 
+    Only 18+ people should use the services and should use it responsibly. 
+    Players should be aware of any financial risk and govern themselves accordingly.
+  </p>
+</div>

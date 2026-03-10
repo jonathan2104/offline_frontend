@@ -1,0 +1,357 @@
+::ng-deep .modal {
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog {
+  /*max-width: 90%;*/
+  width: 50%;
+}
+
+label{
+  font-size: 15px;
+}
+
+.card-header {
+  background: #43b4f2 !important;
+  color: #fff !important;
+  padding: 3px;
+}
+
+.card-body {
+  background-color: #2e3439 !important;
+  color: #AAAFB5 !important;
+  max-height: 550px; /* Adjust to fit your needs */
+  overflow-y: auto;
+}
+
+.casino-result-round {
+  /* display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center; */
+  padding: 0 6px;
+}
+
+.casino-result-content {
+  padding: 6px;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.casino-result-content-item {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: 49%;
+}
+.casino-result-cards {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.casino-result-cards-item {
+  margin-right: 5px;
+  display: inline-block;
+}
+.casino-result-cards-item img {
+  width: 27px;
+  margin-bottom: 5px;
+}
+.casino-result-cards-item .winner-icon {
+  height: auto;
+  width: 60px;
+  transition: 1.2s ease-in;
+  animation-iteration-count: infinite;
+  -webkit-transition: 1.2s ease-in;
+  -moz-transition: 1.2s ease-in;
+  -ms-transition: 1.2s ease-in;
+  -o-transition: 1.2s ease-in;
+}
+.casino-result-desc {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  padding: 6px;
+  background-color: #444;
+  border: 1px solid #555;
+  margin-top: 10px;
+}
+.casino-result-content-diveder {
+  width: 2px;
+  height: 130px;
+  background-color: #666;
+}
+.casino-result-desc-item {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.casino-result-desc-item div:first-child {
+  width: 30%;
+  text-align: right;
+  margin-right: 2%;
+  color: #aaafb5;
+  opacity: 0.6;
+}
+.casino-result-desc-item div:last-child {
+  width: 68%;
+  text-align: left;
+  word-break: break-all;
+}
+.hooper * {
+  box-sizing: border-box;
+}
+
+.hooper-list {
+  width: 80%;
+}
+
+.lastCards-result .hooper-list {
+  width: 87%;
+  overflow-x: scroll;
+  margin: 0 auto;
+}
+
+
+.hooper-navigation button {
+  /* margin-top: 12px; */
+  padding: 10px;
+  /* margin-left: 5px; */
+}
+
+.hooper-navigation button {
+  background-color: #00000050;
+}
+.hooper-prev {
+  left:0;
+}
+
+.hooper-next {
+  right: 0;
+}
+
+.hooper-prev {
+  background-color: transparent;
+  border: none;
+  padding: 1em;
+  position: absolute;
+  top: 15%;
+  transform: translateY(-21%);
+  cursor: pointer;
+}
+
+.hooper-next, .hooper-prev {
+  background-color: transparent;
+  border: none;
+  padding: 1em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.hooper-navigation button svg {
+  fill: #fff;
+}
+
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
+.lastCards-container {
+  width: 60% !important;
+  margin: 0 auto;
+}
+/* .lastCards .hooper-track {
+  margin: 0 auto;
+}
+.lastCards .hooper-next {
+  left: -35px !important;
+  padding: 5px !important;
+}
+.lastCards .hooper-prev {
+  right: -35px !important;
+  padding: 5px !important;
+} */
+.lastCards img {
+  height: auto;
+  width: 32px;
+}
+.andar-bahar-3 .lastCards img,
+.andar-bahar-4 .lastCards img {
+  width: 27px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px){
+.casino-result-cards-item .winner-icon {
+    height: auto;
+}
+.hooper-next {
+  /* left: -35px !important; */
+  padding: 0px !important;
+}
+.hooper-prev {
+  /* right: -35px !important; */
+  padding: 0px !important;
+}
+}
+
+.hooper {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto !important;
+}
+.hooper-list {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.hooper-track {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.hooper-navigation button {
+  cursor: pointer;
+  background-color: #00000050;
+}
+.hooper-navigation button svg {
+  fill: #fff;
+}
+.hooper-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.hooper-slide {
+  flex-shrink: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.casino-result-cards-item:last-child {
+  margin-right: 0;
+}
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    line-height: 17px;
+    display: inline-block;
+       font-size: 12px;
+    /*color: #666;*/
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #222222 ;
+       font-size: 10px;
+
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 4px solid #272727;
+    background: #fff;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    border-radius: 100%;
+     font-size: 10px;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+input[type="checkbox"],
+input[type="radio"]{
+	width: 1.2em;
+	height: 1.2em;
+	margin-right: 0.65rem;
+  accent-color: #222222 !important;
+  color-scheme: dark;
+}
+
+input[type="range"],
+progress {
+	margin-left: auto;
+	flex: 0 1 50%;
+}
+
+.table-green .lay-border {
+  border-left: 5px solid #f994ba !important;
+}
+
+.table-green .back-border {
+  border-left: 5px solid #72bbef !important;
+}
+.table-green thead th {
+  padding: 7px;
+  border: none;
+  background: #146e51;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  /* text-transform: uppercase; */
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+.table-green tbody td {
+  padding: 7px;
+  border: none;
+  white-space: nowrap;
+  color: var(--primary-side-text-color);
+  background: var(--primary-bg8-color);
+  border-bottom: 1px solid #3c444b !important;
+}
+.text-right{
+  text-align: right !important;
+}

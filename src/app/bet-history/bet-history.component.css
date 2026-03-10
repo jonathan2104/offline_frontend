@@ -1,0 +1,154 @@
+.userscreen-title{
+  background: #272727;
+    margin-bottom: 0px;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 5px;
+    color: #fff;
+    height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+
+.back-page{
+  background: #121212;
+  color: #fff;
+}
+
+.redtablehead .table thead th {
+  padding: 7px;
+  text-align: center;
+  border: 1px solid #C8CED3;
+  background-color: #E0E6E6;
+  color: #000000;
+  font-size: 12px;
+  /* text-transform: uppercase; */
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  font-weight: 700;
+}
+.btn-white {
+  background: #fff;
+  color:#000000;
+}
+
+.tr-green{
+  background-color:#e1ffe1 !important;
+}
+
+.tr-red{
+  background-color:#ffd2d2 !important;
+}
+
+.tr-grey{
+  background-color:#bebebe !important;
+}
+
+.card{
+  color: #000;
+  background: #EDEDED;
+}
+
+.btn{
+  background-color: #343435;
+  color: #fff;
+}
+.btn:hover {
+  background-color: #000000;
+}
+
+.table thead th {
+  padding: 7px;
+  text-align: center;
+  border: 1px solid #C8CED3;
+  background-color: #E0E6E6;
+  color: #000000;
+  font-size: 12px;
+  /* text-transform: uppercase; */
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  font-weight: 700;
+}
+
+.apply-btn{
+  background: linear-gradient(180deg, #2E4B5E 0%, #243A48 82%);
+  color: #fff;
+  border-radius: 5px;
+  /* letter-spacing: 3px; */
+  border: 1px solid #CCCCCC;
+  opacity: 65%;
+  white-space: nowrap;
+}
+
+input{
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  font-size: 14px;
+}
+
+select{
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  font-size: 14px;
+}
+
+.container-fluid{
+  background-color: #EDEDED;
+  min-height: 100vh;
+}
+
+label{
+  color: #fff;
+}
+
+.card-header{
+  background: linear-gradient(180deg, #2E4B5E 0%, #243A48 82%);
+  color: #fff;
+  height: 35px;
+  padding: 5px !important;
+}
+
+tr td {
+  border-width: 1px, 0px, 1px, 0px;
+
+border-style: solid;
+
+border-image-source: linear-gradient(0deg, #C8CED3 2.56%, rgba(0, 0, 0, 0.3) 2.56%);
+
+
+}
+
+.card {
+  border: 1px solid #000000;
+}
+
+.card-body {
+  background-color: #fff;
+}
+
+.row {
+  /* border: 1px solid #000; */
+  padding: 10px;
+  /* margin-bottom: 20px; */
+  border-radius: 5px;
+  margin-left: 1px;
+  /* margin-right: 10px !important; */
+  max-width: 99.9%;
+}
+
+.rows{
+  border: 1px solid #000;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.form-group{
+  margin-bottom: 0px;
+}
+.container-fluid{
+  background-color: #EDEDED;
+  min-height: 100vh;
+}

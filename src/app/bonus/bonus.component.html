@@ -1,0 +1,20 @@
+<h2 class="userscreen-title mt-1"><button (click)="backClicked()" class="btn-xs back-page">Back</button><span class="h6 ml-2"> Account Statement</span></h2>
+<div class="container-fluid" style="color: #fff; padding-left: 0px;padding-right: 0px">
+  <div class="container-fluid p-2">
+    <div class="mt-2">
+      <form class="w-100" [formGroup]="FilterForm" (ngSubmit)="convert()">
+        <div class="container row col-sm-12 col-12 pr-0">
+         
+          
+          <div class="text-left col-sm-12 col-12">
+            <label class="btn btn-block btn-light text-dark ml-2">Bonus : {{Bonus}}</label>
+            <button class="btn btn-block btn-light text-dark ml-2" >Convert Bonus</button>
+          </div>
+        </div>
+    </form>
+    </div>
+    
+    
+  </div>
+</div>
+

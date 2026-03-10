@@ -1,0 +1,138 @@
+/* Empty state */
+.open-bets-info {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.open-bets-text {
+  color: #bbb;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.no-bets-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.no-bets-message i {
+  font-size: 22px;
+  color: #777;
+}
+
+.no-bets-message span {
+  color: #ccc;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Bet cards */
+.bet-card {
+  border: 1px solid #444;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.bet-header {
+  background: #2b3c5a;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.bet-body {
+  background: #1e1e1e;
+}
+
+.bet-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  transition: background 0.2s;
+}
+
+.bet-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.bet-info {
+  flex: 1;
+  font-size: 12px;
+  color: #ddd;
+}
+
+.runner {
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.status-badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+.badges {
+  margin: 4px 0;
+}
+
+.type-badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-right: 6px;
+}
+
+.badge-warning {
+  background: #ffc107;
+  color: #222;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.badge-success {
+  background: #28a745;
+  color: #fff;
+}
+
+.badge-danger {
+  background: #dc3545;
+  color: #fff;
+}
+
+.badge-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+.badge-info {
+  background: #17a2b8;
+  color: #fff;
+}
+
+.created {
+  display: block;
+  font-size: 10px;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.bet-meta {
+  text-align: right;
+  font-size: 12px;
+  color: #eee;
+}

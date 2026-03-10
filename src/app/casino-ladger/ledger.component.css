@@ -1,0 +1,72 @@
+* {
+  font-size: 14px;
+}
+
+.bg-theme {
+  background: #ffc11c !important;
+  border: none;
+  color: #fff !important;;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.title {
+  border: none !important;
+  background-color: #3c444b !important;
+  box-shadow: none;
+}
+
+.marketlist {
+  margin: 0;
+  border-top: 1px solid #7e8184;
+  padding: 8px 0;
+}
+
+.mat-expansion-panel-header {
+  background: #3c444b !important;
+}
+
+.mat-expansion-panel-header:hover {
+  background: #3c444b !important;
+}
+
+mat-expansion-panel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+  /*border-radius: 5px;*/
+  transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1);
+  /*border:2px solid green;*/
+}
+
+.mat-expansion-panel-header-title {
+  color: #bababa;
+}
+
+.mat-expansion-panel-header {
+  height: 48px;
+}
+
+.mat-expansion-panel-header {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+mat-panel-description {
+  flex: 0 0 auto;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+  color: white !important;
+}
+
+.mat-expansion-panel, .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"]) .mat-expansion-panel-header:hover {
+  background: #3c444b !important;
+  color: white !important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 24px 0px !important;
+}

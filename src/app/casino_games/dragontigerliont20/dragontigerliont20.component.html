@@ -1,0 +1,1750 @@
+<div class="box">
+  <div class="ballbyshow">
+    <h4 class="text-light d-flex">
+      <!-- <div class="material-symbols-outlined">info</div>
+      <div class="ballby ml-1">Ball By Ball</div> -->
+    </h4>
+  </div>
+  <app-animated-progress-bar [value]="counter"></app-animated-progress-bar>
+
+  <div class="casino-table teenpatti20" *ngIf="live_data.hasOwnProperty('t2')">
+    <div class="casino-video">
+      <div class="casino-video-title">
+        <span class="casino-name">20-20 D T L</span>
+        <span class="casino-video-rid"
+          >Round ID: {{ this.last_market_id }}</span
+        >
+      </div>
+      <div class="video-box-container">
+        <div class="video-box">
+          <iframe src="https://jmdapi.com/tablevideo/?id=3047"></iframe>
+        </div>
+      </div>
+      <div
+        class="casino-video-cards"
+        [class.hide-cards]="live_data.t1[0].C1 == '1'"
+      >
+        <div class="casino-cards-shuffle">
+          <i class="fas fa-grip-lines-vertical"></i>
+        </div>
+        <div class="casino-video-cards-container">
+          <div>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C1 }}.png"
+            /></span>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C2 }}.png"
+            /></span>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C3 }}.png"
+            /></span>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-right-icons">
+        <div title="Home" class="casino-video-home-icon">
+          <a routerLink="/dashboard/casino" class="" style="color: #fff"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
+        <div title="Rules" class="casino-video-rules-icon" (click)="openCasinoRule()">
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <ng-template #showzero>
+      <span class="casino-box-odd"> 0 </span>
+    </ng-template>
+    <div class="casino-detail">
+      <div class="">
+        <div *ngIf="isMobile" class="d-flex justify-content-end switchhead">
+          <div
+            class="mobileswitch"
+            [class.active]="tabname == 'dragons'"
+            (click)="showTab('dragons')"
+          >
+            Dragon
+          </div>
+          <div
+            class="mobileswitch"
+            [class.active]="tabname == 'tigers'"
+            (click)="showTab('tigers')"
+          >
+            Tiger
+          </div>
+          <div
+            class="mobileswitch"
+            [class.active]="tabname == 'lions'"
+            (click)="showTab('lions')"
+          >
+            Lion
+          </div>
+        </div>
+        <div class="col-md-6 border-right d-inline-block">
+          <div class="teen20casino-container d-none-big">
+            <div *ngIf="!isMobile" class="casino-bl-box casino-bl-box-title">
+              <div class="casino-bl-box-item"></div>
+              <div class="casino-bl-box-item">D</div>
+              <div class="casino-bl-box-item">T</div>
+              <div class="casino-bl-box-item">L</div>
+            </div>
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Winner</span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[0].gstatus == 0"
+                [class.lock-top]="exp_amount1 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[0].b1,
+                    sid: live_data.t2[0].sid,
+                    nat: 'Dragon',
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[0].gstatus == 1; else showzero"
+                  >{{ live_data.t2[0].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[0].gstatus == 0"
+                  [class.d-none]="exp_amount1 == 0"
+                  [class.book-red]="exp_amount1 != 0"
+                  >{{ exp_amount1 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[18].gstatus == 0"
+                [class.lock-top]="exp_amount21 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[18].b1,
+                    sid: live_data.t2[18].sid,
+                    nat: 'Tiger',
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[18].gstatus == 1; else showzero"
+                  >{{ live_data.t2[18].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[18].gstatus == 0"
+                  [class.d-none]="exp_amount21 == 0"
+                  [class.book-red]="exp_amount21 != 0"
+                  >{{ exp_amount21 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[36].gstatus == 0"
+                [class.lock-top]="exp_amount41 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[36].b1,
+                    sid: live_data.t2[36].sid,
+                    nat: 'Lion',
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[36].gstatus == 1; else showzero"
+                  >{{ live_data.t2[36].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[36].gstatus == 0"
+                  [class.d-none]="exp_amount41 == 0"
+                  [class.book-red]="exp_amount41 != 0"
+                  >{{ exp_amount41 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/spade.png" />
+                  <img src="/assets/casino/cards/club.png" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[1].gstatus == 0"
+                [class.lock-top]="exp_amount2 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[1].b1,
+                    sid: live_data.t2[1].sid,
+                    nat: live_data.t2[1].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[1].gstatus == 1; else showzero"
+                  >{{ live_data.t2[1].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[1].gstatus == 0"
+                  [class.d-none]="exp_amount2 == 0"
+                  [class.book-red]="exp_amount2 != 0"
+                  >{{ exp_amount2 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[19].gstatus == 0"
+                [class.lock-top]="exp_amount22 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[19].b1,
+                    sid: live_data.t2[19].sid,
+                    nat: live_data.t2[19].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[19].gstatus == 1; else showzero"
+                  >{{ live_data.t2[19].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[19].gstatus == 0"
+                  [class.d-none]="exp_amount22 == 0"
+                  [class.book-red]="exp_amount22 != 0"
+                  >{{ exp_amount22 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[37].gstatus == 0"
+                [class.lock-top]="exp_amount42 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[37].b1,
+                    sid: live_data.t2[37].sid,
+                    nat: live_data.t2[37].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[37].gstatus == 1; else showzero"
+                  >{{ live_data.t2[37].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[37].gstatus == 0"
+                  [class.d-none]="exp_amount42 == 0"
+                  [class.book-red]="exp_amount42 != 0"
+                  >{{ exp_amount42 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/heart.png" />
+                  <img src="/assets/casino/cards/diamond.png" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[2].gstatus == 0"
+                [class.lock-top]="exp_amount3 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[2].b1,
+                    sid: live_data.t2[2].sid,
+                    nat: live_data.t2[2].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[2].gstatus == 1; else showzero"
+                  >{{ live_data.t2[2].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[2].gstatus == 0"
+                  [class.d-none]="exp_amount3 == 0"
+                  [class.book-red]="exp_amount3 != 0"
+                  >{{ exp_amount2 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[20].gstatus == 0"
+                [class.lock-top]="exp_amount23 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[20].b1,
+                    sid: live_data.t2[20].sid,
+                    nat: live_data.t2[20].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[20].gstatus == 1; else showzero"
+                  >{{ live_data.t2[20].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[20].gstatus == 0"
+                  [class.d-none]="exp_amount23 == 0"
+                  [class.book-red]="exp_amount23 != 0"
+                  >{{ exp_amount23 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[38].gstatus == 0"
+                [class.lock-top]="exp_amount43 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[38].b1,
+                    sid: live_data.t2[38].sid,
+                    nat: live_data.t2[38].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[38].gstatus == 1; else showzero"
+                  >{{ live_data.t2[38].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[38].gstatus == 0"
+                  [class.d-none]="exp_amount43 == 0"
+                  [class.book-red]="exp_amount43 != 0"
+                  >{{ exp_amount43 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Odd</span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[3].gstatus == 0"
+                [class.lock-top]="exp_amount4 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[3].b1,
+                    sid: live_data.t2[3].sid,
+                    nat: live_data.t2[3].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[3].gstatus == 1; else showzero"
+                  >{{ live_data.t2[3].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[3].gstatus == 0"
+                  [class.d-none]="exp_amount4 == 0"
+                  [class.book-red]="exp_amount4 != 0"
+                  >{{ exp_amount4 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[21].gstatus == 0"
+                [class.lock-top]="exp_amount24 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[21].b1,
+                    sid: live_data.t2[21].sid,
+                    nat: live_data.t2[21].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[21].gstatus == 1; else showzero"
+                  >{{ live_data.t2[21].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[21].gstatus == 0"
+                  [class.d-none]="exp_amount24 == 0"
+                  [class.book-red]="exp_amount24 != 0"
+                  >{{ exp_amount24 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[39].gstatus == 0"
+                [class.lock-top]="exp_amount44 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[39].b1,
+                    sid: live_data.t2[39].sid,
+                    nat: live_data.t2[39].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[39].gstatus == 1; else showzero"
+                  >{{ live_data.t2[39].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[39].gstatus == 0"
+                  [class.d-none]="exp_amount44 == 0"
+                  [class.book-red]="exp_amount44 != 0"
+                  >{{ exp_amount44 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Even</span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[4].gstatus == 0"
+                [class.lock-top]="exp_amount5 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[4].b1,
+                    sid: live_data.t2[4].sid,
+                    nat: live_data.t2[4].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[4].gstatus == 1; else showzero"
+                  >{{ live_data.t2[4].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[4].gstatus == 0"
+                  [class.d-none]="exp_amount5 == 0"
+                  [class.book-red]="exp_amount5 != 0"
+                  >{{ exp_amount5 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[22].gstatus == 0"
+                [class.lock-top]="exp_amount25 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[22].b1,
+                    sid: live_data.t2[22].sid,
+                    nat: live_data.t2[22].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[22].gstatus == 1; else showzero"
+                  >{{ live_data.t2[22].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[22].gstatus == 0"
+                  [class.d-none]="exp_amount25 == 0"
+                  [class.book-red]="exp_amount25 != 0"
+                  >{{ exp_amount25 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[40].gstatus == 0"
+                [class.lock-top]="exp_amount45 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[40].b1,
+                    sid: live_data.t2[40].sid,
+                    nat: live_data.t2[40].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[40].gstatus == 1; else showzero"
+                  >{{ live_data.t2[40].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[40].gstatus == 0"
+                  [class.d-none]="exp_amount45 == 0"
+                  [class.book-red]="exp_amount45 != 0"
+                  >{{ exp_amount45 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/A.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[5].gstatus == 0"
+                [class.lock-top]="exp_amount6 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[5].b1,
+                    sid: live_data.t2[5].sid,
+                    nat: live_data.t2[5].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[5].gstatus == 1; else showzero"
+                  >{{ live_data.t2[5].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[5].gstatus == 0"
+                  [class.d-none]="exp_amount6 == 0"
+                  [class.book-red]="exp_amount6 != 0"
+                  >{{ exp_amount6 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[23].gstatus == 0"
+                [class.lock-top]="exp_amount26 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[23].b1,
+                    sid: live_data.t2[23].sid,
+                    nat: live_data.t2[23].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[34].gstatus == 1; else showzero"
+                  >{{ live_data.t2[23].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[23].gstatus == 0"
+                  [class.d-none]="exp_amount26 == 0"
+                  [class.book-red]="exp_amount26 != 0"
+                  >{{ exp_amount26 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[41].gstatus == 0"
+                [class.lock-top]="exp_amount46 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[41].b1,
+                    sid: live_data.t2[41].sid,
+                    nat: live_data.t2[41].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[41].gstatus == 1; else showzero"
+                  >{{ live_data.t2[41].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[41].gstatus == 0"
+                  [class.d-none]="exp_amount46 == 0"
+                  [class.book-red]="exp_amount46 != 0"
+                  >{{ exp_amount46 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/2.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[6].gstatus == 0"
+                [class.lock-top]="exp_amount7 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[6].b1,
+                    sid: live_data.t2[6].sid,
+                    nat: live_data.t2[6].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[6].gstatus == 1; else showzero"
+                  >{{ live_data.t2[6].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[6].gstatus == 0"
+                  [class.d-none]="exp_amount7 == 0"
+                  [class.book-red]="exp_amount7 != 0"
+                  >{{ exp_amount7 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[24].gstatus == 0"
+                [class.lock-top]="exp_amount27 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[24].b1,
+                    sid: live_data.t2[24].sid,
+                    nat: live_data.t2[24].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[25].gstatus == 1; else showzero"
+                  >{{ live_data.t2[24].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[24].gstatus == 0"
+                  [class.d-none]="exp_amount27 == 0"
+                  [class.book-red]="exp_amount27 != 0"
+                  >{{ exp_amount27 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[42].gstatus == 0"
+                [class.lock-top]="exp_amount47 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[42].b1,
+                    sid: live_data.t2[42].sid,
+                    nat: live_data.t2[42].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[42].gstatus == 1; else showzero"
+                  >{{ live_data.t2[42].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[42].gstatus == 0"
+                  [class.d-none]="exp_amount47 == 0"
+                  [class.book-red]="exp_amount47 != 0"
+                  >{{ exp_amount47 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/3.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[7].gstatus == 0"
+                [class.lock-top]="exp_amount8 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[7].b1,
+                    sid: live_data.t2[7].sid,
+                    nat: live_data.t2[7].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[7].gstatus == 1; else showzero"
+                  >{{ live_data.t2[7].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[0].gstatus == 0"
+                  [class.d-none]="exp_amount8 == 0"
+                  [class.book-red]="exp_amount8 != 0"
+                  >{{ exp_amount8 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[25].gstatus == 0"
+                [class.lock-top]="exp_amount28 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[25].b1,
+                    sid: live_data.t2[25].sid,
+                    nat: live_data.t2[25].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[25].gstatus == 1; else showzero"
+                  >{{ live_data.t2[25].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[25].gstatus == 0"
+                  [class.d-none]="exp_amount28 == 0"
+                  [class.book-red]="exp_amount28 != 0"
+                  >{{ exp_amount28 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[42].gstatus == 0"
+                [class.lock-top]="exp_amount48 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[42].b1,
+                    sid: live_data.t2[42].sid,
+                    nat: live_data.t2[42].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[42].gstatus == 1; else showzero"
+                  >{{ live_data.t2[42].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[42].gstatus == 0"
+                  [class.d-none]="exp_amount48 == 0"
+                  [class.book-red]="exp_amount48 != 0"
+                  >{{ exp_amount48 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/4.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[8].gstatus == 0"
+                [class.lock-top]="exp_amount9 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[8].b1,
+                    sid: live_data.t2[8].sid,
+                    nat: live_data.t2[8].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[8].gstatus == 1; else showzero"
+                  >{{ live_data.t2[8].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[8].gstatus == 0"
+                  [class.d-none]="exp_amount9 == 0"
+                  [class.book-red]="exp_amount9 != 0"
+                  >{{ exp_amount9 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[26].gstatus == 0"
+                [class.lock-top]="exp_amount29 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[26].b1,
+                    sid: live_data.t2[26].sid,
+                    nat: live_data.t2[26].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[26].gstatus == 1; else showzero"
+                  >{{ live_data.t2[26].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[26].gstatus == 0"
+                  [class.d-none]="exp_amount29 == 0"
+                  [class.book-red]="exp_amount29 != 0"
+                  >{{ exp_amount29 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[44].gstatus == 0"
+                [class.lock-top]="exp_amount49 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[44].b1,
+                    sid: live_data.t2[44].sid,
+                    nat: live_data.t2[44].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[44].gstatus == 1; else showzero"
+                  >{{ live_data.t2[44].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[44].gstatus == 0"
+                  [class.d-none]="exp_amount49 == 0"
+                  [class.book-red]="exp_amount49 != 0"
+                  >{{ exp_amount49 }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-inline-block">
+          <div class="teen20casino-container d-none-big">
+            <div *ngIf="!isMobile" class="casino-bl-box casino-bl-box-title">
+              <div class="casino-bl-box-item"></div>
+              <div class="casino-bl-box-item">D</div>
+              <div class="casino-bl-box-item">T</div>
+              <div class="casino-bl-box-item">L</div>
+            </div>
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/5.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[9].gstatus == 0"
+                [class.lock-top]="exp_amount10 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[9].b1,
+                    sid: live_data.t2[9].sid,
+                    nat: live_data.t2[9].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[9].gstatus == 1; else showzero"
+                  >{{ live_data.t2[9].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[9].gstatus == 0"
+                  [class.d-none]="exp_amount10 == 0"
+                  [class.book-red]="exp_amount10 != 0"
+                  >{{ exp_amount1 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[27].gstatus == 0"
+                [class.lock-top]="exp_amount30 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[27].b1,
+                    sid: live_data.t2[27].sid,
+                    nat: live_data.t2[27].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[27].gstatus == 1; else showzero"
+                  >{{ live_data.t2[27].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[27].gstatus == 0"
+                  [class.d-none]="exp_amount30 == 0"
+                  [class.book-red]="exp_amount30 != 0"
+                  >{{ exp_amount30 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[45].gstatus == 0"
+                [class.lock-top]="exp_amount50 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[45].b1,
+                    sid: live_data.t2[45].sid,
+                    nat: live_data.t2[45].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[45].gstatus == 1; else showzero"
+                  >{{ live_data.t2[45].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[45].gstatus == 0"
+                  [class.d-none]="exp_amount50 == 0"
+                  [class.book-red]="exp_amount50 != 0"
+                  >{{ exp_amount50 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/6.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[10].gstatus == 0"
+                [class.lock-top]="exp_amount11 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[10].b1,
+                    sid: live_data.t2[10].sid,
+                    nat: live_data.t2[10].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[10].gstatus == 1; else showzero"
+                  >{{ live_data.t2[10].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[10].gstatus == 0"
+                  [class.d-none]="exp_amount11 == 0"
+                  [class.book-red]="exp_amount11 != 0"
+                  >{{ exp_amount11 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[28].gstatus == 0"
+                [class.lock-top]="exp_amount31 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[28].b1,
+                    sid: live_data.t2[28].sid,
+                    nat: live_data.t2[28].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[28].gstatus == 1; else showzero"
+                  >{{ live_data.t2[28].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[28].gstatus == 0"
+                  [class.d-none]="exp_amount31 == 0"
+                  [class.book-red]="exp_amount31 != 0"
+                  >{{ exp_amount31 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[46].gstatus == 0"
+                [class.lock-top]="exp_amount51 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[46].b1,
+                    sid: live_data.t2[46].sid,
+                    nat: live_data.t2[46].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[46].gstatus == 1; else showzero"
+                  >{{ live_data.t2[46].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[46].gstatus == 0"
+                  [class.d-none]="exp_amount51 == 0"
+                  [class.book-red]="exp_amount51 != 0"
+                  >{{ exp_amount51 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/7.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[11].gstatus == 0"
+                [class.lock-top]="exp_amount12 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[11].b1,
+                    sid: live_data.t2[11].sid,
+                    nat: live_data.t2[11].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[11].gstatus == 1; else showzero"
+                  >{{ live_data.t2[11].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[11].gstatus == 0"
+                  [class.d-none]="exp_amount12 == 0"
+                  [class.book-red]="exp_amount12 != 0"
+                  >{{ exp_amount12 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[29].gstatus == 0"
+                [class.lock-top]="exp_amount32 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[29].b1,
+                    sid: live_data.t2[29].sid,
+                    nat: live_data.t2[29].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[29].gstatus == 1; else showzero"
+                  >{{ live_data.t2[29].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[29].gstatus == 0"
+                  [class.d-none]="exp_amount32 == 0"
+                  [class.book-red]="exp_amount32 != 0"
+                  >{{ exp_amount32 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[47].gstatus == 0"
+                [class.lock-top]="exp_amount52 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[47].b1,
+                    sid: live_data.t2[47].sid,
+                    nat: live_data.t2[47].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[47].gstatus == 1; else showzero"
+                  >{{ live_data.t2[47].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[47].gstatus == 0"
+                  [class.d-none]="exp_amount52 == 0"
+                  [class.book-red]="exp_amount52 != 0"
+                  >{{ exp_amount52 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/8.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[12].gstatus == 0"
+                [class.lock-top]="exp_amount13 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[12].b1,
+                    sid: live_data.t2[12].sid,
+                    nat: live_data.t2[12].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[12].gstatus == 1; else showzero"
+                  >{{ live_data.t2[12].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[12].gstatus == 0"
+                  [class.d-none]="exp_amount13 == 0"
+                  [class.book-red]="exp_amount13 != 0"
+                  >{{ exp_amount13 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[30].gstatus == 0"
+                [class.lock-top]="exp_amount33 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[30].b1,
+                    sid: live_data.t2[30].sid,
+                    nat: live_data.t2[30].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[30].gstatus == 1; else showzero"
+                  >{{ live_data.t2[30].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[30].gstatus == 0"
+                  [class.d-none]="exp_amount33 == 0"
+                  [class.book-red]="exp_amount33 != 0"
+                  >{{ exp_amount33 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[48].gstatus == 0"
+                [class.lock-top]="exp_amount53 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[48].b1,
+                    sid: live_data.t2[48].sid,
+                    nat: live_data.t2[48].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[48].gstatus == 1; else showzero"
+                  >{{ live_data.t2[48].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[48].gstatus == 0"
+                  [class.d-none]="exp_amount53 == 0"
+                  [class.book-red]="exp_amount53 != 0"
+                  >{{ exp_amount53 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/9.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[13].gstatus == 0"
+                [class.lock-top]="exp_amount14 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[13].b1,
+                    sid: live_data.t2[13].sid,
+                    nat: live_data.t2[13].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[13].gstatus == 1; else showzero"
+                  >{{ live_data.t2[13].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[13].gstatus == 0"
+                  [class.d-none]="exp_amount14 == 0"
+                  [class.book-red]="exp_amount14 != 0"
+                  >{{ exp_amount14 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[31].gstatus == 0"
+                [class.lock-top]="exp_amount34 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[31].b1,
+                    sid: live_data.t2[31].sid,
+                    nat: live_data.t2[31].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[31].gstatus == 1; else showzero"
+                  >{{ live_data.t2[31].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[31].gstatus == 0"
+                  [class.d-none]="exp_amount34 == 0"
+                  [class.book-red]="exp_amount34 != 0"
+                  >{{ exp_amount34 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[49].gstatus == 0"
+                [class.lock-top]="exp_amount54 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[49].b1,
+                    sid: live_data.t2[49].sid,
+                    nat: live_data.t2[49].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[49].gstatus == 1; else showzero"
+                  >{{ live_data.t2[49].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[49].gstatus == 0"
+                  [class.d-none]="exp_amount54 == 0"
+                  [class.book-red]="exp_amount54 != 0"
+                  >{{ exp_amount54 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/10.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[14].gstatus == 0"
+                [class.lock-top]="exp_amount15 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[14].b1,
+                    sid: live_data.t2[14].sid,
+                    nat: live_data.t2[14].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[14].gstatus == 1; else showzero"
+                  >{{ live_data.t2[14].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[14].gstatus == 0"
+                  [class.d-none]="exp_amount15 == 0"
+                  [class.book-red]="exp_amount15 != 0"
+                  >{{ exp_amount15 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[32].gstatus == 0"
+                [class.lock-top]="exp_amount35 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[32].b1,
+                    sid: live_data.t2[32].sid,
+                    nat: live_data.t2[32].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[32].gstatus == 1; else showzero"
+                  >{{ live_data.t2[32].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[32].gstatus == 0"
+                  [class.d-none]="exp_amount35 == 0"
+                  [class.book-red]="exp_amount35 != 0"
+                  >{{ exp_amount35 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[50].gstatus == 0"
+                [class.lock-top]="exp_amount55 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[50].b1,
+                    sid: live_data.t2[50].sid,
+                    nat: live_data.t2[50].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[50].gstatus == 1; else showzero"
+                  >{{ live_data.t2[50].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[50].gstatus == 0"
+                  [class.d-none]="exp_amount55 == 0"
+                  [class.book-red]="exp_amount55 != 0"
+                  >{{ exp_amount55 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/J.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[15].gstatus == 0"
+                [class.lock-top]="exp_amount16 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[15].b1,
+                    sid: live_data.t2[15].sid,
+                    nat: live_data.t2[15].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[15].gstatus == 1; else showzero"
+                  >{{ live_data.t2[15].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[15].gstatus == 0"
+                  [class.d-none]="exp_amount16 == 0"
+                  [class.book-red]="exp_amount16 != 0"
+                  >{{ exp_amount16 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[33].gstatus == 0"
+                [class.lock-top]="exp_amount36 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[33].b1,
+                    sid: live_data.t2[33].sid,
+                    nat: live_data.t2[33].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[33].gstatus == 1; else showzero"
+                  >{{ live_data.t2[33].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[33].gstatus == 0"
+                  [class.d-none]="exp_amount36 == 0"
+                  [class.book-red]="exp_amount36 != 0"
+                  >{{ exp_amount36 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[51].gstatus == 0"
+                [class.lock-top]="exp_amount56 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[51].b1,
+                    sid: live_data.t2[51].sid,
+                    nat: live_data.t2[51].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[51].gstatus == 1; else showzero"
+                  >{{ live_data.t2[51].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[51].gstatus == 0"
+                  [class.d-none]="exp_amount56 == 0"
+                  [class.book-red]="exp_amount56 != 0"
+                  >{{ exp_amount56 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/Q.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[16].gstatus == 0"
+                [class.lock-top]="exp_amount17 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[16].b1,
+                    sid: live_data.t2[16].sid,
+                    nat: live_data.t2[16].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[16].gstatus == 1; else showzero"
+                  >{{ live_data.t2[16].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[16].gstatus == 0"
+                  [class.d-none]="exp_amount17 == 0"
+                  [class.book-red]="exp_amount17 != 0"
+                  >{{ exp_amount17 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[34].gstatus == 0"
+                [class.lock-top]="exp_amount37 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[34].b1,
+                    sid: live_data.t2[34].sid,
+                    nat: live_data.t2[34].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[34].gstatus == 1; else showzero"
+                  >{{ live_data.t2[34].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[34].gstatus == 0"
+                  [class.d-none]="exp_amount37 == 0"
+                  [class.book-red]="exp_amount37 != 0"
+                  >{{ exp_amount37 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[52].gstatus == 0"
+                [class.lock-top]="exp_amount57 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[52].b1,
+                    sid: live_data.t2[52].sid,
+                    nat: live_data.t2[52].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[52].gstatus == 1; else showzero"
+                  >{{ live_data.t2[52].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[52].gstatus == 0"
+                  [class.d-none]="exp_amount57 == 0"
+                  [class.book-red]="exp_amount57 != 0"
+                  >{{ exp_amount57 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span class="cardimgs">
+                  <img src="/assets/casino/cards/K.png" alt="" />
+                </span>
+              </div>
+              <div
+                #dragons
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[17].gstatus == 0"
+                [class.lock-top]="exp_amount18 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[17].b1,
+                    sid: live_data.t2[17].sid,
+                    nat: live_data.t2[17].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[17].gstatus == 1; else showzero"
+                  >{{ live_data.t2[17].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[17].gstatus == 0"
+                  [class.d-none]="exp_amount18 == 0"
+                  [class.book-red]="exp_amount18 != 0"
+                  >{{ exp_amount18 }}</span
+                >
+              </div>
+              <div
+                #tigers
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[35].gstatus == 0"
+                [class.lock-top]="exp_amount38 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[35].b1,
+                    sid: live_data.t2[35].sid,
+                    nat: live_data.t2[35].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[35].gstatus == 1; else showzero"
+                  >{{ live_data.t2[35].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[35].gstatus == 0"
+                  [class.d-none]="exp_amount38 == 0"
+                  [class.book-red]="exp_amount38 != 0"
+                  >{{ exp_amount38 }}</span
+                >
+              </div>
+              <div
+                #lions
+                class="back casino-bl-box-item"
+                [class.suspended]="live_data.t2[53].gstatus == 0"
+                [class.lock-top]="exp_amount58 != 0"
+                (click)="
+                  openDialog('dtl20', live_data.t1[0].mid, {
+                    rate: live_data.t2[53].b1,
+                    sid: live_data.t2[53].sid,
+                    nat: live_data.t2[53].nat,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[53].gstatus == 1; else showzero"
+                  >{{ live_data.t2[53].b1 }}</span
+                >
+                <span
+                  [class.pt-1]="live_data.t2[53].gstatus == 0"
+                  [class.d-none]="exp_amount58 == 0"
+                  [class.book-red]="exp_amount58 != 0"
+                  >{{ exp_amount58 }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-last-results d-flex flex-wrap">
+        <span
+          *ngFor="let data of result_history.data"
+          [class.resulta]="data.result == 1"
+          [class.resultb]="data.result == 21"
+          [class.resultc]="data.result == 41"
+          (click)="openCasinoDetails(data)"
+        >
+          {{ data.result | dragontigerlion }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

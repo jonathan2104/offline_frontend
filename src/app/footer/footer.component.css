@@ -1,0 +1,111 @@
+.bottom-tabs {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #040404;
+    font-size: 13px;
+    z-index: 99;
+    background-image: radial-gradient(circle at 50% 3px, transparent 35px, #846f1e 35px);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.bottom-tabs .bottom-image {
+  content: '';
+  background-image: radial-gradient(circle at 50% 3px, transparent 35px, #5e4b03 35px);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bottom-tabs ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 4px;
+}
+
+.bottom-tabs ul li {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 50px;
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.bottom-tabs ul li a {
+  /* width: 25px; */
+  /* height: 25px; */
+  top: 0;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.bottom-tabs ul li a img {
+  width: auto;
+  height: 18px;
+  display: inline-block;
+  margin: auto;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.bottom-tabs ul li .title-name {
+  color: #fff;
+  z-index: 9;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.bottom-tabs ul li.big {
+  position: absolute;
+  height: 70px;
+  width: 20%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+}
+
+.bottom-tabs ul li.big::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  width: 60px;
+  height: 60px;
+  background-color: #846f1e;
+  border-radius: 100%;
+  z-index: -1;
+  margin: auto;
+  -webkit-box-shadow: #fff;
+  box-shadow: #333;
+}

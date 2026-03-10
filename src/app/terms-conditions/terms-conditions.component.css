@@ -1,0 +1,25 @@
+.bg-dark-gray {
+  background-color: #1b1b1b00;
+  color: #bababa;
+}
+
+p {
+  font: 400 14px/20px Roboto, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  font-family: Roboto, Helvetica Neue, sans-serif;
+  letter-spacing: normal;
+}
+
+.userscreen-title{
+  background: #343435;
+    margin-bottom: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 5px;
+    color: #fff;
+}
+
+.back-page{
+  background: #000000;
+  color: #fff;
+}

@@ -1,0 +1,14 @@
+.date{
+    background-color: #333;
+    padding: 4px;
+    border-radius: 3px;
+    align-items: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 400;
+    width: 70px !important;
+    height: 45px;
+    color: #bababa;
+}
+
+  

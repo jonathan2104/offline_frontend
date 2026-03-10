@@ -1,0 +1,244 @@
+* {
+  font-size: 14px;
+}
+
+.bg-dark{
+  background: #000;
+  color:#fff;
+}
+
+.bg-theme {
+  background: #fff !important;
+  border: none;
+  color: #000 !important;;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.title {
+  border: none !important;
+  background-color: #3c444b !important;
+  box-shadow: none;
+}
+
+.marketlist {
+  margin: 0;
+  border-top: 1px solid #7e8184;
+  padding: 8px 0;
+}
+
+.mat-expansion-panel-header {
+  background: #3c444b !important;
+}
+
+.mat-expansion-panel-header:hover {
+  background: #3c444b !important;
+}
+
+mat-expansion-panel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 24px;
+  /*border-radius: 5px;*/
+  transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1);
+  /*border:2px solid green;*/
+}
+
+.mat-expansion-panel-header-title {
+  color: #bababa;
+}
+
+.mat-expansion-panel-header {
+  height: 48px;
+}
+
+.mat-expansion-panel-header {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+mat-panel-description {
+  flex: 0 0 auto;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+  color: white !important;
+}
+
+.mat-expansion-panel, .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"]) .mat-expansion-panel-header:hover {
+  background: #3c444b !important;
+  color: white !important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 24px 0px !important;
+}
+
+.userscreen-title{
+  background: #846f1e;
+  margin-bottom: 5px;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 5px;
+  color: #fff;
+}
+
+.back-page{
+  background: #000000;
+  color: #fff;
+}
+
+.btn{
+  background-color: #343435;
+  color: #fff;
+}
+.btn:hover {
+  background-color: #000000;
+}
+.btn-primary1{
+  background: #846f1e;
+  color:#fff;
+}
+.text-white1{
+  color:#b7b7b7;
+}
+
+.search_form select {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.search_form select option {
+  background-color: #333;
+  color: #fff;
+}
+
+.search_form input[type="date"] {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.search_form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.ledertablehead .table thead th {
+  color: #fff !important;
+  background: #1f5887;
+}
+
+.ledertablehead .table tbody td {
+  color: #fff;
+}
+.color-hh{
+  color: #cfcccc;
+}
+.entries-pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 15px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .entries-pagination-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .entries-wrapper,
+  .pagination-wrapper {
+    justify-content: center;
+  }
+}
+.table-pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  background-color: #2b2b2b;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  border-top: 1px solid #444;
+}
+
+.rows-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rows-per-page select {
+  padding: 0.3rem 0.5rem;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.pagination-controls button {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.5rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-controls button.active {
+  background-color: #007bff;
+  border-color: #0056b3;
+}
+
+.pagination-controls button:disabled {
+  background-color: #555;
+  color: #888;
+  cursor: not-allowed;
+}
+
+pagination-controls ::ng-deep .ngx-pagination .current {
+  background-color: #1f5887;
+  color: #fff;
+
+  border-radius: 5px;
+}
+
+pagination-controls ::ng-deep .ngx-pagination a {
+  color: #fff; /* Page numbers */
+  background: #5b5a5a;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+pagination-controls ::ng-deep .ngx-pagination a:hover {
+  color: #9f9d9d;
+  text-decoration: underline;
+}
+
+.btn-darkest{
+  background: #000;
+  color: #fff;
+}

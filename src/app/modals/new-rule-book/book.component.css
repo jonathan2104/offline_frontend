@@ -1,0 +1,51 @@
+::ng-deep .modal {
+  z-index: 1055;
+}
+
+::ng-deep .modal-dialog {
+  /*max-width: 90%;*/
+  width:90%;
+  margin: 0 auto;
+
+}
+
+::ng-deep .mat-dialog-container  {
+  border: none;
+  padding: 0px !important;
+  background-color: #fff;
+}
+
+.book-heading {
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #234a48;
+  font-size: 15px;
+  font-weight: 700;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.footer-div{
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  position: fixed;
+    bottom: 15%;
+    width: 100%;
+    background-color: #fff;
+}
+
+.ok-btn{
+  height: 25px;
+  color: #000;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 20%;
+  font-size: 12px;
+  font-weight: 700;
+}

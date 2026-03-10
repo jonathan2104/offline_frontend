@@ -1,0 +1,307 @@
+* {
+    background-color: #121212;
+  }
+
+  .main-menu {
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+      scrollbar-width: none;  /* Firefox */
+  }
+  .main-menu::-webkit-scrollbar { 
+      display: none;  /* Safari and Chrome */
+  }
+  
+  ::ng-deep .date {
+    background-color: #f69f00;
+    border-radius: 3px;
+    align-items: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 400;
+    width: 100px !important;
+    vertical-align: middle;
+    color: #bababa;
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .game_banner{
+    width: 100%;
+    height: 150px;
+    /* border: 2px solid #000; */
+    padding: 5px 5px 0px 5px;
+    cursor: pointer;
+  }
+  
+  .balance{
+    float: right;
+    font-size: 20px;
+  }
+
+  .main-menu{
+    background-color:#f6f6f6 !important
+  }
+  .main-menu.sub-nav{
+    background: #f6f6f6 !important;
+  }
+  .sub-nav {
+    background-color: #000 !important;
+  }
+
+.sub-menu-item {
+  color: #ffffff !important;
+  background: #121212;
+  padding: 5px 0px;
+  text-align: center;
+  font-size: 12px;
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  width: 90px;
+  height: 30px;
+  line-height: 22px;
+  border-right: 1px solid #5e5e5e;
+  cursor: pointer;
+}
+
+.menu-icon{
+  background: #ffffff00;
+  display: grid;
+  height: 24px;
+  /* margin-left:28px; */
+  display: unset;
+}
+
+.menu-text{
+  display: block;
+  text-align: center;
+  background: #ffffff00;
+}
+
+.new-height.active{
+  background: #F26C20;
+  color: #fff !important;
+}
+
+.sub-menu-item.lobbybtn{
+  border-right: 1px solid #5bd396;
+}
+.lobbybtn{
+  background: #4b5ba8;
+  color: #fff !important;
+}
+
+.active > .menu-text{
+  background-color: #ffffff00;
+  color: #fff;
+}
+.active > .menu-icon{
+  background: #20327B;
+}
+.menu-icons{
+  width: 28px;
+  padding: 0px 7px 0px 0px;
+  vertical-align: middle;
+  font-size: 20px;
+}
+.top-menu-icon{
+  color:var(#000) !important;
+}
+
+/* Styling for active page button */
+button.active-page {
+  background-color: #007bff; /* Change this to your preferred active color */
+  color: white;
+  border-color: #007bff;
+}
+
+/* Optional: Additional styling for buttons */
+button {
+  padding: 5px 10px;
+  margin: 2px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #f0f0f0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  line-height: 35px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.searchInput{
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #bababa;
+  height: 35px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .head-div{
+    flex-direction: column;
+  }
+}
+
+.play-btn{
+  /* margin-left: 5px; */
+  /* margin-right: 5px !important; */
+  width: 100%;
+  background-color: #F26C20;
+  margin-top: 0px;
+  border: none;
+  border-radius: 0px 0px 5px 5px;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  color: #ffffff;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+/* Style for the dropdown toggle button */
+.dropdown .btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  background-color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  margin-top: 5px;
+  z-index: 1000;
+  min-width: 150px;
+}
+
+/* Style for dropdown items */
+.dropdown-menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu button:hover {
+  background-color: #F26C20;
+  color: #0056b3;
+}
+
+/* Optional: Adjust dropdown item spacing */
+.dropdown-menu button:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.livegames{
+  background-color: transparent;
+  border: 1px solid #5bd396;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #5bd396;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+  margin-left: 15px;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

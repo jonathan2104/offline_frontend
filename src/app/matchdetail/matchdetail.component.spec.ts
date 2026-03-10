@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { MatchdetailComponent } from './matchdetail.component';
+
+describe('MatchdetailComponent', () => {
+  let component: MatchdetailComponent;
+  let fixture: ComponentFixture<MatchdetailComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ MatchdetailComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(MatchdetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

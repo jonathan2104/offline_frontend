@@ -1,0 +1,1415 @@
+<div class="box">
+  <div class="ballbyshow">
+    <h4 class="text-light d-flex">
+      <!-- <div class="material-symbols-outlined">info</div>
+      <div class="ballby ml-1">Ball By Ball</div> -->
+    </h4>
+  </div>
+  <app-animated-progress-bar [value]="counter"></app-animated-progress-bar>
+
+  <div class="casino-table dt20" *ngIf="live_data.hasOwnProperty('t2')">
+    <div class="casino-video">
+      <div class="casino-video-title">
+        <span class="casino-name">20-20 Dragon Tiger</span>
+        <span class="casino-video-rid"
+          >Round ID: {{ this.last_market_id }}</span
+        >
+      </div>
+      <div class="video-box-container">
+        <div class="video-box">
+          <iframe src="https://jmdapi.com/tablevideo/?id=3035"></iframe>
+        </div>
+      </div>
+      <div
+        class="casino-video-cards"
+        [class.hide-cards]="live_data.t1[0].C1 == '1'"
+      >
+        <div class="casino-cards-shuffle">
+          <i class="fas fa-grip-lines-vertical"></i>
+        </div>
+        <div class="casino-video-cards-container">
+          <div>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C1 }}.png"
+            /></span>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C2 }}.png"
+            /></span>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-right-icons">
+        <div title="Home" class="casino-video-home-icon">
+          <a routerLink="/dashboard/casino" class="" style="color: #fff"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
+        <div
+          title="Rules"
+          class="casino-video-rules-icon"
+          (click)="openCasinoRule()"
+        >
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <ng-template #showzero>
+      <div class="casino-bl-box-item quarter text-center">0</div>
+    </ng-template>
+    <ng-template #showzero2>
+      <span class="text-danger">&nbsp;</span>
+    </ng-template>
+    <ng-template #suspended>
+      <img src="assets/casino/cards/ab0.png" alt="ab-0" class="cards" />
+    </ng-template>
+    <div class="casino-detail">
+      <div class="">
+        <div class="col-md-12">
+          <div class="">
+            <div class="col-md-12">
+              <div class="dtobx-top">
+                <div
+                  class="dragon-box"
+                  [class.suspended]="live_data.t2[0].gstatus == 0"
+                  (click)="
+                    openDialog('dt20', live_data.t1[0].mid, live_data.t2[0])
+                  "
+                >
+                  <div class="flex-book">
+                    <b>Dragon</b>
+                    <span
+                      class="d-block"
+                      [class.book-red]="exp_amount1 != 0"
+                      [class.d-none]="exp_amount1 == 0"
+                      >{{ exp_amount1 }}</span
+                    >
+                  </div>
+                  <div class="text-center flex-odds">
+                    <span class="d-block"
+                      ><b>{{ live_data.t2[0].rate }}</b></span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="tiebox"
+                  [class.suspended]="live_data.t2[2].gstatus == 0"
+                  (click)="
+                    openDialog('dt20', live_data.t1[0].mid, live_data.t2[2])
+                  "
+                >
+                  <div><b>Tie</b></div>
+                  <div class="text-center flex-odds">
+                    <span class="d-block"
+                      ><b>{{ live_data.t2[2].rate }}</b></span
+                    >
+                    <span
+                      class="d-block"
+                      [class.book-red]="exp_amount3 != 0"
+                      [class.d-none]="exp_amount3 == 0"
+                      >{{ exp_amount3 }}</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="tiger-box"
+                  [class.suspended]="live_data.t2[1].gstatus == 0"
+                  (click)="
+                    openDialog('dt20', live_data.t1[0].mid, live_data.t2[1])
+                  "
+                >
+                  <div class="flex-book">
+                    <b>Tiger</b>
+                    <span
+                      class="d-block"
+                      [class.book-red]="exp_amount2 != 0"
+                      [class.d-none]="exp_amount2 == 0"
+                      >{{ exp_amount2 }}</span
+                    >
+                  </div>
+                  <div class="text-center flex-odds">
+                    <span class="d-block"
+                      ><b>{{ live_data.t2[1].rate }}</b></span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="pair-box"
+                  [class.suspended]="live_data.t2[3].gstatus == 0"
+                  (click)="
+                    openDialog('dt20', live_data.t1[0].mid, live_data.t2[3])
+                  "
+                >
+                  <div><b>Pair</b></div>
+                  <div class="text-center flex-odds">
+                    <span class="d-block"
+                      ><b>{{ live_data.t2[3].rate }}</b></span
+                    >
+                    <span
+                      class="d-block"
+                      [class.book-red]="exp_amount4 != 0"
+                      [class.d-none]="exp_amount4 == 0"
+                      >{{ exp_amount4 }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 border-right d-inline-block">
+              <div class="col-md-12">
+                <p class="mb-0 mt-2 ml-2 dragon">Dragon</p>
+                <div class="casino-bl-box">
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[4].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[4].rate }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[5].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[5].rate }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[7].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[7].rate }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[6].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[6].rate }}
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[4].gstatus == 0"
+                    [class.lock-top]="exp_amount5 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[4])
+                    "
+                  >
+                    <span class="casino-box-odd">Even</span>
+                    <span
+                      [class.pt-1]="live_data.t2[4].gstatus == 0"
+                      [class.d-none]="exp_amount5 == 0"
+                      [class.book-red]="exp_amount5 != 0"
+                      >{{ exp_amount5 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[5].gstatus == 0"
+                    [class.lock-top]="exp_amount6 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[5])
+                    "
+                  >
+                    <span class="casino-box-odd">Odd</span>
+                    <span
+                      [class.pt-1]="live_data.t2[5].gstatus == 0"
+                      [class.d-none]="exp_amount6 == 0"
+                      [class.book-red]="exp_amount6 != 0"
+                      >{{ exp_amount6 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[7].gstatus == 0"
+                    [class.lock-top]="exp_amount8 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[7])
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span>
+                        <img src="assets/casino/cards/spade.png" />
+                        <img src="assets/casino/cards/club.png" />
+                      </span>
+                      <span
+                        [class.pt-1]="live_data.t2[7].gstatus == 0"
+                        [class.d-none]="exp_amount8 == 0"
+                        [class.book-red]="exp_amount8 != 0"
+                        >{{ exp_amount8 }}</span
+                      >
+                    </span>
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[6].gstatus == 0"
+                    [class.lock-top]="exp_amount7 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[6])
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span class="casino-box-odd">
+                        <span>
+                          <img src="assets/casino/cards/heart.png" />
+                          <img src="assets/casino/cards/diamond.png" />
+                        </span>
+                      </span>
+                      <span
+                        [class.pt-1]="live_data.t2[6].gstatus == 0"
+                        [class.d-none]="exp_amount7 == 0"
+                        [class.book-red]="exp_amount7 != 0"
+                        >{{ exp_amount7 }}</span
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <!-- Box Code Start Here-->
+                <div
+                  style="
+                    padding: 5px;
+                    width: 100%;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  <div class="casino-content-table">
+                    <div class="text-center">
+                      <b><span id="s013" class="odd">0</span></b>
+                      <div class="info-block float-right"></div>
+                    </div>
+                    <div class="m-t-10">
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[8].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[8]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/A.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[8].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat7"
+                                class="text-danger"
+                                *ngIf="exp_amount9 != 0; else showzero2"
+                                >{{ exp_amount9 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[9].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[9]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/2.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[9].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat8"
+                                class="text-danger"
+                                *ngIf="exp_amount10 != 0; else showzero2"
+                                >{{ exp_amount10 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[10].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[10]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/3.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[10].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat9"
+                                class="text-danger"
+                                *ngIf="exp_amount11 != 0; else showzero2"
+                                >{{ exp_amount11 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[11].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[11]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/4.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[11].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat10"
+                                class="text-danger"
+                                *ngIf="exp_amount12 != 0; else showzero2"
+                                >{{ exp_amount12 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[12].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[12]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/5.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[12].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat11"
+                                class="text-danger"
+                                *ngIf="exp_amount13 != 0; else showzero2"
+                                >{{ exp_amount13 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[13].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[13]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/6.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[13].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat12"
+                                class="text-danger"
+                                *ngIf="exp_amount14 != 0; else showzero2"
+                                >{{ exp_amount14 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[14].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[14]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/7.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[14].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat13"
+                                class="text-danger"
+                                *ngIf="exp_amount15 != 0; else showzero2"
+                                >{{ exp_amount15 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[15].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[15]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/8.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[15].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat14"
+                                class="text-danger"
+                                *ngIf="exp_amount16 != 0; else showzero2"
+                                >{{ exp_amount16 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[16].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[16]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/9.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[16].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat15"
+                                class="text-danger"
+                                *ngIf="exp_amount17 != 0; else showzero2"
+                                >{{ exp_amount17 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[17].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[17]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/10.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[17].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat16"
+                                class="text-danger"
+                                *ngIf="exp_amount18 != 0; else showzero2"
+                                >{{ exp_amount18 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[18].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[18]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/J.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[18].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat17"
+                                class="text-danger"
+                                *ngIf="exp_amount19 != 0; else showzero2"
+                                >{{ exp_amount19 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[19].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[19]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/Q.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[19].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat18"
+                                class="text-danger"
+                                *ngIf="exp_amount20 != 0; else showzero2"
+                                >{{ exp_amount20 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[20].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[20]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/K.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[20].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat19"
+                                class="text-danger"
+                                *ngIf="exp_amount21 != 0; else showzero2"
+                                >{{ exp_amount21 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Box Code end here-->
+              </div>
+            </div>
+            <div class="col-md-6 d-inline-block">
+              <div class="col-md-12">
+                <p class="mb-0 mt-2 ml-2 tiger">Tiger</p>
+                <div class="casino-bl-box">
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[21].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[21].rate }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[22].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[22].rate }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[24].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[24].rate }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[23].gstatus == 1; else showzero"
+                  >
+                    {{ live_data.t2[23].rate }}
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[21].gstatus == 0"
+                    [class.lock-top]="exp_amount22 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[21])
+                    "
+                  >
+                    <span class="casino-box-odd">Even</span>
+                    <span
+                      [class.pt-1]="live_data.t2[21].gstatus == 0"
+                      [class.d-none]="exp_amount22 == 0"
+                      [class.book-red]="exp_amount22 != 0"
+                      >{{ exp_amount22 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[22].gstatus == 0"
+                    [class.lock-top]="exp_amount23 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[22])
+                    "
+                  >
+                    <span class="casino-box-odd">Odd</span>
+                    <span
+                      [class.pt-1]="live_data.t2[22].gstatus == 0"
+                      [class.d-none]="exp_amount23 == 0"
+                      [class.book-red]="exp_amount23 != 0"
+                      >{{ exp_amount23 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[24].gstatus == 0"
+                    [class.lock-top]="exp_amount25 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[24])
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span>
+                        <img src="assets/casino/cards/spade.png" />
+                        <img src="assets/casino/cards/club.png" />
+                      </span>
+                      <span
+                        [class.pt-1]="live_data.t2[24].gstatus == 0"
+                        [class.d-none]="exp_amount25 == 0"
+                        [class.book-red]="exp_amount25 != 0"
+                        >{{ exp_amount25 }}</span
+                      >
+                    </span>
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="live_data.t2[23].gstatus == 0"
+                    [class.lock-top]="exp_amount24 != 0"
+                    (click)="
+                      openDialog('dt20', live_data.t1[0].mid, live_data.t2[23])
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span>
+                        <img src="assets/casino/cards/heart.png" />
+                        <img src="assets/casino/cards/diamond.png" />
+                      </span>
+                      <span
+                        [class.pt-1]="live_data.t2[23].gstatus == 0"
+                        [class.d-none]="exp_amount24 == 0"
+                        [class.book-red]="exp_amount24 != 0"
+                        >{{ exp_amount24 }}</span
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <!-- Box Code Start Here-->
+                <div
+                  style="
+                    padding: 5px;
+                    width: 100%;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  <div class="casino-content-table">
+                    <div class="text-center">
+                      <b><span id="s013" class="odd">0</span></b>
+                      <div class="info-block float-right"></div>
+                    </div>
+                    <div class="m-t-10">
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[25].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[25]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/A.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[25].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat7"
+                                class="text-danger"
+                                *ngIf="exp_amount26 != 0; else showzero2"
+                                >{{ exp_amount26 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[26].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[26]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/2.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[26].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat8"
+                                class="text-danger"
+                                *ngIf="exp_amount27 != 0; else showzero2"
+                                >{{ exp_amount27 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[27].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[27]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/3.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[27].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat9"
+                                class="text-danger"
+                                *ngIf="exp_amount28 != 0; else showzero2"
+                                >{{ exp_amount28 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[28].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[28]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/4.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[28].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat10"
+                                class="text-danger"
+                                *ngIf="exp_amount29 != 0; else showzero2"
+                                >{{ exp_amount29 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[29].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[29]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/5.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[29].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat11"
+                                class="text-danger"
+                                *ngIf="exp_amount30 != 0; else showzero2"
+                                >{{ exp_amount30 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[30].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[30]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/6.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[30].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat12"
+                                class="text-danger"
+                                *ngIf="exp_amount31 != 0; else showzero2"
+                                >{{ exp_amount31 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[31].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[31]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/7.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[31].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat13"
+                                class="text-danger"
+                                *ngIf="exp_amount32 != 0; else showzero2"
+                                >{{ exp_amount32 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[32].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[32]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/8.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[32].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat14"
+                                class="text-danger"
+                                *ngIf="exp_amount33 != 0; else showzero2"
+                                >{{ exp_amount33 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[32].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[32]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/9.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[32].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat15"
+                                class="text-danger"
+                                *ngIf="exp_amount34 != 0; else showzero2"
+                                >{{ exp_amount34 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[34].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[34]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/10.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[34].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat16"
+                                class="text-danger"
+                                *ngIf="exp_amount35 != 0; else showzero2"
+                                >{{ exp_amount35 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[35].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[35]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/J.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[35].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat17"
+                                class="text-danger"
+                                *ngIf="exp_amount36 != 0; else showzero2"
+                                >{{ exp_amount36 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[36].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[36]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/Q.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[36].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat18"
+                                class="text-danger"
+                                *ngIf="exp_amount37 != 0; else showzero2"
+                                >{{ exp_amount37 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="display: inline-block">
+                        <button
+                          class="back-btn"
+                          style="
+                            margin: 0 3px;
+                            padding: 0px;
+                            position: relative;
+                          "
+                          [class.suspended]="live_data.t2[37].gstatus == 0"
+                          (click)="
+                            openDialog(
+                              'dt20',
+                              live_data.t1[0].mid,
+                              live_data.t2[37]
+                            )
+                          "
+                        >
+                          <img src="assets/casino/cards/K.png" class="cards" />
+                          <div
+                            [class.suspended_style]="
+                              live_data.t2[37].gstatus == 0
+                            "
+                            style="display: block"
+                          ></div>
+                        </button>
+                        <div class="text-center">
+                          <div class="ubook m-t-5 text-danger">
+                            <b>
+                              <span
+                                id="livestat19"
+                                class="text-danger"
+                                *ngIf="exp_amount38 != 0; else showzero2"
+                                >{{ exp_amount38 }}</span
+                              ></b
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Box Code end here-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-last-results d-flex flex-wrap">
+        <span
+          *ngFor="let data of result_history.data"
+          [class.resulta]="data.result == 1"
+          [class.resultb]="data.result == 2"
+          (click)="openCasinoDetails(data)"
+        >
+          {{ data.result | dragontiger }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

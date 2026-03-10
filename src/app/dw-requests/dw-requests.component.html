@@ -1,0 +1,84 @@
+<mat-tab-group [(selectedIndex)]="selectedTabIndex" dynamicHeight class="mt-1" mat-stretch-tabs="false"
+               mat-align-tabs="start">
+  <mat-tab label="DEPOSIT">
+    <!-- <ng-template mat-tab-label>
+      <span [ngClass]="tabdeposit">DEPOSIT</span>
+    </ng-template> -->
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header p-2 d-flex align-items-center w-100 justify-content-between">
+          <h6 class="float-left mb-0">Deposit Requests</h6>
+          <div class="form-group col-md-6 mb-0 text-right">
+            <button class="btn btn-success btn-sm " (click)="addDepositRequest()">Add Deposit Request</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-sm table-bordered table-striped table-hover clearfix">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>Method</th>
+              <th>Transaction ID</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="deposit_requests.length>0 || deposit_requests !=null">
+            <tr *ngFor="let deposit_request of deposit_requests; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{deposit_request.method}}</td>
+              <td>{{deposit_request.transaction_id}}</td>
+              <td>{{deposit_request.amount}}</td>
+              <td>{{deposit_request.status == 0 ? 'Pending' : (deposit_request.status == -1 ? 'Declined' : 'Approved')}}</td>
+              <td>{{deposit_request.updated_at | date:'medium':'IST' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="WITHDRAW">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header p-2 d-flex align-items-center w-100 justify-content-between">
+          <h6 class="float-left mb-0">Withdraw Requests</h6>
+          <div class="form-group col-md-6 mb-0 text-right">
+            <button class="btn btn-success btn-sm " (click)="addWithdrawRequest()">Add Withdraw Request</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-md table-bordered table-striped table-hover clearfix">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>txn_type</th>
+              <th>UPI</th>
+              <th>Account No.</th>
+              <th>Bank Name</th>
+              <th>IFSC</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="withdraw_requests.length>0">
+            <tr *ngFor="let withdraw_request of withdraw_requests; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{withdraw_request.txn_type}}</td>
+              <td>{{withdraw_request.upi}}</td>
+              <td>{{withdraw_request.account_id}}</td>
+              <td>{{withdraw_request.bank_name}}</td>
+              <td>{{withdraw_request.ifsc_code}}</td>
+              <td>{{withdraw_request.amount}}</td>
+              <td>{{withdraw_request.status == 0 ? 'Pending' : (withdraw_request.status == -1 ? 'Declined' : 'Approved')}}</td>
+              <td>{{withdraw_request.updated_at | date:'medium':'IST' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

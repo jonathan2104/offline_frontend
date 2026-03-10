@@ -1,0 +1,129 @@
+<div class="content-wrapper" style="min-height: 368px">
+  <div class="pt-2">
+    <div class="card m-3">
+      <div class="card-body p-0 m-0">
+        <div class="d-flex justify-content-between p-3 head-div">
+        <h1 class="card-title text-center">
+          <div>
+            <span style="color: #fff; margin-right: 5px;">Play {{isLobby?"Lobby":"Casino"}}</span>
+            <span class="text-right">
+              <label class="switch">
+                <input type="checkbox" [(ngModel)]="isLobby" (change)="checkLobby()">
+                <span class="slider round"></span>
+              </label>
+            </span>
+          </div>
+        </h1>
+
+
+        <div ngbDropdown class="dropdown">
+          <input class="searchInput" type="text" placeholder="Search Game" [(ngModel)]="gameFilter" (ngModelChange)="onFilterChange()" ngbDropdownToggle>
+          <div ngbDropdownMenu *ngIf="filteredgames.length>0">
+            <button ngbDropdownItem *ngFor="let game of filteredgames  | filter:gameFilter" (click)="openGametab(game)">{{game.game_name}}</button>
+          </div>
+        </div>
+        <div class="mt-2">
+          <button (click)="fetchLiveCasinos()" class="livegames">Live Casino <div class="dot"></div></button>
+        </div>
+      </div>
+        <div
+            style="overflow-x: auto; white-space: nowrap; width: 100%;border: 1px solid #f26c20;"
+            class="main-menu sub-nav"
+            *ngIf="!isLobby"
+          >
+            <div
+              class="sub-menu-item new-height"
+              [class.active]="activeVendor == 'all'"
+            >
+              <span class="menu-text" (click)="filterByProvider('all')" >All</span>
+            </div>
+            <div
+              class="sub-menu-item new-height"
+              [class.active]="activeVendor === provider"
+              *ngFor="let provider of providers"
+              (click)="filterByProvider(provider)" 
+            >
+              <span class="menu-text">{{provider}}</span>
+            </div>
+        </div>
+
+        <div
+            style="overflow-x: auto; white-space: nowrap; width: 100%;border: 1px solid #f26c20;"
+            class="main-menu sub-nav mt-2"
+            *ngIf="!isLobby"
+          >
+            <div
+              class="sub-menu-item new-height"
+              [class.active]="activeCategory == 'all'"
+            >
+              <span class="menu-text" (click)="filterByCategory('all')">All</span>
+            </div>
+            <div
+              class="sub-menu-item new-height"
+              [class.active]="activeCategory === category"
+              *ngFor="let category of categories"
+              (click)="filterByCategory(category)" 
+            >
+              <span class="menu-text">{{category}}</span>
+            </div>
+        </div>
+
+          <h4 *ngIf="activeVendor!='all'" class="text-white">{{ activeVendor }}</h4>
+
+          <!-- Loading Spinner -->
+          <div *ngIf="isLoading; else gamelist">
+            <mat-spinner diameter="40"></mat-spinner>
+          </div>
+
+          <!-- Game List -->
+          <ng-template #gamelist>
+            <div *ngIf="gameList.length > 0;" class="pagination">
+              <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">previous</button>
+            
+              <ng-container *ngFor="let page of getPaginationRange()">
+                <ng-container *ngIf="page === '...'">
+                  <span>...</span>
+                </ng-container>
+                <ng-container *ngIf="page !== '...'">
+                  <button 
+                    (click)="page !== currentPage && changePage(page)" 
+                    [ngClass]="{'active-page': page === currentPage}"
+                  >
+                    {{ page }}
+                  </button>
+                </ng-container>
+              </ng-container>
+            
+              <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">next</button>
+            </div>
+            <div>
+              <div *ngIf="loadingLobby;">
+                <mat-spinner diameter="20"></mat-spinner>
+              </div>
+              <button *ngFor="let data of lobbyData" (click)="openLobbytab(data.lobbyData)" class="btn btn-sm btn-warning">{{data.name}}</button>
+            </div>
+            <div *ngIf="gameList.length > 0; else nogame" class="d-flex flex-wrap col-md-12 p-0">
+              <div *ngFor="let game of gameList | filter: newgameFilter" class="col-lg-2 col-md-3 col-6 p-0 bg-white">
+                <p style="display: none;">{{game.game_name}}</p>
+                <img class="game_banner" 
+                     (click)="openGametab(game)" 
+                     [src]="game.url_thumb" 
+                     alt="{{ game.game_name }}" 
+                     title="{{ game.game_name }}" />
+                     <div class="mt-0 w-100" style="padding-left: 3px; padding-right: 7px;" (click)="openGametab(game)">
+                      <button class="play-btn">PLAY NOW</button>
+                     </div>
+              </div>
+            </div>
+
+            <!-- No Games Found -->
+            <ng-template #nogame>
+              <div class="col-12 p-0">
+                <h4 class="text-white">No games found...</h4>
+              </div>
+            </ng-template>
+          </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

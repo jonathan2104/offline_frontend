@@ -1,0 +1,848 @@
+<div class="box">
+  <div class="ballbyshow">
+    <h4 class="text-light d-flex">
+      <!-- <div class="material-symbols-outlined">info</div>
+      <div class="ballby ml-1">Ball By Ball</div> -->
+    </h4>
+  </div>
+  <app-animated-progress-bar [value]="counter"></app-animated-progress-bar>
+
+  <div class="casino-table dt1day" *ngIf="live_data.hasOwnProperty('t2')">
+    <div class="casino-video">
+      <div class="casino-video-title">
+        <span class="casino-name">1 Day Dragon Tiger</span>
+        <span class="casino-video-rid"
+          >Round ID: {{ this.last_market_id }}</span
+        >
+      </div>
+      <div class="video-box-container">
+        <div class="video-box">
+          <iframe src="https://jmdapi.com/tablevideo/?id=3057"></iframe>
+        </div>
+      </div>
+      <div
+        class="casino-video-cards"
+        [class.hide-cards]="live_data.t1[0].C1 == '1'"
+      >
+        <div class="casino-cards-shuffle">
+          <i class="fas fa-grip-lines-vertical"></i>
+        </div>
+        <div class="casino-video-cards-container">
+          <div>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C1 }}.png"
+            /></span>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C2 }}.png"
+            /></span>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-right-icons">
+        <div title="Home" class="casino-video-home-icon">
+          <a routerLink="/dashboard/casino" class="" style="color: #fff"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
+        <div title="Rules" class="casino-video-rules-icon" (click)="openCasinoRule()">
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <ng-template #showzero2>
+      <span class="casino-box-odd"> 0 </span>
+    </ng-template>
+    <ng-template #showzero>
+      <div class="casino-bl-box-item quarter text-center">0</div>
+    </ng-template>
+    <ng-template #suspended>
+      <img src="assets/casino/cards/ab0.png" alt="ab-0" class="cards" />
+    </ng-template>
+    <div class="casino-detail">
+      <div class="">
+        <div class="">
+          <div class="">
+            <div class="">
+              <div class="dt1dayfancy">
+                <div class="casino-box-row dragonfancy">
+                  <div class="casino-nation-name">
+                    <b>Dragon</b>
+                    <span
+                      class="d-block"
+                      [class.book-red]="exp_amount1 < 1"
+                      [class.book-green]="exp_amount1 > 1"
+                      [class.d-none]="exp_amount1 == 0"
+                      >{{ exp_amount1 }}</span
+                    >
+                  </div>
+                  <div class="casino-bl-box">
+                    <div
+                      [class.disabled]="live_data.t2[0].b1 == 0"
+                      (click)="
+                        openDialog('dt6', live_data.t1[0].mid, {
+                          rate: live_data.t2[0].b1,
+                          sid: live_data.t2[0].sid,
+                          nat: live_data.t2[0].nat,
+                          type: 'Back',
+                          index: 1
+                        })
+                      "
+                      class="back casino-bl-box-item x64"
+                      [class.suspended]="
+                        live_data.t2[0].gstatus == 'SUSPENDED' ||
+                        live_data.t2[0].gstatus == 'CLOSED'
+                      "
+                    >
+                      <span class="casino-box-odd">{{
+                        live_data.t2[0].b1
+                      }}</span>
+                    </div>
+                    <div
+                      [class.disabled]="live_data.t2[0].l1 == 0"
+                      (click)="
+                        openDialog('dt6', live_data.t1[0].mid, {
+                          rate: live_data.t2[0].l1,
+                          sid: live_data.t2[0].sid,
+                          nat: live_data.t2[0].nat,
+                          type: 'Lay',
+                          index: 1
+                        })
+                      "
+                      class="lay casino-bl-box-item x64"
+                      [class.suspended]="
+                        live_data.t2[0].gstatus == 'SUSPENDED' ||
+                        live_data.t2[0].gstatus == 'CLOSED'
+                      "
+                    >
+                      <span class="casino-box-odd">{{
+                        live_data.t2[0].l1
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="casino-nation-name text-center w-100">
+                    <span class="d-none"></span>
+                  </div>
+                </div>
+                <div class="casino-box-row pairfancy">
+                  <div class="casino-nation-name">
+                    <b>Pair</b>
+                    <span
+                      class="d-block"
+                      [class.book-red]="exp_amount3 < 1"
+                      [class.book-green]="exp_amount3 > 1"
+                      [class.d-none]="exp_amount3 == 0"
+                      >{{ exp_amount3 }}</span
+                    >
+                  </div>
+                  <div class="casino-bl-box">
+                    <div
+                      [class.disabled]="live_data.t2[2].b1 == 0"
+                      (click)="
+                        openDialog('dt6fancy', live_data.t1[0].mid, {
+                          rate: live_data.t2[2].b1,
+                          sid: live_data.t2[2].sid,
+                          nat: live_data.t2[2].nat,
+                          type: 'Back',
+                          index: 1
+                        })
+                      "
+                      class="back casino-bl-box-item x64"
+                      [class.suspended]="
+                        live_data.t2[2].gstatus == 'SUSPENDED' ||
+                        live_data.t2[2].gstatus == 'CLOSED'
+                      "
+                    >
+                      <span class="casino-box-odd">{{
+                        live_data.t2[2].b1
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="casino-nation-name text-center w-100">
+                    <span class="d-none">0</span>
+                  </div>
+                </div>
+                <div class="casino-box-row tigerfancy">
+                  <div class="casino-nation-name">
+                    <b>Tiger</b>
+                    <span
+                      class="d-block"
+                      [class.book-red]="exp_amount2 < 1"
+                      [class.book-green]="exp_amount2 > 1"
+                      [class.d-none]="exp_amount2 == 0"
+                      >{{ exp_amount2 }}</span
+                    >
+                  </div>
+                  <div class="casino-bl-box">
+                    <div
+                      [class.disabled]="live_data.t2[1].b1 == 0"
+                      (click)="
+                        openDialog('dt6', live_data.t1[0].mid, {
+                          rate: live_data.t2[1].b1,
+                          sid: live_data.t2[1].sid,
+                          nat: live_data.t2[1].nat,
+                          type: 'Back',
+                          index: 2
+                        })
+                      "
+                      class="back casino-bl-box-item x64"
+                      [class.suspended]="
+                        live_data.t2[1].gstatus == 'SUSPENDED' ||
+                        live_data.t2[1].gstatus == 'CLOSED'
+                      "
+                    >
+                      <span class="casino-box-odd">{{
+                        live_data.t2[1].b1
+                      }}</span>
+                    </div>
+                    <div
+                      [class.disabled]="live_data.t2[1].l1 == 0"
+                      (click)="
+                        openDialog('dt6', live_data.t1[0].mid, {
+                          rate: live_data.t2[1].l1,
+                          sid: live_data.t2[1].sid,
+                          nat: live_data.t2[1].nat,
+                          type: 'Lay',
+                          index: 2
+                        })
+                      "
+                      class="lay casino-bl-box-item x64"
+                      [class.suspended]="
+                        live_data.t2[1].gstatus == 'SUSPENDED' ||
+                        live_data.t2[1].gstatus == 'CLOSED'
+                      "
+                    >
+                      <span class="casino-box-odd">{{
+                        live_data.t2[1].l1
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="casino-nation-name text-center w-100">
+                    <span class="d-none"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 border-right d-inline-block">
+              <div class="col-md-12">
+                <p class="mb-0 mt-2 ml-2 dragon">Dragon</p>
+                <div class="casino-bl-box">
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[3].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[3].b1 }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[4].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[4].b1 }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[6].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[6].b1 }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[5].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[5].b1 }}
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[3].gstatus == 'SUSPENDED' ||
+                      live_data.t2[3].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount4 != 0"
+                    [class.disabled]="live_data.t2[3].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[3].b1,
+                        sid: live_data.t2[3].sid,
+                        nat: live_data.t2[3].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">Even</span>
+                    <span
+                      [class.pt-1]="
+                        live_data.t2[3].gstatus == 'SUSPENDED' ||
+                        live_data.t2[3].gstatus == 'CLOSED'
+                      "
+                      [class.d-none]="exp_amount4 == 0"
+                      [class.book-red]="exp_amount4 != 0"
+                      >{{ exp_amount4 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[4].gstatus == 'SUSPENDED' ||
+                      live_data.t2[4].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount5 != 0"
+                    [class.disabled]="live_data.t2[4].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[4].b1,
+                        sid: live_data.t2[4].sid,
+                        nat: live_data.t2[4].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">Odd</span>
+                    <span
+                      [class.pt-1]="
+                        live_data.t2[4].gstatus == 'SUSPENDED' ||
+                        live_data.t2[4].gstatus == 'CLOSED'
+                      "
+                      [class.d-none]="exp_amount5 == 0"
+                      [class.book-red]="exp_amount5 != 0"
+                      >{{ exp_amount5 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[6].gstatus == 'SUSPENDED' ||
+                      live_data.t2[6].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount7 != 0"
+                    [class.disabled]="live_data.t2[6].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[6].b1,
+                        sid: live_data.t2[6].sid,
+                        nat: live_data.t2[6].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span>
+                        <img src="assets/casino/cards/spade.png" />
+                        <img src="assets/casino/cards/club.png" />
+                      </span>
+                    </span>
+                    <span
+                      [class.pt-1]="
+                        live_data.t2[6].gstatus == 'SUSPENDED' ||
+                        live_data.t2[6].gstatus == 'CLOSED'
+                      "
+                      [class.d-none]="exp_amount7 == 0"
+                      [class.book-red]="exp_amount7 != 0"
+                      >{{ exp_amount7 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[5].gstatus == 'SUSPENDED' ||
+                      live_data.t2[5].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount6 != 0"
+                    [class.disabled]="live_data.t2[5].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[5].b1,
+                        sid: live_data.t2[5].sid,
+                        nat: live_data.t2[5].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span>
+                        <img src="assets/casino/cards/heart.png" />
+                        <img src="assets/casino/cards/diamond.png" />
+                      </span>
+                    </span>
+                    <span
+                      [class.pt-1]="live_data.t2[5].gstatus == 'SUSPENDED'"
+                      [class.d-none]="exp_amount6 == 0"
+                      [class.book-red]="exp_amount6 != 0"
+                      >{{ exp_amount6 }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2 mb-2">
+                <div class="casino-bl-box">
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/spade.png" />
+                  </div>
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/heart.png" />
+                  </div>
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/club.png" />
+                  </div>
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/diamond.png" />
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[7].gstatus == 'SUSPENDED' ||
+                      live_data.t2[7].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount5 != 0"
+                    [class.disabled]="live_data.t2[7].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[7].b1,
+                        sid: live_data.t2[7].sid,
+                        nat: live_data.t2[7].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[7].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[7].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[7].gstatus == 0"
+                      [class.d-none]="exp_amount8 == 0"
+                      [class.book-red]="exp_amount8 != 0"
+                      >{{ exp_amount8 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[7].gstatus == 'SUSPENDED' ||
+                      live_data.t2[7].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount5 != 0"
+                    [class.disabled]="live_data.t2[8].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[8].b1,
+                        sid: live_data.t2[8].sid,
+                        nat: live_data.t2[8].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[8].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[8].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[8].gstatus == 0"
+                      [class.d-none]="exp_amount9 == 0"
+                      [class.book-red]="exp_amount9 != 0"
+                      >{{ exp_amount9 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[8].gstatus == 'SUSPENDED' ||
+                      live_data.t2[8].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount8 != 0"
+                    [class.disabled]="live_data.t2[10].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[10].b1,
+                        sid: live_data.t2[10].sid,
+                        nat: live_data.t2[10].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[10].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[10].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[0].gstatus == 0"
+                      [class.d-none]="exp_amount11 == 0"
+                      [class.book-red]="exp_amount11 != 0"
+                      >{{ exp_amount11 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[10].gstatus == 'SUSPENDED' ||
+                      live_data.t2[10].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount7 != 0"
+                    [class.disabled]="live_data.t2[9].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[9].b1,
+                        sid: live_data.t2[9].sid,
+                        nat: live_data.t2[9].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[9].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[9].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[0].gstatus == 0"
+                      [class.d-none]="exp_amount10 == 0"
+                      [class.book-red]="exp_amount10 != 0"
+                      >{{ exp_amount10 }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-inline-block">
+              <div class="col-md-12">
+                <p class="mb-0 mt-2 ml-2 tiger">Tiger</p>
+                <div class="casino-bl-box">
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[11].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[11].b1 }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[12].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[12].b1 }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[14].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[14].b1 }}
+                  </div>
+                  <div
+                    class="casino-bl-box-item quarter text-center"
+                    *ngIf="live_data.t2[13].gstatus == 'ACTIVE'; else showzero"
+                  >
+                    {{ live_data.t2[13].b1 }}
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[11].gstatus == 'SUSPENDED' ||
+                      live_data.t2[11].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount12 != 0"
+                    [class.disabled]="live_data.t2[11].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[11].b1,
+                        sid: live_data.t2[11].sid,
+                        nat: live_data.t2[11].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">Even</span>
+                    <span
+                      [class.pt-1]="
+                        live_data.t2[11].gstatus == 'SUSPENDED' ||
+                        live_data.t2[11].gstatus == 'CLOSED'
+                      "
+                      [class.d-none]="exp_amount12 == 0"
+                      [class.book-red]="exp_amount12 != 0"
+                      >{{ exp_amount12 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[12].gstatus == 'SUSPENDED' ||
+                      live_data.t2[12].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount13 != 0"
+                    [class.disabled]="live_data.t2[12].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[12].b1,
+                        sid: live_data.t2[12].sid,
+                        nat: live_data.t2[12].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">Odd</span>
+                    <span
+                      [class.pt-1]="
+                        live_data.t2[12].gstatus == 'SUSPENDED' ||
+                        live_data.t2[12].gstatus == 'CLOSED'
+                      "
+                      [class.d-none]="exp_amount13 == 0"
+                      [class.book-red]="exp_amount13 != 0"
+                      >{{ exp_amount13 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[14].gstatus == 'SUSPENDED' ||
+                      live_data.t2[14].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount15 != 0"
+                    [class.disabled]="live_data.t2[14].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[14].b1,
+                        sid: live_data.t2[14].sid,
+                        nat: live_data.t2[14].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span>
+                        <img src="assets/casino/cards/spade.png" />
+                        <img src="assets/casino/cards/club.png" />
+                      </span>
+                    </span>
+                    <span
+                      [class.pt-1]="
+                        live_data.t2[14].gstatus == 'SUSPENDED' ||
+                        live_data.t2[14].gstatus == 'CLOSED'
+                      "
+                      [class.d-none]="exp_amount15 == 0"
+                      [class.book-red]="exp_amount15 != 0"
+                      >{{ exp_amount15 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[13].gstatus == 'SUSPENDED' ||
+                      live_data.t2[13].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount14 != 0"
+                    [class.disabled]="live_data.t2[13].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[13].b1,
+                        sid: live_data.t2[13].sid,
+                        nat: live_data.t2[13].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="casino-box-odd">
+                      <span>
+                        <img src="assets/casino/cards/heart.png" />
+                        <img src="assets/casino/cards/diamond.png" />
+                      </span>
+                    </span>
+                    <span
+                      [class.pt-1]="
+                        live_data.t2[13].gstatus == 'SUSPENDED' ||
+                        live_data.t2[13].gstatus == 'CLOSED'
+                      "
+                      [class.d-none]="exp_amount14 == 0"
+                      [class.book-red]="exp_amount14 != 0"
+                      >{{ exp_amount14 }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-2 mb-2">
+                <div class="casino-bl-box">
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/spade.png" />
+                  </div>
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/heart.png" />
+                  </div>
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/club.png" />
+                  </div>
+                  <div class="casino-bl-box-item quarter text-center">
+                    <img src="assets/casino/cards/diamond.png" />
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[15].gstatus == 'SUSPENDED' ||
+                      live_data.t2[15].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount19 != 0"
+                    [class.disabled]="live_data.t2[15].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[15].b1,
+                        sid: live_data.t2[15].sid,
+                        nat: live_data.t2[15].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[15].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[15].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[0].gstatus == 0"
+                      [class.d-none]="exp_amount16 == 0"
+                      [class.book-red]="exp_amount16 != 0"
+                      >{{ exp_amount16 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[16].gstatus == 'SUSPENDED' ||
+                      live_data.t2[16].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount17 != 0"
+                    [class.disabled]="live_data.t2[16].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[16].b1,
+                        sid: live_data.t2[16].sid,
+                        nat: live_data.t2[16].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[16].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[16].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[0].gstatus == 0"
+                      [class.d-none]="exp_amount17 == 0"
+                      [class.book-red]="exp_amount17 != 0"
+                      >{{ exp_amount17 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[18].gstatus == 'SUSPENDED' ||
+                      live_data.t2[18].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount16 != 0"
+                    [class.disabled]="live_data.t2[18].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[18].b1,
+                        sid: live_data.t2[18].sid,
+                        nat: live_data.t2[18].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[18].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[18].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[0].gstatus == 0"
+                      [class.d-none]="exp_amount19 == 0"
+                      [class.book-red]="exp_amount19 != 0"
+                      >{{ exp_amount19 }}</span
+                    >
+                  </div>
+                  <div
+                    class="back casino-bl-box-item quarter"
+                    [class.suspended]="
+                      live_data.t2[17].gstatus == 'SUSPENDED' ||
+                      live_data.t2[17].gstatus == 'CLOSED'
+                    "
+                    [class.lock-top]="exp_amount18 != 0"
+                    [class.disabled]="live_data.t2[17].b1 == 0"
+                    (click)="
+                      openDialog('dt6fancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[17].b1,
+                        sid: live_data.t2[17].sid,
+                        nat: live_data.t2[17].nat,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span
+                      class="casino-box-odd"
+                      *ngIf="
+                        live_data.t2[17].gstatus == 'ACTIVE';
+                        else showzero2
+                      "
+                      >{{ live_data.t2[17].b1 }}</span
+                    >
+                    <span
+                      [class.pt-1]="live_data.t2[0].gstatus == 0"
+                      [class.d-none]="exp_amount18 == 0"
+                      [class.book-red]="exp_amount18 != 0"
+                      >{{ exp_amount18 }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-last-results d-flex flex-wrap">
+        <span
+          *ngFor="let data of result_history.data"
+          [class.resulta]="data.result == 1"
+          [class.resultb]="data.result == 2"
+          (click)="openCasinoDetails(data)"
+        >
+          {{ data.result | dragontiger }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

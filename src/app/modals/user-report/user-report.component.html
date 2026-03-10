@@ -1,0 +1,63 @@
+<div class="modal-header modern-header">
+  <h4 class="modal-title">User Referral Report</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="referral-stats-container">
+
+    <div class="stat-card">
+      <div class="icon-box">
+        <span class="material-symbols-outlined">account_balance_wallet</span>
+      </div>
+      <div class="card-body">
+        <h5>Total Deposit</h5>
+        <h2>₹{{ userReport.total_deposit || 0 }}</h2>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon-box">
+        <span class="material-symbols-outlined">arrow_downward</span>
+      </div>
+      <div class="card-body">
+        <h5>Total Withdrawal</h5>
+        <h2>₹{{ userReport.total_withdrawal || 0 }}</h2>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lossbacks Table -->
+  <div class="lossbacks-table mt-4">
+    <h5 class="mb-2">Bonus History</h5>
+    <div class="table-responsive">
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Credit At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lb of lossBacksReport; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>₹{{ lb.amount }}</td>
+            <td>
+              <span [ngClass]="{'text-success': lb.status === 1, 'text-danger': lb.status === 0}">
+                {{ lb.status === 1 ? 'Success' : 'Pending' }}
+              </span>
+            </td>
+            <td>{{ lb.created_at | date:'d MMM yy, h:mm a' | uppercase }}</td>
+          </tr>
+          <tr *ngIf="!lossBacksReport || lossBacksReport.length === 0">
+            <td colspan="3" class="text-center text-muted">No Bonus records found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

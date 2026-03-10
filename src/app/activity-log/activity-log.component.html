@@ -1,0 +1,36 @@
+ <div class="container-fluid">
+
+  <div class="card mt-2">
+    <div class="card-header">Activity Log</div>
+    <div class="card-body">
+      <table class="table table-sm table-bordered table-striped table-responsive-md text-white">
+        <thead>
+            <tr>
+                <th>Login Date & Time</th>
+                <th>Login Status</th>
+                <th>IP Address</th>
+                <th>ISP</th>
+                <th>City/State/Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let log of activity_log; let i = index">
+                <td>{{log.updated_at | date:'MMM d, y h:mm a'}}</td>
+                <td>{{log.type}}</td>
+                <td>{{log.type}}</td>
+                <td>{{log.type}}</td>
+                <td>{{log.type}}</td>
+            </tr>
+        </tbody>
+        <ng-template #noResult>
+            <tbody >
+                <tr>
+                    <td colspan="100" class="text-dark text-center" style="background-color: #ffffff;">No Data</td>
+                </tr>
+            </tbody>
+        </ng-template>
+    </table>
+    </div>
+  </div>
+
+  </div>

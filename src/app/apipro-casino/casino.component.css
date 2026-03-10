@@ -1,0 +1,104 @@
+* {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+::ng-deep .date {
+    background-color: #f69f00;
+    border-radius: 3px;
+    align-items: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 400;
+    width: 100px !important;
+    vertical-align: middle;
+    color: #bababa;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.game_banner {
+    width: 100%;
+    height: 112px;
+    border: 2px solid #000;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.balance {
+    float: right;
+    font-size: 20px;
+}
+
+.contact_notice {
+    padding: 5px;
+    font-size: 20px;
+    color: #fff;
+    background: #8b02cf;
+    border: 1px solid #ff0000;
+    display: inline;
+}
+
+.fgame-img {
+    width: 100%;
+    height: 100px;
+    padding: 0px !important;
+}
+
+/* .bar-item:hover {
+    background-color: #6d081d !important;
+  } */
+  
+.list{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bar-item{
+    height: 150px !important;
+    width: 140px !important; 
+    padding: 5px;
+    cursor: pointer;
+}
+.vendor-image{
+    height: 150px !important;
+    width: 200px !important; 
+}
+
+@media only screen and (max-width: 450px) {
+    .bar-item{
+        height: 120px !important;
+        width: 170px !important;
+    }
+    .vendor-image{
+        height: 120px !important;
+        width: 170px !important; 
+    }
+  }
+
+/* Styling for active page button */
+button.active-page {
+    background-color: #007bff; /* Change this to your preferred active color */
+    color: white;
+    border-color: #007bff;
+  }
+  
+  /* Optional: Additional styling for buttons */
+  button {
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #f0f0f0;
+    color: #aaa;
+    cursor: not-allowed;
+  }
+  

@@ -1,0 +1,371 @@
+<div class="box">
+  <div class="ballbyshow">
+    <h4 class="text-light d-flex">
+      <!-- <div class="material-symbols-outlined">info</div>
+      <div class="ballby ml-1">Ball By Ball</div> -->
+    </h4>
+  </div>
+  <app-animated-progress-bar [value]="counter"></app-animated-progress-bar>
+  <div class="casino-table teenpatti20" *ngIf="live_data.hasOwnProperty('t2')">
+    <div class="casino-video">
+      <div class="casino-video-title">
+        <span class="casino-name"> 32 Cards A</span>
+        <span class="casino-video-rid"
+          >Round ID: {{ this.last_market_id }}</span
+        >
+      </div>
+      <div class="video-box-container">
+        <div class="video-box">
+          <iframe src="https://jmdapi.com/tablevideo/?id=3055"></iframe>
+        </div>
+      </div>
+      <div class="casino-video-cards" [class.hide-cards]="cards[0][0] == 1">
+        <div class="casino-cards-shuffle">
+          <i class="fas fa-grip-lines-vertical"></i>
+        </div>
+        <div class="casino-video-cards-container">
+          <div [class.d-none]="cards[0] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 1"
+                >Player 8:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C1 }}</span
+              >
+            </div>
+            <div *ngFor="let card of cards[0]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+          <div [class.d-none]="cards[1] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 2"
+                >Player 9:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C2 }}</span
+              >
+            </div>
+            <div *ngFor="let card of cards[1]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+          <div [class.d-none]="cards[2] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 3"
+                >Player 10:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C3 }}</span
+              >
+            </div>
+            <div *ngFor="let card of cards[2]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+          <div [class.d-none]="cards[3] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 4"
+                >Player 11:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C4 }}
+              </span>
+            </div>
+            <div *ngFor="let card of cards[3]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+      <div class="casino-video-right-icons">
+        <div title="Home" class="casino-video-home-icon">
+          <a routerLink="/dashboard/casino" class="" style="color: #fff"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
+        <div
+          title="Rules"
+          class="casino-video-rules-icon"
+          (click)="openCasinoRule()"
+        >
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <div class="casino-detail">
+      <!---->
+      <div class="teen20casino-container d-none-big">
+        <div class="casino-bl-box casino-bl-box-title">
+          <div class="casino-bl-box-item"></div>
+          <div class="casino-bl-box-item">Back</div>
+          <div class="casino-bl-box-item">Lay</div>
+        </div>
+        <div class="casino-bl-box">
+          <div class="casino-bl-box-item casino-odds-name casino-nation-name">
+            <span>Player 8</span>
+            <span
+              [class.d-none]="
+                exp_amount1 == 0 && live_data.t2[0].gstatus != 'ACTIVE'
+              "
+              [class.book-red]="exp_amount1 < 1"
+              [class.book-green]="exp_amount1 > 1"
+              >{{ exp_amount1 }}</span
+            >
+          </div>
+          <div
+            class="back casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[0].gstatus == 'SUSPENDED' ||
+              live_data.t2[0].gstatus == 'CLOSED'
+            "
+            [class.lock-top]="exp_amount1 != 0"
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[0].b1,
+                sid: live_data.t2[0].sid,
+                nat: live_data.t2[0].nation,
+                type: 'Back',
+                index: 1
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[0].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[0].b1 }}</span
+            >
+          </div>
+          <div
+            class="lay casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[0].gstatus == 'SUSPENDED' ||
+              live_data.t2[0].gstatus == 'CLOSED'
+            "
+            [class.lock-top]="exp_amount1 != 0"
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[0].l1,
+                sid: live_data.t2[0].sid,
+                nat: live_data.t2[0].nation,
+                type: 'Lay',
+                index: 1
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[0].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[0].l1 }}</span
+            >
+          </div>
+        </div>
+
+        <div class="casino-bl-box">
+          <div class="casino-bl-box-item casino-odds-name casino-nation-name">
+            <span>Player 9</span>
+            <span
+              [class.d-none]="
+                exp_amount2 == 0 && live_data.t2[1].gstatus != 'ACTIVE'
+              "
+              [class.book-red]="exp_amount2 < 1"
+              [class.book-green]="exp_amount2 > 1"
+              >{{ exp_amount2 }}</span
+            >
+          </div>
+          <div
+            class="back casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[1].gstatus == 'SUSPENDED' ||
+              live_data.t2[1].gstatus == 'CLOSED'
+            "
+            [class.lock-top]="exp_amount2 != 0"
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[1].b1,
+                sid: live_data.t2[1].sid,
+                nat: live_data.t2[1].nation,
+                type: 'Back',
+                index: 2
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[1].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[1].b1 }}</span
+            >
+          </div>
+          <div
+            class="lay casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[1].gstatus == 'SUSPENDED' ||
+              live_data.t2[1].gstatus == 'CLOSED'
+            "
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[1].l1,
+                sid: live_data.t2[1].sid,
+                nat: live_data.t2[1].nation,
+                type: 'Lay',
+                index: 2
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[1].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[1].l1 }}</span
+            >
+          </div>
+        </div>
+
+        <div class="casino-bl-box">
+          <div class="casino-bl-box-item casino-odds-name casino-nation-name">
+            <span>Player 10</span>
+            <span
+              [class.d-none]="
+                exp_amount3 == 0 && live_data.t2[2].gstatus != 'ACTIVE'
+              "
+              [class.book-red]="exp_amount3 < 1"
+              [class.book-green]="exp_amount3 > 1"
+              >{{ exp_amount3 }}</span
+            >
+          </div>
+          <div
+            class="back casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[2].gstatus == 'SUSPENDED' ||
+              live_data.t2[2].gstatus == 'CLOSED'
+            "
+            [class.lock-top]="exp_amount3 != 0"
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[2].b1,
+                sid: live_data.t2[2].sid,
+                nat: live_data.t2[2].nation,
+                type: 'Back',
+                index: 3
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[2].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[2].b1 }}</span
+            >
+          </div>
+          <div
+            class="lay casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[2].gstatus == 'SUSPENDED' ||
+              live_data.t2[2].gstatus == 'CLOSED'
+            "
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[2].l1,
+                sid: live_data.t2[2].sid,
+                nat: live_data.t2[2].nation,
+                type: 'Lay',
+                index: 3
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[2].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[2].l1 }}</span
+            >
+          </div>
+        </div>
+
+        <div class="casino-bl-box">
+          <div class="casino-bl-box-item casino-odds-name casino-nation-name">
+            <span>Player 11</span>
+            <span
+              [class.d-none]="
+                exp_amount4 == 0 && live_data.t2[3].gstatus != 'ACTIVE'
+              "
+              [class.book-red]="exp_amount4 < 1"
+              [class.book-green]="exp_amount4 > 1"
+              >{{ exp_amount4 }}</span
+            >
+          </div>
+          <div
+            class="back casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[3].gstatus == 'SUSPENDED' ||
+              live_data.t2[3].gstatus == 'CLOSED'
+            "
+            [class.lock-top]="exp_amount4 != 0"
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[3].b1,
+                sid: live_data.t2[3].sid,
+                nat: live_data.t2[3].nation,
+                type: 'Back',
+                index: 4
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[3].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[3].b1 }}</span
+            >
+          </div>
+          <div
+            class="lay casino-bl-box-item"
+            [class.suspended]="
+              live_data.t2[3].gstatus == 'SUSPENDED' ||
+              live_data.t2[3].gstatus == 'CLOSED'
+            "
+            (click)="
+              openDialog('card32', live_data.t1[0].mid, {
+                rate: live_data.t2[3].l1,
+                sid: live_data.t2[3].sid,
+                nat: live_data.t2[3].nation,
+                type: 'Lay',
+                index: 4
+              })
+            "
+          >
+            <span
+              class="casino-box-odd"
+              *ngIf="live_data.t2[3].gstatus == 'ACTIVE'"
+              >{{ live_data.t2[3].l1 }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-last-results d-flex flex-wrap">
+        <span
+          *ngFor="let data of result_history.data"
+          [class.resulta]="data.result == 1 || data.result == 2"
+          [class.resultb]="data.result == 3 || data.result == 4"
+          (click)="openCasinoDetails(data)"
+        >
+          {{ data.result | card32name }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

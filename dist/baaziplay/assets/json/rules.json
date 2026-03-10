@@ -1,0 +1,1569 @@
+[
+    {
+      "name": "football_fancy",
+      "fullname": "Football fancy",
+      "state": true,
+      "data": [
+        {
+          "isImportant": true,
+          "text": "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entry from the same IP/multiple bets at the same time (Punching) and others. Note: only winning bets will be voided..."
+        },
+        {
+          "isImportant": true,
+          "text": "Tournament Total Goals, Team Total Goals goals.scored in 90 minutes or in extra-time will count. Goals scored in penalty shootouts do not count."
+        },
+        {
+          "isImportant": true,
+          "text": "Tournament Corners - Only corners taken in 90 minutes count."
+        },
+        {
+          "isImportant": true,
+          "text": "Tournament Penalties Missed/Converted - Penalties taken in 90 minutes, extra-time and penalty shootouts all count. If a penalty has to be re-taken the previous disallowed penalty(ies) do not count."
+        }
+      ]
+    },
+    {
+      "name": "bookmaker",
+      "fullname": "Bookmaker",
+      "state": true,
+      "data": [
+        {
+            "text": "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same IP/multiple bets at the same time (Punching) and others. Note: only winning bets will be voided...",
+            "isImportant": true
+          },
+          {
+            "text": "Due to any reason any team will be getting advantage or disadvantage we are not concerned.",
+            "isImportant": true
+          },
+          {
+            "text": "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same IP/multiple bets at the same time (Punching) and others. Note: only winning bets will be voided.",
+            "isImportant": true
+          },
+          {
+            "text": "We will simply compare both teams 25 overs score higher score team will be declared winner in ODI (25 over comparison)",
+            "isImportant": true
+          },
+          {
+            "text": "We will simply compare both teams 10 overs higher score team will be declared winner in T20 matches (10 over comparison)",
+            "isImportant": true
+          },
+          {
+            "text": "Any query about the result or rates should be contacted within 7 days of the specific event, the same will not be considered valid post 7 days from the event.",
+            "isImportant": true
+          },
+          {
+            "text": "If two team ends up with equal points, then result will be given based on the official point table",
+            "isImportant": true
+          },
+          {
+            "text": "Tennis:- Advance fancy market",
+            "isImportant": false
+          },
+          {
+            "text": "If the second set is not completed all bets regarding this market will be voided",
+            "isImportant": false
+          },
+          {
+            "text": "If a player retires after completion of the second set, then the market will be settled as three sets",
+            "isImportant": false
+          },
+          {
+            "text": "Virtual Cricket",
+            "isImportant": true
+          },
+          {
+            "text": "At any situation if the video gets interrupted/stopped then the same cannot be continued due to any technical issues bookmaker market will be voided",
+            "isImportant": false
+          }
+      ]
+    },
+    {
+      "name": "politics",
+      "fullname": "Politics",
+      "state": true,
+      "data": [
+        {
+          "text": "Indian State Legislative Assembly Elections",
+          "isImportant": true
+        },
+        {
+          "text": "1. This event is to decide the winner of various legislative assemblies of India.",
+          "isImportant": false
+        },
+        {
+          "text": "2. The final result declared by the Election Commission of India for assembly elections of various states of India for a particular year will be valid in our exchange. Customers are entirely responsible for their bets at all times.",
+          "isImportant": false
+        },
+        {
+          "text": "3. All bets will be voided if the election doesn’t take place within the given time by the Election Commission or as per our exchange management decision.",
+          "isImportant": false
+        },
+        {
+          "text": "4. The company reserves the right to suspend/void any bets on this event at any time if we find the same not to be legitimate with the certainty of the outcome.",
+          "isImportant": false
+        },
+        {
+          "text": "5. Accidental issues during assembly elections will not be counted in our exchange. If required, additional candidates may be added on request.",
+          "isImportant": false
+        },
+        {
+          "text": "6. Kindly be informed no candidates will be partially settled and will remain in the market until it is fully settled. This is to ensure that all customers can continue trading for the candidates that they have positions on, since each candidate is still a valid runner in this market.",
+          "isImportant": false
+        },
+        {
+          "text": "7. Please be informed that the transmissions described as “live” by few broadcasters may actually be delayed due to multiple scenarios.",
+          "isImportant": false
+        },
+        {
+          "text": "8. If any candidate withdraws for any reason, including death, all bets on the market will be valid and be settled as per the defined rules.",
+          "isImportant": false
+        }
+      ]
+    },
+    {
+      "name": "fancy_market",
+      "fullname": "Fancy Market",
+      "state": true,
+      "data": [
+        {
+          "text": "Even odd game betting rate rules.",
+          "isImportant": true
+        },
+        {
+          "text": "Completed game is valid, in case due to rain overs are reduced or match abandoned, the particular game will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets regarding to ODD/EVEN player/partnership are valid if one legal delivery is being played, else the bets will be deleted. Player odd/even all advance bets will be valid if one legal delivery is being played in the match; otherwise, voided.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets regarding Odd/Even sessions will be deleted if the particular session is incomplete, for example, the match got abandoned or finished before the end of a particular session.",
+          "isImportant": false
+        },
+        {
+          "text": "In any circumstances management decision will be final.",
+          "isImportant": false
+        },
+        {
+          "text": "Top batsman rules:-",
+          "isImportant": true
+        },
+        {
+          "text": "If any player does not come as per playing eleven then all bets will be deleted for the particular player.",
+          "isImportant": true
+        },
+        {
+          "text": "Two players score the same run in a single match (e.g., M Agarwal 30 runs and A Rayudu 30 runs, whole inning top batsmen score also 30 run), then both player settlement to be done 50 percent (50%, 50%) rate on their original value.",
+          "isImportant": false
+        },
+        {
+          "text": "Top batsman only 1st inning valid.",
+          "isImportant": false
+        },
+        {
+          "text": "For one day 50 over and for t-20 match 20 over must be played for top batsmen; otherwise, all bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "Man of the Match Rules",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted in case the match is abandoned or over reduced.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted if the mentioned player is not included in playing 11.",
+          "isImportant": false
+        },
+        {
+          "text": "In case Man of the Match is shared between two players then Dead heat rule will be applicable.",
+          "isImportant": false
+        },
+        {
+          "text": "Maximum Sixes by Team",
+          "isImportant": true
+        },
+        {
+          "text": "All bets will be deleted if the match is abandoned or over reduced.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted if both the teams hit the same number of sixes.",
+          "isImportant": false
+        },
+        {
+          "text": "Maximum 6 or 10 over runs",
+          "isImportant": true
+        },
+        {
+          "text": "All bets will be deleted if the match is abandoned or over reduced.",
+          "isImportant": false
+        },
+        {
+          "text": "All the bets will be deleted if both the teams' scores are the same (Runs scored in 6 or 10 overs).",
+          "isImportant": false
+        },
+        {
+          "text": "Batsman Match",
+          "isImportant": true
+        },
+        {
+          "text": "All bets will be deleted if any one of the mentioned player is not included in playing 11.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted unless one ball is being played by both the mentioned players.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted if over reduced or Match abandoned.",
+          "isImportant": false
+        },
+        {
+          "text": "Opening Pair",
+          "isImportant": true
+        },
+        {
+          "text": "Bets for Favourite opening pair from the two mentioned opening pair.",
+          "isImportant": false
+        },
+        {
+          "text": "Runs made by both the opening player will be added.",
+          "isImportant": false
+        },
+        {
+          "text": "Highest run made by the pair will be declared as winner.",
+          "isImportant": false
+        },
+        {
+          "text": "Our exchange Special",
+          "isImportant": true
+        },
+        {
+          "text": "All bets will be deleted if the mentioned player is not included in playing 11.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted if match abandoned or over reduced.",
+          "isImportant": false
+        },
+        {
+          "text": "Direction of First Boundary",
+          "isImportant": true
+        },
+        {
+          "text": "All bets will be deleted if the mentioned batsman is not included in playing 11.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted if match abandoned or over reduced.",
+          "isImportant": false
+        },
+        {
+          "text": "Fifty & Century by Batsman",
+          "isImportant": true
+        },
+        {
+          "text": "All bets will be deleted if match abandoned or over reduced.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be deleted if the mentioned batsman is not included in playing 11.",
+          "isImportant": false
+        },
+        {
+          "text": "1st over Fancy",
+          "isImportant": true
+        },
+        {
+          "text": "Boundaries through extras will not be considered.",
+          "isImportant": false
+        },
+        {
+          "text": "Only 1st inning will be valid",
+          "isImportant": false
+        },
+        {
+          "text": "Odd Even Fancy",
+          "isImportant": true
+        },
+        {
+          "text": "Incomplete games will be deleted. Over reduced or abandoned all bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "For example: 275 run SL bhav must be played 50 over if rain comes or any condition otherwise 275 run SL bets will be deleted.",
+          "isImportant": true
+        },
+        {
+          "text": "Next Man out",
+          "isImportant": true
+        },
+        {
+          "text": "Next man out fancy advance & in regular. Both inning will be valid. If any player does not come in opening then all bets will be deleted. If over reduced or abandoned then all bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "Caught out",
+          "isImportant": true
+        },
+        {
+          "text": "Caught out fancy in advance & in regular. Both inning will be valid. If over reduced or match abandoned then all bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "Wkt & All out Fancy",
+          "isImportant": true
+        },
+        {
+          "text": "5 wkt in 10 over & All out in 20 over fancy is valid for both inning. If match abandoned or over reduced all bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "Test Match: Game Completed Fancy",
+          "isImportant": true
+        },
+        {
+          "text": "This is the fancy for match to be won/completed in which day & session (Completed: Game has to be completed).",
+          "isImportant": false
+        },
+        {
+          "text": "If match drawn then all the sessions will be considered as lost.",
+          "isImportant": false
+        },
+        {
+          "text": "Meter Fancy",
+          "isImportant": true
+        },
+        {
+          "text": "In case match abandoned or over reduced mid-point rule will be applicable.",
+          "isImportant": false
+        },
+        {
+          "text": "For example: If Dhoni meter is 75 / 77 and the match abandoned or over reduced, then the result will be 76.",
+          "isImportant": false
+        },
+        {
+          "text": "In case of a single difference result will be given for the higher rate of the final rate (e.g., 53/54) and match gets abandoned then the result will be given as 54.",
+          "isImportant": false
+        },
+        {
+          "text": "Midpoint rule is applicable for test match also. However for lambi meter/ inning meter 70 overs have to be played only then the same will be considered as valid.",
+          "isImportant": false
+        },
+        {
+          "text": "Maximum Boundaries:-",
+          "isImportant": true
+        },
+        {
+          "text": "If the number of fours or sixes of both the team is equal, then all bets of the respective event will get voided.",
+          "isImportant": false
+        },
+        {
+          "text": "Khado:- Test",
+          "isImportant": true
+        },
+        {
+          "text": "Minimum 70 over has to be played by the particular team only then the Khado of the team will be considered as valid, else the same will be voided.",
+          "isImportant": false
+        },
+        {
+          "text": "All fancy bets will be validated when the match has been tied.",
+          "isImportant": true
+        },
+        {
+          "text": "All advance fancy will be suspended before toss or weather condition.",
+          "isImportant": true
+        },
+        {
+          "text": "In case of technical error or any circumstances, any fancy is suspended and does not resume; result will be given; all previous bets will be valid (based on haar/jeet).",
+          "isImportant": true
+        },
+        {
+          "text": "If any case wrong rate has been given in fancy, that particular bet will be cancelled.",
+          "isImportant": true
+        },
+        {
+          "text": "In any circumstances, management decision will be final related to all exchange items. Our scorecard will be considered as valid if there is any mismatch on the online portal.",
+          "isImportant": true
+        },
+        {
+          "text": "In case a customer makes bets in the wrong fancy, we are not liable to delete; no changes will be made, and bets will be considered as confirm bet.",
+          "isImportant": true
+        },
+        {
+          "text": "Due to any technical error, if the market is open and the result has come, all bets after the result will be deleted.",
+          "isImportant": true
+        },
+        {
+          "text": "Manual bets are not accepted in our exchange.",
+          "isImportant": true
+        },
+        {
+          "text": "Our exchange will provide a 5-second delay on our TV.",
+          "isImportant": true
+        },
+        {
+          "text": "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entries from the same IP/multiple bets at the same time (Punching) and others.",
+          "isImportant": true
+        },
+        {
+          "text": "Company reserves the right to void any bets (only winning bets) of any event at any point in the match if the company believes there is any cheating/wrongdoing in that particular event by the players (either batsman/bowler).",
+          "isImportant": true
+        },
+        {
+          "text": "Once our exchange gives a username and password, it is your responsibility to change the password.",
+          "isImportant": true
+        },
+        {
+          "text": "Penalty runs will not be counted in any fancy.",
+          "isImportant": true
+        },
+        {
+          "text": "Warning: Live scores and other data on this site are sourced from third-party feeds and may be subject to time delays and/or be inaccurate. If you rely on this data to place bets, you do so at your own risk. Our exchange does not accept responsibility for loss suffered as a result of reliance on this data.",
+          "isImportant": true
+        },
+        {
+          "text": "Traders will block the user ID if they find any misinterpret activities. No queries are accepted regarding.",
+          "isImportant": true
+        },
+        {
+          "text": "Our exchange is not responsible for the misuse of the client ID.",
+          "isImportant": true
+        },
+        {
+          "text": "Test",
+          "isImportant": true
+        },
+        {
+          "text": "1 Session:-",
+          "isImportant": true
+        },
+        {
+          "text": "1.1 Complete session valid in the test.",
+          "isImportant": false
+        },
+        {
+          "text": "1.2 Middle session and session are not completed due to Innings declared or all out, so that particular over considered as completed, and remaining over counted in the next team's innings. For example, in case of Innings declared or all out in 131.5th over, considered as 132 over completed, remaining 1 over counted for 133 over middle session, and 3 over counted for 135 over session from the next team's innings. One over session and only over session are not completed due to innings declared, so that particular over session bets will be deleted, and all out considered as valid. For example, in case of Innings declared in 131.5th over, 132 over will be deleted, and if all out then 132 over and only 132 over will be valid.",
+          "isImportant": false
+        },
+        {
+          "text": "1.3 1st day 1st session run minimum 25 over will be played then result is given otherwise 1st day 1st session will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "1.4 1st day 2nd session run minimum 25 over will be played then result is given otherwise 1st day 2nd session will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "1.5 1st day total run minimum 80 over will be played then result is given otherwise 1st day total run will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "1.6 Test match both advance session is valid.",
+          "isImportant": false
+        },
+        {
+          "text": "2 Test lambi/ Inning run:-",
+          "isImportant": false
+        },
+        {
+          "text": "2.1 Mandatory 70 overs played in test lambi paari/ Innings run. If any team all-out or declaration lambi paari/ innings run is valid.",
+          "isImportant": false
+        },
+        {
+          "text": "2.2 In case due to weather situation match has been stopped all lambi trades will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "2.3 In test both lambi paari / inning run is valid in advance fancy.",
+          "isImportant": false
+        },
+        {
+          "text": "3 Test batsman:-",
+          "isImportant": false
+        },
+        {
+          "text": "3.1 In case batsmen are injured he/she is made 34 runs; the result will be given 34 runs.",
+          "isImportant": false
+        },
+        {
+          "text": "3.2 Batsman 50/100 run if batsman is injured or declaration the result will be given on particular run.",
+          "isImportant": false
+        },
+        {
+          "text": "3.3 In next men out fancy if the player is injured, that particular fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "3.4 In advance fancy opening batsmen is only valid if the same batsman came in opening; the fancy will be valid in case one batsman is changed that particular player fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "3.5 Test match both advance fancy batsmen run is valid.",
+          "isImportant": false
+        },
+        {
+          "text": "4 Test partnership:-",
+          "isImportant": false
+        },
+        {
+          "text": "4.1 In partnership one batsman is injured, partnership is continued in the next batsman.",
+          "isImportant": false
+        },
+        {
+          "text": "4.2 Partnership and player runs due to weather condition or match abandoned the result will be given as per the score.",
+          "isImportant": false
+        },
+        {
+          "text": "4.3 Advance partnership is valid in case both players are different or same.",
+          "isImportant": false
+        },
+        {
+          "text": "4.4 Test match both advance fancy partnership is valid.",
+          "isImportant": false
+        },
+        {
+          "text": "5 Other fancy advance (test):-",
+          "isImportant": false
+        },
+        {
+          "text": "5.1 Four, sixes, wide, wicket, extra run, total run, highest over and top batsmen are valid only if 300 overs have been played or the match has been won by any team; otherwise, all these fancy will be deleted. Additionally, all events are valid only for the 1st innings (this is applicable to all individual team events also).",
+          "isImportant": false
+        },
+        {
+          "text": "2 Odi rule:-",
+          "isImportant": false
+        },
+        {
+          "text": "Session:-",
+          "isImportant": false
+        },
+        {
+          "text": "Match 1st over run advance fancy only 1st innings run will be counted.",
+          "isImportant": false
+        },
+        {
+          "text": "Complete session is valid in case due to rain or match abandoned particular session will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "For example:- 35 over run team a is playing any case team A is all-out in 33 over team a has made 150 run the session result is validated on particular run.",
+          "isImportant": false
+        },
+        {
+          "text": "Advance session is valid in only 1st innings.",
+          "isImportant": false
+        },
+        {
+          "text": "50 over runs:-",
+          "isImportant": false
+        },
+        {
+          "text": "In case 50 over is not completed all bet will be deleted due to weather or any condition.",
+          "isImportant": false
+        },
+        {
+          "text": "Advance 50 over runs is valid in only 1st innings.",
+          "isImportant": false
+        },
+        {
+          "text": "Odi batsman runs:-",
+          "isImportant": false
+        },
+        {
+          "text": "In case batsman is injured he/she is made 34 runs the result will be given 34 runs.",
+          "isImportant": false
+        },
+        {
+          "text": "In next men out fancy if player is injured particular fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "In advance fancy opening batsmen is only valid if same batsmen came in opening the fancy will be valid in case one batsmen is changed that particular player fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "Odi partnership runs:-",
+          "isImportant": false
+        },
+        {
+          "text": "In partnership one batsman is injured partnership is continued in next batsman.",
+          "isImportant": false
+        },
+        {
+          "text": "Advance partnership is valid in case both players are different or same.",
+          "isImportant": false
+        },
+        {
+          "text": "Both team advance partnerships are valid in a particular match.",
+          "isImportant": false
+        },
+        {
+          "text": "Other fancy:-",
+          "isImportant": false
+        },
+        {
+          "text": "Four, sixes, wide, wicket, extra run, total run, highest over, top batsman, maiden over, caught-out, no-ball, run-out, fifty, and century are valid only match has been completed in case due to rain over has been reduced all other fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "T20:-",
+          "isImportant": false
+        },
+        {
+          "text": "Session:-",
+          "isImportant": false
+        },
+        {
+          "text": "Match 1st over run advance fancy only 1st innings run will be counted.",
+          "isImportant": false
+        },
+        {
+          "text": "Complete session is valid in case due to rain or match abandoned particular session will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "For example :- 15 over run team a is playing any case team a is all-out in 13 over team A has made 100 run the session result is validated on particular run.",
+          "isImportant": false
+        },
+        {
+          "text": "Advance session is valid in only 1st innings.",
+          "isImportant": false
+        },
+        {
+          "text": "20 over run:-",
+          "isImportant": false
+        },
+        {
+          "text": "In case 20 over is not completed all bet will be deleted due to weather or any condition.",
+          "isImportant": false
+        },
+        {
+          "text": "Advance 20 over runs is valid in only 1st innings.",
+          "isImportant": false
+        },
+        {
+          "text": "T20 batsman runs:-",
+          "isImportant": false
+        },
+        {
+          "text": "In case batsman is injured he/she is made 34 runs the result will be given 34 runs.",
+          "isImportant": false
+        },
+        {
+          "text": "In next men out fancy if player is injured particular fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "In advance fancy opening batsmen is only valid if same batsmen came in opening the fancy will be valid in case one batsmen is changed that particular player fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "T20 partnership runs:-",
+          "isImportant": false
+        },
+        {
+          "text": "In partnership one batsman is injured partnership is continued in next batsman.",
+          "isImportant": false
+        },
+        {
+          "text": "Advance partnership is valid in case both players are different or same.",
+          "isImportant": false
+        },
+        {
+          "text": "Both team advance partnerships are valid in a particular match.",
+          "isImportant": false
+        },
+        {
+          "text": "Other fancy:-",
+          "isImportant": false
+        },
+        {
+          "text": "Four, sixes, wide, wicket, extra run, total run, highest over, top batsman, maiden over, caught-out, no-ball, run-out, fifty, and century are valid only match has been completed in case due to rain over has been reduced all other fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "Advance event is valid in only 1st Innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If over reduced due to rain or weather condition or match abandoned the result will be given as per score.",
+          "isImportant": false
+        },
+        {
+          "text": "Other fancy:-",
+          "isImportant": false
+        },
+        {
+          "text": "T-20, one day and test match in case current innings player and partnership are running in between match has been called off or abandoned that situation all current player and partnership results are valid.",
+          "isImportant": false
+        },
+        {
+          "text": "Four, sixes, wide, wicket, extra run, total run, highest over and top batsman, maiden over, caught-out, no-ball, run-out, fifty and century are valid only match has been completed in case due to rain over has been reduced all other fancy will be deleted. 1st 6 over dot ball and 20 over dot ball fancy only valid is 1st innings.",
+          "isImportant": false
+        },
+        {
+          "text": "1st wicket lost to any team balls meaning that any team 1st wicket fall down in how many balls that particular fancy at least minimum one ball have to be played otherwise bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "1st wicket lost to any team fancy valid both innings.",
+          "isImportant": false
+        },
+        {
+          "text": "How many balls for 50 runs any team meaning that any team achieved 50 runs in how many balls that particular fancy at least one ball have to be played otherwise that fancy bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "How many balls for 50 runs fancy any team only first inning valid.",
+          "isImportant": false
+        },
+        {
+          "text": "1st 6 inning boundaries runs any team fancy will be counting only according to run scored fours and sixes at least 6 over must be played otherwise that fancy will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "1st inning 6 over boundaries runs any team run like wide, no-ball, leg-byes, byes and over throw runs are not counted this fancy.",
+          "isImportant": false
+        },
+        {
+          "text": "How many balls face any batsman meaning that any batsman how many balls he/she played that particular fancy at least one ball have to be played otherwise that fancy bets will be deleted.",
+          "isImportant": false
+        },
+        {
+          "text": "How many balls face by any batsman both innings valid.",
+          "isImportant": false
+        },
+        {
+          "text": "Lowest scoring over will be considered valid only if the over is completed fully (all six deliveries have to be bowled)",
+          "isImportant": false
+        },
+        {
+          "text": "Concussion in Test:-",
+          "isImportant": false
+        },
+        {
+          "text": "All bets of one over session will be deleted in test scenario, in case session is incomplete. For example innings declared or match suspended to bad light or any other conditions.",
+          "isImportant": false
+        },
+        {
+          "text": "All bets will be considered as valid if a player has been replaced under concussion substitute, result will be given for the runs scored by the mentioned player. For example DM Bravo gets retired hurt at 23 runs, then result will be given for 23.",
+          "isImportant": false
+        },
+        {
+          "text": "Bets of both the player will be valid under concussion substitute.",
+          "isImportant": false
+        },
+        {
+          "text": "Total Match- Events (test):-",
+          "isImportant": false
+        },
+        {
+          "text": "Minimum of 300 overs to be bowled in the entire test match, otherwise all bets related to the particular event will get void. For example Total match caught outs will be valid only if 300 overs been bowled in the particular test match",
+          "isImportant": false
+        },
+        {
+          "text": "Limited over events-Test:-",
+          "isImportant": false
+        },
+        {
+          "text": "This event will be considered valid only if the number of overs defined on the particular event has been bowled, otherwise all bets related to this event will get void. 0-25 over events will be valid only if 25 overs has been bowled, else the same will not be considered as valid",
+          "isImportant": false
+        },
+        {
+          "text": "If the team gets all out prior to any of the defined overs, then balance overs will be counted in next innings. For example if the team gets all out in 23.1 over the same will be considered as 24 overs and the balance overs will be counted from next innings.",
+          "isImportant": false
+        },
+        {
+          "text": "Bowler Wicket event's- Test:-",
+          "isImportant": false
+        },
+        {
+          "text": "Minimum of one legal over (one complete over) has to be bowled by the bowler mentioned in the event, else the same will not be considered as valid",
+          "isImportant": false
+        },
+        {
+          "text": "Bowler over events- Test:-",
+          "isImportant": false
+        },
+        {
+          "text": "The mentioned bowler has to complete the defined number of overs, else the bets related to that particular event will get void. For example if the mentioned bowler has bowled 8 overs, then 5 over run of that particular bowler will be considered as valid and the 10 over run will get void",
+          "isImportant": false
+        },
+        {
+          "text": "Player ball event's- Test:-",
+          "isImportant": false
+        },
+        {
+          "text": "This event will be considered valid only if the defined number of runs made by the mentioned player, else the result will be considered as 0 (zero) balls",
+          "isImportant": false
+        },
+        {
+          "text": "For example if Root makes 20 runs in 60 balls and gets out on 22 runs, result for 20 runs will be 60 balls and the result for balls required for 25 run Root will be considered as 0 (Zero) and the same will be given as result",
+          "isImportant": false
+        },
+        {
+          "text": "Limited over events-ODI:-",
+          "isImportant": false
+        },
+        {
+          "text": "This event will be considered valid only if the number of overs defined on the particular event has been bowled, otherwise all bets related to this event will get void. 0-50 over events will be valid only if 50 over completed, if the team batting first get all out prior to 50 over the balance over will be counted from second innings. For example if team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "Bowler Wicket event's- ODI:-",
+          "isImportant": false
+        },
+        {
+          "text": "Minimum of one legal over (one complete over) has to be bowled by the bowler mentioned in the event, else the same will not be considered as valid.",
+          "isImportant": false
+        },
+        {
+          "text": "Bowler over events- ODI:-",
+          "isImportant": false
+        },
+        {
+          "text": "The mentioned bowler has to complete the defined number of overs, else the bets related to that particular event will get void.",
+          "isImportant": false
+        },
+        {
+          "text": "Player ball event's- ODI:-",
+          "isImportant": false
+        },
+        {
+          "text": "This event will be considered valid only if the defined number of runs made by the mentioned player, else the result will be considered as 0 (zero) balls.",
+          "isImportant": false
+        },
+        {
+          "text": "For example if Root makes 20 runs in 60 balls and gets out on 22 runs, result for 20 runs will be 60 balls and the result for balls required for 25 run Root will be considered as 0 (Zero) and the same will be given as result.",
+          "isImportant": false
+        },
+        {
+          "text": "Limited over events-T20:-",
+          "isImportant": false
+        },
+        {
+          "text": "This event will be considered valid only if the number of overs defined on the particular event has been bowled, otherwise all bets related to this event will get void.",
+          "isImportant": false
+        },
+        {
+          "text": "Bowler Wicket event's- T20:-",
+          "isImportant": false
+        },
+        {
+          "text": "Minimum of one legal over (one complete over) has to be bowled by the bowler mentioned in the event, else the same will not be considered as valid.",
+          "isImportant": false
+        },
+        {
+          "text": "Bowler over events- T20:-",
+          "isImportant": false
+        },
+        {
+          "text": "The mentioned bowler has to complete the defined number of overs, else the bets related to that particular event will get void.",
+          "isImportant": false
+        },
+        {
+          "text": "Player ball event's- T20:-",
+          "isImportant": false
+        },
+        {
+          "text": "This event will be considered valid only if the defined number of runs made by the mentioned player, else the result will be considered as 0 (zero) balls.",
+          "isImportant": false
+        },
+        {
+          "text": "For example if Root makes 20 runs in 60 balls and gets out on 22 runs, result for 20 runs will be 60 balls and the result for balls required for 25 run Root will be considered as 0 (Zero) and the same will be given as result.",
+          "isImportant": false
+        },
+        {
+          "text": "Bowler runs event's- Test:-",
+          "isImportant": false
+        },
+        {
+          "text": "The mentioned bowler has to complete the defined number of overs, else the bets related to that particular event will get void.",
+          "isImportant": false
+        },
+        {
+          "text": "Match 4s event's:-",
+          "isImportant": false
+        },
+        {
+          "text": "For example, if the match has been reduced to 30 overs each, then this event will be considered valid only if 20 overs has been completed, else the same will be considered as void.",
+          "isImportant": false
+        },
+        {
+          "text": "Match 6s event's:-",
+          "isImportant": false
+        },
+        {
+          "text": "For example, if the match has been reduced to 30 overs each, then this event will be considered valid only if 20 overs has been completed, else the same will be considered as void.",
+          "isImportant": false
+        },
+        {
+          "text": "Player match score event's:-",
+          "isImportant": false
+        },
+        {
+          "text": "This event will be considered valid only if the mentioned player has played in the match, else the same will be considered as void. For example, if Rohit Sharma is not playing in the match, then the same will be considered as void.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "If the team batting first gets all out in 35 over then the same will be considered as 35 overs and the balance over will be counted from second innings.",
+          "isImportant": false
+        },
+        {
+          "text": "All fancy bets will be validated when the match has been tied.",
+          "isImportant": false
+        },
+        {
+          "text": "First 6 over run: Average 45 run will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "St Kitts and Nevis Patriots",
+          "isImportant": true
+        },
+        {
+          "text": "Opening partnership run: Average 25 runs will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "First 6 over run: Average 45 run will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Trinbago Knight Riders",
+          "isImportant": true
+        },
+        {
+          "text": "Opening partnership run: Average 22 runs will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "First 6 over run: Average 46 run will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Guyana Amazon Warriors",
+          "isImportant": true
+        },
+        {
+          "text": "Opening partnership run: Average 23 runs will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "First 6 over run: Average 44 run will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "St Lucia Zouks",
+          "isImportant": true
+        },
+        {
+          "text": "Opening partnership run: Average 22 runs will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "First 6 over run: Average 43 run will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Jamaica Tallawahs",
+          "isImportant": true
+        },
+        {
+          "text": "Opening partnership run: Average 24 runs will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "First 6 over run: Average 46 run will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Tour Special Events",
+          "isImportant": true
+        },
+        {
+          "text": "Australia tour of Sri Lanka, 2022",
+          "isImportant": true
+        },
+        {
+          "text": "If first match of tour (T20 or ODI) cancelled or over reduce in first match, then all special fancy events will be deleted",
+          "isImportant": true
+        },
+        {
+          "text": "If First match played completely and next match gets over reduced or cancelled, then that match bets all bets will be deleted and first match bets will be valid and average will count in other bets",
+          "isImportant": true
+        },
+        {
+          "text": "Ex. : First match total 4's is 20 and second match over reduced so bets after first match upto second match started that all deleted and for other bets average counted total 4's is 24 and third match total 4's is 26, So Result of Total 4's is 70",
+          "isImportant": true
+        },
+        {
+          "text": "T20 :",
+          "isImportant": true
+        },
+        {
+          "text": "Total Matches 1st over runs : Average 6 runs will be given in case match abandoned or over reduced (only 1st innings valid)",
+          "isImportant": false
+        },
+        {
+          "text": "Total Matches 1st 6 over runs : Average 45 runs will be given in case match abandoned or over reduced (Only 1st Innings valid)",
+          "isImportant": false
+        },
+        {
+          "text": "Total fours: Average 24 fours will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total sixes: Average 9 sixes will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Boundaries: Average 33 Boundaries will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Fifties - Average 2 Fifties will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Wickets - Average 12 Wickets will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Wides - Average 8 Wides will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Extras - Average 15 Extras will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Caught outs: Average 8 Caught out will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Bowled:- Average 2 Bowled out will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total LBW:- Average 2 LBW will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Run out:- Average 1 Run out will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid, similarly if the tournament gets canceled due to any reason the previously given result will be considered valid",
+          "isImportant": true
+        },
+        {
+          "text": "Most runs given by Bowler in an Inning of Tour : Maximum How much Runs conceded by a individual Bowler in an Innings. Ex : For T20I How much runs conceded by a bowler in his 4 overs Quota.",
+          "isImportant": false
+        },
+        {
+          "text": "Highest total runs in individual match of IPL : Maximum Total runs of both Teams in individual match.",
+          "isImportant": false
+        },
+        {
+          "text": "Highest innings run - Only first inning is valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Partnership - Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest 1st over run of individual match: only first inning is valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Fours of individual match: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Sixes of individual match: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Extras of individual match: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest over run: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Top Batsman Runs in Tour : Most runs by an Individual Player in any Individual matches in ODI/T20I Format of Tour",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Wickets by Bowler in Tour : Most Wickets taken by Individual Player in Overall ODI/T20I Format of Tour",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Over runs in Tour : Most Runs Scored in Any Single Over of any Individual Match in Overall ODI/T20I Format of Tour",
+          "isImportant": false
+        },
+        {
+          "text": "Player Total Runs : Total Runs Scored by an Individual Player in Full ODI/T20I Format of Tour",
+          "isImportant": false
+        },
+        {
+          "text": "Player Total 4s : Total 4s Hitted by an Individual Player in Full ODI/T20I Format of Tour",
+          "isImportant": false
+        },
+        {
+          "text": "Player Total 6s : Total 6s Hitted by an Individual Player in Full ODI/T20I Format of Tour",
+          "isImportant": false
+        },
+        {
+          "text": "Player Boundaries : Total Boundaries Hitted by an Individual Player in Full ODI/T20I Format of Tour",
+          "isImportant": false
+        },
+        {
+          "text": "For Player based Events, If any Player not in playing 11 suppose First match any player played completely but if same player not available in next match, then that match bets all bets will be deleted and first match bets will be valid and average will count in other bets",
+          "isImportant": true
+        },
+        {
+          "text": "If any one match not in Playing 11 means Average Given for that match",
+          "isImportant": true
+        },
+        {
+          "text": "Average For Players:",
+          "isImportant": true
+        },
+        {
+          "text": "A Finch Total Runs, Boundaries, 4s and 6s : 26,4,3 & 1.",
+          "isImportant": false
+        },
+        {
+          "text": "D Warner Total Runs, Boundaries, 4s and 6s : 28,5,4 & 1.",
+          "isImportant": false
+        },
+        {
+          "text": "P Nissanka Total Runs, Boundaries, 4s and 6s : 22,3,2 & 1.",
+          "isImportant": false
+        },
+        {
+          "text": "D Gunathilaka Total Runs, Boundaries, 4s and 6s : 23,3,2 & 1.",
+          "isImportant": false
+        },
+        {
+          "text": "J Hazlewood,M Starc,D Chameera & M Theekshana : 2 wkts Average given if player not in playing 11.",
+          "isImportant": false
+        }
+      ]
+    },
+    {
+      "name": "ipl",
+      "fullname": "IPL",
+      "state": true,
+      "data": [
+        {
+          "text": "If IPL fixture of 74 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this)",
+          "isImportant": true
+        },
+        {
+          "text": "Management decision will be final",
+          "isImportant": true
+        },
+        {
+          "text": "Total 1st over runs: Average 6 runs will be given in case match abandoned or over reduced (only 1st innings valid)",
+          "isImportant": false
+        },
+        {
+          "text": "Total 1st 6 over run:- Average 46 runs will be given in case match abandoned or over reduced (Only 1st Innings valid)",
+          "isImportant": false
+        },
+        {
+          "text": "Total fours: Average 29 fours will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total sixes: Average 12 sixes will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Wickets - Average will 12 Wickets be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Wides - Average 8 wides will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Extras - Average 16 extras will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Fifties - Average 2 fifties will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Caught outs: Average 8 caught out will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Bowled:- Average 2 Bowled out will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total LBW:- Average 1 LBW will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "Total Run out:- Average 1 Run out will be given in case match abandoned or over reduced",
+          "isImportant": false
+        },
+        {
+          "text": "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid, similarly if the tournament gets canceled due to any reason the previously given result will be considered valid",
+          "isImportant": true
+        },
+        {
+          "text": "How many matches win by a team: Only valid for league stage matches. Ex. For CSK, How many matches CSK win during league stages only considered. Playoffs matches not considered in this.",
+          "isImportant": false
+        },
+        {
+          "text": "Most 4's by individual batsman of IPL: Maximum Number of Fours Hit By A Batsman in full Tournament. Ex. Last Season (2021) R Gaikwad Hit 64 Fours in 16 Matches. So, 64 was the Result for last season.",
+          "isImportant": false
+        },
+        {
+          "text": "Most 4's by an individual batsman in an Inning of IPL: Maximum Number of Fours Hit By A Batsman in one Innings. Ex. Last Season (2021) S Yadav Hit 13 Fours in 55th league Match. So, 13 was the Result for last season.",
+          "isImportant": false
+        },
+        {
+          "text": "Most 6's by individual batsman of IPL: Maximum Number of Sixes Hit By A Batsman in full Tournament. Ex. Last Season (2021) KL Rahul Hit 30 Sixes in 13 Matches. So, 30 was the Result for last season.",
+          "isImportant": false
+        },
+        {
+          "text": "Most 6's by individual batsman in an Inning of IPL: Maximum Number of Sixes Hit By A Batsman in one Innings. Ex. Last Season (2021) K Pollard Hit 8 Sixes in 27th league Match. So, 8 was the Result for last season.",
+          "isImportant": false
+        },
+        {
+          "text": "Most runs given by Bowler in an Inning of IPL: Maximum How much Runs conceded by a individual Bowler in an Innings. Ex : Last Season (2021) L Ngidi concede 62 runs in 4 overs of 27th Match. So, 62 was the Result for last season.",
+          "isImportant": false
+        },
+        {
+          "text": "Most wickets by Bowler in an inning of IPL: Maximum How much Wickets taken by a individual Bowler in an Innings. Ex : Last Season (2021) H Patel taken 5 wickets in 1st Match. So, 5 was the Result for last season.",
+          "isImportant": false
+        },
+        {
+          "text": "Most 50's by individual batsman of IPL: Maximum Number of Fifties Hit By A Batsman in full Tournament. Ex. Last Season (2021) Faf duPlessis Hit 6 fifties in 16 Matches. So, 6 was the Result for last season.",
+          "isImportant": false
+        },
+        {
+          "text": "Highest total runs in individual match of IPL: Maximum total runs of both Teams in individual match. Ex . Last Season (2021) RR vs PBKS match both teams Total runs 438 (4th League Match) . So, 438 was the Result for Last Season.",
+          "isImportant": false
+        },
+        {
+          "text": "Highest innings run - Only first innings is valid",
+          "isImportant": false
+        },
+        {
+          "text": "Lowest innings run - Only first innings is valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest over run: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest 1st over run in individual match: only first innings is valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Fours in individual match: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Sixes in individual match: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Extras in individual match: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest Wicket in individual match: Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Highest 6 over run: - Both innings are valid",
+          "isImportant": false
+        },
+        {
+          "text": "Super over will not be included",
+          "isImportant": true
+        },
+        {
+          "text": "In fastest fifty always the first 50 runs will be considered, for example of R Sharma scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs",
+          "isImportant": false
+        }
+      ]
+    },
+    {
+      "name": "match",
+      "fullname": "Match",
+      "state": true,
+      "data": [
+        {
+          "text": "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example incase of vpn/robot-use/multiple entry from same IP/ multiple bets at same time (Punching) and others. Note : only winning bets will be voided, For example: If we find such entries (above mentioned) from any id and their bets are (200000 lay in a 6 over session for the rate 40 and 200000 back for the rate of 48) and the actual score is 38, bets of 40 lay will be voided and the bets for 48 back will be considered valid.",
+          "isImportant": false
+        },
+        {
+          "text": "TENNIS Match Odds :- If 1st set has been not completed at the time of the retirement or disqualification, then all bets relating to that individual match will be void.",
+          "isImportant": false
+        },
+        {
+          "text":"FOOTBALL Match Odds :- All bets apply to the relevant full 'regular time' period including stoppage time. Any extra-time and/or penalty shoot-out is not included. For the cancellation of a goal, due to VAR, bets matched between the time of the goal being scored and the time at which the video assistant referee finishes the review will be voided. For the cancellation of a red card, due to VAR, bets matched after the time at which the video assistant referee commences the review will be voided.",
+          "isImportant": false
+        },
+        {
+          "text":"FOOTBALL Under_Over Goals :- In the event of a match starting but not being completed, all bets will be void, unless the specific market outcome is already determined,",
+          "isImportant": false
+        }
+      ]
+    }
+  ]
+  

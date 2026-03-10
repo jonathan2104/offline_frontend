@@ -1,0 +1,33 @@
+<div class="content-wrapper" style="min-height: 368px">
+  <div class="container pt-2">
+    <div class="card card-info mt-4">
+      <div class="card-header bg-info">
+        <h3 class="card-title text-white">Recharge Wallet</h3>
+      </div>
+      <div class="card-body">
+<!--         <p-->
+<!--          *ngIf="errorMsg"-->
+<!--          class="alert alert-danger alert-dismissible fade show"-->
+<!--        >-->
+<!--          {{ errorMsg }}-->
+<!--        </p>-->
+        <div *ngIf="!paidFor">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+
+            <input type="number" pattern="^[0-9]*$" required [(ngModel)]="amount" class="form-control">
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="paidFor">
+          <h1>Amount Transferred Successfully</h1>
+        </div>
+        <div #paypal class="mt-4"></div>
+      </div>
+    </div>
+  </div>
+</div>

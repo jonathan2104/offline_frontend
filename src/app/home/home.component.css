@@ -1,0 +1,465 @@
+.homepage {
+  background: #1c1407;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Top actions */
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  background: #2a2211;
+}
+.top-actions .btn {
+  flex: 1;
+  padding: 12px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+/* Promo Section */
+.promo-section {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+}
+
+.promo-box {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #222;
+}
+
+.promo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Section Headings */
+section h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 10px;
+  color: #fff;
+  position: relative;
+}
+section h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #ffcc00;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+/* Sports Scroll */
+.sports-scroll {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px;
+}
+.sport-card {
+  flex: 0 0 auto;
+  background: #3a3213;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  min-width: 90px;
+  color: #fff;
+}
+.sport-card img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+/* Matches Scroll */
+.matches-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px;
+}
+.match-card {
+  flex: 0 0 auto;
+  background: #3a3213;
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 200px;
+  color: #fff;
+}
+.match-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.match-header img {
+  width: 20px;
+  height: 20px;
+}
+.match-header .tag {
+  background: #ffcc00;
+  color: #000;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+.match-body .league {
+  font-weight: bold;
+  font-size: 14px;
+}
+.match-body .teams {
+  font-size: 13px;
+}
+.match-body .time {
+  font-size: 12px;
+  color: #aaa;
+}
+.odds {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.odd {
+  flex: 1;
+  padding: 6px 8px;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.odd.blue {
+  background: #add8ff;
+  color: #000;
+}
+.odd.pink {
+  background: #ffc0cb;
+  color: #000;
+}
+.odds-row {
+  display: flex;
+  gap: 10px;          /* space between capsules */
+  margin-top: 10px;
+}
+/* Single Capsule Container */
+.odds-capsule {
+  display: flex;
+  flex: 1;            /* both capsules take equal width */
+  overflow: hidden;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  min-width: 100px;   /* prevent too small on mobile */
+}
+
+/* Half capsule */
+.odds-capsule .half {
+  flex: 1;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+/* Back side */
+.odds-capsule .back {
+  background: #b3e0ff;
+  border-right: 1px solid #ddd;
+  color: #000;
+}
+
+/* Lay side */
+.odds-capsule .lay {
+  background: #ffb3c6;
+  color: #000;
+}
+
+.odds-capsule .rate {
+  font-size: 14px;
+}
+
+.odds-capsule .volume {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+/* Matches */
+.match-list {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+}
+.match-card {
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.match-header { font-weight: bold; margin-bottom: 5px; }
+.odds { margin-top: 10px; }
+.odd {
+  background: #ffd700;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-right: 6px;
+}
+
+/* Games */
+.game-slider {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 0px 10px;
+}
+.game-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.game {
+  /* background: #3a3213; */
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 120px;
+  flex: 1;
+}
+.game img { width: 100%; display: block; }
+.game2 {
+  background: #3a3213;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 25%;
+  flex: 1;
+}
+.game2 img { width: 100%; display: block; }
+
+/* Footer */
+.site-footer {
+  background: #1c1407;
+  color: #fff;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.site-footer .support-box {
+  background: #b1972a; /* gold block */
+  text-align: center;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.site-footer .support-box p {
+  margin: 0;
+  font-weight: bold;
+}
+.site-footer .support-box .whatsapp img {
+  width: 30px;
+  margin-top: 10px;
+}
+
+.site-footer .secure-box {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.site-footer .secure-box img {
+  width: 180px;
+  margin-right: 15px;
+}
+.site-footer .secure-box h4 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.site-footer .secure-box p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.site-footer .desc {
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.5;
+  margin: 20px 0;
+}
+
+.site-footer .footer-bottom {
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-footer .footer-icons img {
+  width: 90px;
+  margin-left: 10px;
+}
+.live{
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
+}
+.img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #333;
+}
+
+/* Shimmer placeholder */
+.img-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #2a2a2a 25%, #444 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+/* Fade out shimmer when image loaded */
+.img-wrapper.loaded::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.img-wrapper img {
+  width: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.img-wrapper img.loaded {
+  opacity: 1;
+  position: relative;
+}
+
+/* Section header with buttons */
+.casino-lobby .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 10px;
+}
+
+.casino-lobby .scroll-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.scroll-btn {
+  background: #3a3213;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  width: 40px;
+  height: 32px;
+  border-radius: 20%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.scroll-btn:hover {
+  background: #f26d25;
+  color: #000;
+}
+
+/* Lobby Scroll Row */
+.lobby-scroll {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-columns: 160px;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+}
+.lobby-game {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #3a3213;
+  height: 100%;
+}
+.lobby-game img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game,
+.game2,
+.lobby-game {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game img,
+.game2 img,
+.lobby-game img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.game:hover,
+.game2:hover,
+.lobby-game:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.game:hover img,
+.game2:hover img,
+.lobby-game:hover img {
+  transform: scale(1.05);
+}
+
+/* Glow animation */
+.game::after,
+.game2::after,
+.lobby-game::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+
+.game:hover::after,
+.game2:hover::after,
+.lobby-game:hover::after {
+  border-color: #ffcc00; /* gold glow */
+  animation: glowPulse 1.5s infinite;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 5px #ffcc00; }
+  50% { box-shadow: 0 0 15px #ffcc00; }
+  100% { box-shadow: 0 0 5px #ffcc00; }
+}

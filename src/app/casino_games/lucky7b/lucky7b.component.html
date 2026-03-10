@@ -1,0 +1,630 @@
+<div class="box">
+  <div class="ballbyshow">
+    <h4 class="text-light d-flex">
+      <!-- <div class="material-symbols-outlined">info</div>
+      <div class="ballby ml-1">Ball By Ball</div> -->
+    </h4>
+  </div>
+  <app-animated-progress-bar [value]="counter"></app-animated-progress-bar>
+
+  <div class="casino-table lucky7" *ngIf="live_data.hasOwnProperty('t2')">
+    <div class="casino-video">
+      <div class="casino-video-title">
+        <span class="casino-name"> Lucky 7-B</span>
+        <span class="casino-video-rid"
+          >Round ID: {{ this.last_market_id }}</span
+        >
+      </div>
+      <div class="video-box-container">
+        <div class="video-box">
+          <iframe src="https://jmdapi.com/tablevideo/?id=3032"></iframe>
+        </div>
+      </div>
+      <div
+        class="casino-video-cards"
+        [class.hide-cards]="live_data.t1[0].C1 == '1'"
+      >
+        <div class="casino-cards-shuffle">
+          <i class="fas fa-grip-lines-vertical"></i>
+        </div>
+        <div class="casino-video-cards-container">
+          <div>
+            <span
+              ><img src="/assets/casino/cards/{{ live_data.t1[0].C1 }}.png"
+            /></span>
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-right-icons">
+        <div title="Home" class="casino-video-home-icon">
+          <a routerLink="/dashboard/casino" class="" style="color: #fff"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
+        <div
+          title="Rules"
+          class="casino-video-rules-icon"
+          (click)="openCasinoRule()"
+        >
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <div>
+      <div class="casino-detail">
+        <div class="col-md-12 col-sm-12">
+          <div class="col-md-6 col-sm-12 mb-1 d-inline-block">
+            <div class="d-flex">
+              <div
+                class="low-odds"
+                [class.suspended]="live_data.t2[0].gstatus == 0"
+                (click)="
+                  openDialog('lucky7eu', live_data.t1[0].mid, live_data.t2[0])
+                "
+              >
+                <div class="casino-odds">
+                  {{ live_data.t2[0].gstatus != 0 ? live_data.t2[0].rate : 0 }}
+                </div>
+                <div class="text-center casino-buttons">
+                  <span>Low Card</span>
+                </div>
+                <div
+                  class="casino-book"
+                  [class.d-none]="exp_amount1 == 0"
+                  [class.book-red]="exp_amount1 != 0"
+                >
+                  {{ exp_amount1 }}
+                </div>
+              </div>
+              <div class="text-center lucky7-card">
+                <img src="assets/casino/cards/7.png" class="img-fluid" />
+              </div>
+              <div
+                class="high-odds"
+                [class.suspended]="live_data.t2[1].gstatus == 0"
+                (click)="
+                  openDialog('lucky7eu', live_data.t1[0].mid, live_data.t2[1])
+                "
+              >
+                <div class="casino-odds">
+                  {{ live_data.t2[1].gstatus != 0 ? live_data.t2[1].rate : 0 }}
+                </div>
+                <div class="text-center casino-buttons">
+                  <span>High Card</span>
+                </div>
+                <div
+                  class="casino-book"
+                  [class.d-none]="exp_amount2 == 0"
+                  [class.book-red]="exp_amount2 != 0"
+                >
+                  {{ exp_amount2 }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 d-inline-block">
+            <div class="lucky7-extra-bets">
+              <div class="lucky7-extra-bets-item-container">
+                <div
+                  class="lucky7-extra-bets-item"
+                  [class.suspended]="live_data.t2[2].gstatus == 0"
+                  (click)="
+                    openDialog('lucky7eu', live_data.t1[0].mid, live_data.t2[2])
+                  "
+                >
+                  <div class="casino-odds">
+                    {{
+                      live_data.t2[2].gstatus != 0 ? live_data.t2[2].rate : 0
+                    }}
+                  </div>
+                  <div class="casino-buttons">Even</div>
+                  <div
+                    class="casino-book"
+                    [class.d-none]="exp_amount3 == 0"
+                    [class.book-red]="exp_amount3 != 0"
+                  >
+                    {{ exp_amount3 }}
+                  </div>
+                </div>
+              </div>
+              <div class="lucky7-extra-bets-item-container">
+                <div
+                  class="lucky7-extra-bets-item"
+                  [class.suspended]="live_data.t2[3].gstatus == 0"
+                  (click)="
+                    openDialog('lucky7eu', live_data.t1[0].mid, live_data.t2[3])
+                  "
+                >
+                  <div class="casino-odds">
+                    {{
+                      live_data.t2[3].gstatus != 0 ? live_data.t2[3].rate : 0
+                    }}
+                  </div>
+                  <div class="casino-buttons">Odd</div>
+                  <div
+                    class="casino-book"
+                    [class.d-none]="exp_amount4 == 0"
+                    [class.book-red]="exp_amount4 != 0"
+                  >
+                    {{ exp_amount4 }}
+                  </div>
+                </div>
+              </div>
+              <div class="lucky7-extra-bets-item-container">
+                <div
+                  class="lucky7-extra-bets-item"
+                  [class.suspended]="live_data.t2[5].gstatus == 0"
+                  (click)="
+                    openDialog('lucky7eu', live_data.t1[0].mid, live_data.t2[5])
+                  "
+                >
+                  <div class="casino-odds">
+                    {{
+                      live_data.t2[5].gstatus != 0 ? live_data.t2[5].rate : 0
+                    }}
+                  </div>
+                  <div class="casino-buttons">
+                    <img src="assets/casino/cards/spade.png" />
+                    <img src="assets/casino/cards/club.png" />
+                  </div>
+                  <div
+                    class="casino-book"
+                    [class.d-none]="exp_amount6 == 0"
+                    [class.book-red]="exp_amount6 != 0"
+                  >
+                    {{ exp_amount6 }}
+                  </div>
+                </div>
+              </div>
+              <div class="lucky7-extra-bets-item-container">
+                <div
+                  class="lucky7-extra-bets-item"
+                  [class.suspended]="live_data.t2[5].gstatus == 0"
+                  (click)="
+                    openDialog('lucky7eu', live_data.t1[0].mid, live_data.t2[4])
+                  "
+                >
+                  <div class="casino-odds">
+                    {{
+                      live_data.t2[4].gstatus != 0 ? live_data.t2[4].rate : 0
+                    }}
+                  </div>
+                  <div class="casino-buttons">
+                    <img src="assets/casino/cards/heart.png" />
+                    <img src="assets/casino/cards/diamond.png" />
+                  </div>
+                  <div
+                    class="casino-book"
+                    [class.d-none]="exp_amount5 == 0"
+                    [class.book-red]="exp_amount5 != 0"
+                  >
+                    {{ exp_amount5 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="" style="margin-top: 20px">
+          <div class="col-md-12">
+            <!-- Box Code Start Here-->
+            <div
+              style="
+                padding: 5px;
+                width: 100%;
+                display: inline-block;
+                text-align: center;
+              "
+            >
+              <div class="casino-content-table">
+                <div class="text-center">
+                  <b
+                    ><span id="s013" class="odd">{{
+                      live_data.t2[6].gstatus != 0 ? live_data.t2[6].rate : 0
+                    }}</span></b
+                  >
+                  <div class="info-block float-right"></div>
+                </div>
+                <div class="m-t-10">
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[6].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[6]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/A.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[6].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat7" class="text-danger">{{
+                            exp_amount7
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[7].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[7]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/2.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[7].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat8" class="text-danger">{{
+                            exp_amount8
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[8].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[8]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/3.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[8].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat9" class="text-danger">{{
+                            exp_amount9
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[9].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[9]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/4.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[9].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat10" class="text-danger">{{
+                            exp_amount10
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[10].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[10]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/5.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[10].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat11" class="text-danger">{{
+                            exp_amount11
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[11].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[11]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/6.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[11].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat12" class="text-danger">{{
+                            exp_amount12
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[12].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[12]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/7.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[12].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat13" class="text-danger">{{
+                            exp_amount13
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[13].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[13]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/8.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[13].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat14" class="text-danger">{{
+                            exp_amount14
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[14].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[14]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/9.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[14].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat15" class="text-danger">{{
+                            exp_amount15
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[15].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[15]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/10.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[15].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat16" class="text-danger">{{
+                            exp_amount16
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[16].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[16]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/J.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[16].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat17" class="text-danger">{{
+                            exp_amount17
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[17].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[17]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/Q.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[17].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat18" class="text-danger">{{
+                            exp_amount18
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: inline-block">
+                    <button
+                      class="back-btn"
+                      style="margin: 0 3px; padding: 0px; position: relative"
+                      [class.suspended]="live_data.t2[18].gstatus == 0"
+                      (click)="
+                        openDialog(
+                          'lucky7eu',
+                          live_data.t1[0].mid,
+                          live_data.t2[18]
+                        )
+                      "
+                    >
+                      <img src="assets/casino/cards/K.png" class="cards" />
+                      <div
+                        [class.suspended_style]="live_data.t2[18].gstatus == 0"
+                        style="display: block"
+                      ></div>
+                    </button>
+                    <div class="text-center">
+                      <div class="ubook m-t-5 text-danger">
+                        <b>
+                          <span id="livestat19" class="text-danger">{{
+                            exp_amount19
+                          }}</span></b
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Box Code end here-->
+          </div>
+        </div>
+      </div>
+      <div class="casino-video-last-results d-flex flex-wrap mb-4">
+        <span
+          *ngFor="let data of result_history.data"
+          class="last-result d-inline"
+          [class.resulthigh]="data.result == '2'"
+          [class.resultlow]="data.result == '1'"
+          (click)="openCasinoDetails(data)"
+        >
+          {{ data.result | lucky7name }}
+        </span>
+        <!-- <span class="last-result d-inline" (click)="redirectResult()">
+          ...
+        </span> -->
+      </div>
+    </div>
+  </div>
+</div>

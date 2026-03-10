@@ -1,0 +1,130 @@
+<div>
+  <div class="mt-2 text-center">
+    <div class="sidebar-header">jogobet</div>
+  </div>
+  <!-- <div class="profile text-white">
+    <div class="m-3 text-white">
+            <span style="font-size:50px" class="material-symbols-outlined text-white">
+            account_circle
+            </span>
+      <br>{{username|uppercase}}
+    </div>
+    <div class="m-3" (click)="logout()">
+      <a><span class="material-symbols-outlined text-danger">logout</span></a>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="cardv">
+      <span class="material-symbols-outlined">account_balance_wallet</span>
+      <p class="mb-0">Balance</p>
+      <p *ngIf="exposure.length>0">{{balance+exposure[0].exp_amount| number : '.2-2'}}</p>
+    </div> -->
+  <!--    <div class="cardv">-->
+  <!--      <span class="material-symbols-outlined">casino</span>-->
+  <!--      <p class="mb-0">Casino</p>-->
+  <!--      <p>0</p>-->
+  <!--    </div>-->
+  <!-- <div class="cardv bg-warning text-dark">
+      <span class="material-symbols-outlined">exposure</span>
+      <p class="mb-0">Exposure</p>
+      <p *ngIf="exposure.length>0">{{0-exposure[0].exp_amount| number : '.2-2'}}</p>
+    </div>
+  </div> -->
+  <div class="mt-2">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink>
+        <img class="menu-icons side-icon" src="assets/icons/menu-home.png" />
+        <span>Home</span>
+      </li>
+      <li
+        
+        class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink="/dashboard/deposit">
+        <img class="menu-icons side-icon"
+          src="assets/icons/deposit-icon.png" />
+        <span style="color: #000000">Deposit</span>
+      </li>
+      <li
+        
+        class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink="/dashboard/withdraw">
+        <img class="menu-icons side-icon"
+          src="assets/icons/withdrawal-icon.png" />
+        <span style="color: #000000">Withdraw</span>
+      </li>
+      <li class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink="/dashboard/cricket">
+        <img class="menu-icons side-icon" src="assets/icons/menu-cricket.png" />
+        <span>Cricket</span>
+      </li>
+      <li class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink="/dashboard/football">
+        <img class="menu-icons side-icon"
+          src="assets/icons/menu-football.png" />
+        <span>Football</span>
+      </li>
+      <li class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink="/dashboard/tennis">
+        <img class="menu-icons side-icon" src="assets/icons/menu-tennis.png" />
+        <span>Tennis</span>
+      </li>
+      <li class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink="/dashboard/livecasino">
+        <img class="menu-icons side-icon" src="assets/icons/menu-casino.png" />
+        <span>Int Casino</span>
+      </li>
+      <!-- <li class="list-group-item bg-transparent text-dark"
+        (click)="onToggleSidenav()" routerLink="/dashboard/casino">
+        <img class="menu-icons side-icon" src="assets/icons/menu-casino.png" />
+        <span>Domestic Casino</span>
+      </li> -->
+      <li class="list-group-item bg-transparent text-dark"
+        (click)="openRulesBook()">
+        <img class="menu-icons side-icon" src="assets/icons/menu-rules.png" />
+        <span>Rules</span>
+      </li>
+
+      <li class="list-group-item bg-transparent"
+        (click)="telegram()"
+        routerLinkActive="active"
+        style="cursor: pointer;">
+        <!-- <span
+          class="material-symbols-outlined inline-icons text-dark">send</span> -->
+          <img class="menu-icons side-icon" src="../../assets/icons//tegegram_icon.png" style="background:transparent;"/>
+        <span>Telegram</span>
+      </li>
+
+      <li class="list-group-item bg-transparent"
+        (click)="instagram()"
+        routerLinkActive="active"
+        style="cursor: pointer;">
+        <!-- <span
+          class="material-symbols-outlined inline-icons text-dark">photo_camera</span> -->
+          <img class="menu-icons side-icon" src="../../assets/icons/instagram.webp"/>
+        <span>Instagram</span>
+      </li>
+
+      <li class="list-group-item bg-transparent"
+        (click)="techSupport()"
+        routerLinkActive="active"
+        style="cursor: pointer;">
+        <!-- <span
+          class="material-symbols-outlined inline-icons text-dark">support_agent</span> -->
+          <img class="menu-icons side-icon" src="../../assets/icons/male-services-support-icon.png"/>
+        <span>Online Service 24×7 </span>
+      </li>
+
+    </ul>
+  </div>
+  <div style="position: fixed; bottom: 0;" class="mt-5">
+    <ngb-carousel>
+      <ng-template *ngFor="let banner of banner_url" ngbSlide>
+        <div class="slide-container border-white">
+          <img style="width:100%" [src]="banner.path"
+            class='carouselImage'>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>

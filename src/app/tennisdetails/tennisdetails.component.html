@@ -1,0 +1,895 @@
+<div class="box" *ngIf="3>6">
+    <!-- <div class="bg-title d-flex justify-content-between mb-3">
+        <div style="background: #efefef;" class="title d-flex align-items-center p-2" *ngIf="markets.length > 0">
+            <div class="ml-0">
+                <div class="text-dark font-weight-bold h5" style="font-size: 14px;">{{market[0].event_name}}</div>
+                <div style="font-size: 8px;"
+                     class="text-dark font-weight-bold">{{market[0].start_time | date :'medium'}}</div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="d-flex justify-content-end gap-2 mb-2 mt-2" style="gap: 10px;">
+        <button class="btn btn-sm btn-success" (click)="showScorecard = !showScorecard" style="border-radius: 5px;">
+          {{ showScorecard ? 'Hide Scorecard' : 'Show Scorecard' }}
+        </button>
+        <button class="btn btn-sm btn-primary" (click)="showVideo = !showVideo" style="border-radius: 5px;">
+          {{ showVideo ? 'Hide Video' : 'Show Video' }}
+        </button>
+      </div>
+      
+      <div *ngIf="showVideo" class="video-card" style="height: 410px;">
+        <iframe
+          class="video-card"
+          [src]="videourl"
+          width="100%"
+          style="height: 410px;"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    
+      <div *ngIf="showScorecard" class="score-card mb-2">
+        <iframe
+          [src]="scoreurl"
+          class="w-100"
+          height="100%"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex" dynamicHeight class="mt-3" mat-stretch-tabs="false"
+                   mat-align-tabs="start">
+        <mat-tab label="ALL">
+            <div class="card mt-3 border border-warning rounded" *ngIf="market.length>0">
+                <div style="background: #e9eff8;" class="text-white d-flex">
+                    <div class="title text-light">
+                        <span class="newhead">Match Odds</span>
+                    </div>
+                    <div style="text-align: right" class="title">
+                        <span class="text-dark font-weight-bold" style="font-size:12px;">Max Bets: 200000</span>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div>
+                        <table class="w-100">
+                            <tr>
+                                <td width="58%">&nbsp;</td>
+                                <td width="25%"><span style="font-weight: 500;">BACK</span></td>
+                                <td width="17%"><span style="font-weight: 500;">LAY</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class=" d-flex justify-content-between p-2 border-secondary">
+                        <div class="title">
+                            <span>{{market[0].runner1}}</span><br>
+                            <!--              {{market.exp_amount1}}-->
+                            <span class="font-weight-bold" [class.text-danger]="market[0].exp_amount1<0"
+                                  [class.text-success]="market[0].exp_amount1>=0">{{market[0].exp_amount1}}</span>
+                        </div>
+                        <button #btn mat-button *ngIf="market[0].status=='OPEN'; else suspendMarket;"
+                                (click)="openDialog('match_odd','Back',market[0].back0_price,market[0].back0_size,market[0].runner1,1)"
+                                class="btn mbtn bg-blue p-0 font-weight-bold back0_price">
+                            <b>{{market[0].back0_price}}</b><br><small>{{market[0].back0_size}}</small>
+                        </button>
+                        <ng-template #suspendMarket>
+                            <button class="btn mbtn btn-outline-danger disabled ml-2 p-0 font-weight-bold">SUSPENDED
+                            </button>
+                        </ng-template>
+                        <br>
+                        <button *ngIf="market[0].status=='OPEN'; else suspendMarket;"
+                                (click)="openDialog('match_odd','Lay',market[0].lay0_price,market[0].lay0_size,market[0].runner1,1)"
+                                class="btn mbtn bg-pink p-0 ml-2 font-weight-bold lay0_price">{{market[0].lay0_price}}
+                            <br><small>{{market[0].lay0_size}}</small></button>
+                        <br>
+                    </div>
+                    <div class=" d-flex justify-content-between p-2 border-secondary border-top">
+                        <div class="title">
+                            <span>{{market[0].runner2}}</span><br>
+                            <span class="font-weight-bold" [class.text-danger]="market[0].exp_amount2<0"
+                                  [class.text-success]="market[0].exp_amount2>=0">{{market[0].exp_amount2}}</span>
+                        </div>
+                        <button *ngIf="market[0].status=='OPEN'; else suspendMarket;"
+                                (click)="openDialog('match_odd','Back',market[0].back1_price,market[0].back1_size,market[0].runner2,2)"
+                                class="btn mbtn bg-blue p-0 font-weight-bold back1_price">{{market[0].back1_price}}
+                            <br><small>{{market[0].back1_size}}</small></button>
+                        <br>
+                        <button *ngIf="market[0].status=='OPEN'; else suspendMarket;"
+                                (click)="openDialog('match_odd','Lay',market[0].lay1_price,market[0].lay1_size,market[0].runner2,2)"
+                                class="btn mbtn bg-pink p-0 ml-2 font-weight-bold lay1_price">{{market[0].lay1_price}}
+                            <br><small>{{market[0].lay1_size}}</small></button>
+                        <br>
+                    </div>
+                    <div *ngIf="market[0].back2_price!=null"
+                         class="d-flex justify-content-between p-2 border-secondary border-top">
+                        <div class="title">
+                            <span>Draw</span><br>
+                            <span class="font-weight-bold" [class.text-danger]="market[0].exp_amount3<0"
+                                  [class.text-success]="market[0].exp_amount3>=0">{{market[0].exp_amount3}}</span>
+                        </div>
+                        <button *ngIf="market[0].status=='OPEN'; else suspendMarket;"
+                                (click)="openDialog('match_odd','Back',market[0].back2_price,market[0].back2_size,market[0].runner3,3)"
+                                class="btn mbtn bg-blue p-0 font-weight-bold back2_price">{{market[0].back2_price}}
+                            <br><small>{{market[0].back2_size}}</small></button>
+                        <br>
+                        <button *ngIf="market[0].status=='OPEN'; else suspendMarket;"
+                                (click)="openDialog('match_odd','Lay',market[0].lay2_price,market[0].lay2_size,market[0].runner3,3)"
+                                class="btn mbtn bg-pink p-0 ml-2 font-weight-bold lay2_price">{{market[0].lay2_price}}
+                            <br><small>{{market[0].lay2_size}}</small></button>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="sessions.length>0">
+                <div class="card mt-3 border border-warning rounded" *ngFor="let session of sessions">
+                    <div style="background: #e9eff8;" class="text-white d-flex">
+                        <div class="title text-light">
+                            <span class="newhead">{{session.event_name}}</span>
+                        </div>
+                        <div style="text-align: right" class="title">
+                            <span class="text-dark font-weight-bold" style="font-size:12px;">Max Bets: 200000</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div>
+                            <table class="w-100">
+                                <tr>
+                                    <td width="58%">&nbsp;</td>
+                                    <td width="25%"><span style="font-weight: 500;">BACK</span></td>
+                                    <td width="17%"><span style="font-weight: 500;">LAY</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class=" d-flex justify-content-between p-2 border-secondary">
+                            <div class="title">
+                                <span>{{session.runner1}}</span><br>
+                                <!--              {{market.exp_amount1}}-->
+                                <span class="font-weight-bold" [class.text-danger]="session.exp_amount1<0"
+                                      [class.text-success]="session.exp_amount1>=0">{{session.exp_amount1}}</span>
+                            </div>
+                            <button #btn mat-button
+                                    *ngIf="session.status=='open' || session.status=='OPEN'; else suspendMarket;"
+                                    (click)="openDialog(session.event_name,'Back',session.back0_price,session.back0_size,session.runner1,1)"
+                                    class="btn mbtn bg-blue p-0 font-weight-bold back0_price">
+                                <b>{{session.back0_price}}</b><br><small>{{session.back0_size}}</small>
+                            </button>
+                            <ng-template #suspendMarket>
+                                <button class="btn mbtn btn-outline-danger disabled ml-2 p-0 font-weight-bold">SUSPENDED
+                                </button>
+                            </ng-template>
+                            <br>
+                            <button *ngIf="session.status=='open' || session.status=='OPEN'; else suspendMarket;"
+                                    (click)="openDialog(session.event_name,'Lay',session.lay0_price,session.lay0_size,session.runner1,1)"
+                                    class="btn mbtn bg-pink p-0 ml-2 font-weight-bold lay0_price">{{session.lay0_price}}
+                                <br><small>{{session.lay0_size}}</small></button>
+                            <br>
+                        </div>
+                        <div class=" d-flex justify-content-between p-2 border-secondary border-top">
+                            <div class="title">
+                                <span>{{session.runner2}}</span><br>
+                                <span class="font-weight-bold" [class.text-danger]="session.exp_amount2<0"
+                                      [class.text-success]="session.exp_amount2>=0">{{session.exp_amount2}}</span>
+                            </div>
+                            <button *ngIf="session.status=='open' || session.status=='OPEN'; else suspendMarket;"
+                                    (click)="openDialog(session.event_name,'Back',session.back1_price,session.back1_size,session.runner2,2)"
+                                    class="btn mbtn bg-blue p-0 font-weight-bold back1_price">{{session.back1_price}}
+                                <br><small>{{session.back1_size}}</small></button>
+                            <br>
+                            <button *ngIf="session.status=='open' || session.status=='OPEN'; else suspendMarket;"
+                                    (click)="openDialog('match_odd','Lay',session.lay1_price,session.lay1_size,session.runner2,2)"
+                                    class="btn mbtn bg-pink p-0 ml-2 font-weight-bold lay1_price">{{session.lay1_price}}
+                                <br><span>{{session.lay1_size}}</span></button>
+                            <br>
+                        </div>
+                        <div *ngIf="session.back2_price!=null"
+                             class="d-flex justify-content-between p-2 border-secondary border-top">
+                            <div class="title">
+                                <span>{{session.runner3}}</span><br>
+                                <span class="font-weight-bold" [class.text-danger]="session.exp_amount3<0"
+                                      [class.text-success]="session.exp_amount3>=0">{{session.exp_amount3}}</span>
+                            </div>
+                            <button *ngIf="session.status=='open' || session.status=='OPEN'; else suspendMarket;"
+                                    (click)="openDialog(session.event_name,'Back',session.back2_price,session.back2_size,session.runner3,3)"
+                                    class="btn mbtn bg-blue p-0 font-weight-bold back2_price">{{session.back2_price}}
+                                <br><small>{{session.back2_size}}</small></button>
+                            <br>
+                            <button *ngIf="session.status=='open' || session.status=='OPEN'; else suspendMarket;"
+                                    (click)="openDialog(session.event_name,'Lay',session.lay2_price,session.lay2_size,session.runner3,3)"
+                                    class="btn mbtn bg-pink p-0 ml-2 font-weight-bold lay2_price">{{session.lay2_price}}
+                                <br><span>{{session.lay2_size}}</span></button>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+        </mat-tab>
+        <mat-tab label="BETs">
+            <!--            tennis bets-->
+            <div class="card mt-3   border border-warning rounded" *ngIf="tennis_bets.length>0">
+                <div style="background: #e9eff8;" class="text-light">
+                    <div class="title  text-light">
+                        <span class="newhead">Tennis Bets</span><br/>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div (click)="selectTab(0)" *ngFor="let tennisbet of tennis_bets"
+                         class=" d-flex justify-content-between p-2 border-secondary border-bottom">
+                        <div class="title">
+                            <span>{{tennisbet.runner_name + "  "}}</span><span style="font-size: 13px" class="badge"
+                                                                               [class.badge-danger]="tennisbet.is_won==0"
+                                                                               [class.badge-success]="tennisbet.is_won==1"
+                                                                               *ngIf="tennisbet.status==0">{{tennisbet.is_won == 1 ? 'Won' : 'Lose'}}</span><br>
+                            <span class="badge" style="font-size: 12px;" [class.badge-info]="tennisbet.type=='Back'"
+                                  [class.badge-danger]="tennisbet.type=='Lay'">{{tennisbet.type}}</span><span
+                                class="badge badge-warning ml-2">{{tennisbet.status == 1 ? 'OPEN' : 'CLOSED'}}</span><br>
+                            <span>{{tennisbet.updated_at|date:'short'}}</span>
+                        </div>
+                        <div class="title" class="float-right w-50 text-right">
+                            <span class="text-dark ">Odds: Match Odds</span><br>
+                            <span
+                                    class="text-dark">Stack:{{tennisbet.type == 'Back' ? math.abs(tennisbet.loss_amount) : tennisbet.win_amount}}</span>
+                            <br>
+                            <span class="text-dark">P&L: {{tennisbet.price}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-3   border border-warning rounded" *ngIf="tennissession_bets.length>0">
+                <div style="background: #e9eff8;" class="text-light">
+                    <div class="title  text-light">
+                        <span class="newhead">Tennis Bets</span><br/>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div (click)="selectTab(0)" *ngFor="let tennisbet of tennissession_bets"
+                         class=" d-flex justify-content-between p-2 border-secondary border-bottom">
+                         <div class="title">
+                            <span><strong>{{ tennisbet.main_type}}</strong></span><br>
+                            <span>{{ tennisbet.runner_name + "  " }}</span
+                            ><span
+                              style="font-size: 13px"
+                              class="badge"
+                              [class.badge-danger]="tennisbet.is_won == 0"
+                              [class.badge-success]="tennisbet.is_won == 1"
+                              [class.badge-secondary]="tennisbet.is_won == 2"
+                              *ngIf="tennisbet.status == 0"
+                              >{{
+                                tennisbet.is_won == 1
+                                  ? "Won"
+                                  : tennisbet.is_won == 2
+                                  ? "Draw"
+                                  : "Lose"
+                              }}</span
+                            ><br />
+                            <span
+                              class="badge"
+                              style="font-size: 12px"
+                              [class.badge-info]="tennisbet.type == 'Back'"
+                              [class.badge-danger]="tennisbet.type == 'Lay'"
+                              >{{ tennisbet.type }}</span
+                            ><span class="badge badge-warning ml-2">{{
+                                tennisbet.status == 1 ? "OPEN" : "CLOSED"
+                            }}</span
+                            ><br />
+                            <span>{{
+                                tennisbet.created_at | date : "dd/MMM/YYYY, h:mm:ss a" : "IST"
+                            }}</span>
+                          </div>
+                          <div class="title" class="float-right w-50 text-right d">
+                            <span class="text-dark">Odds: Match Odds</span><br />
+                            <span class="text-dark">Stack:{{ tennisbet.bet_amount }}</span>
+                            <br />
+                            <span class="text-dark">P&L: {{ tennisbet.price }}</span>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
+
+      <!-- new design -->
+
+      <div style=" background: url('/assets/images/cricket-time-banner.jpg') center center no-repeat;
+      background-size: cover;
+      min-height: 100px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      padding-bottom: 10px;
+    ">
+        <div class="d-flex justify-content-end align-items-center mt-1"><span style="color: #ffff55; font-size: 12px; font-weight: 700; margin-right: 5px;">Game Time</span><span style="color: #fff; font-size: 12px; font-weight: 700; margin-right: 5px;" >{{marketStartTime| date : "dd-MM-YYYY hh:mm:ssa" : "IST"}}</span></div>
+        <div class="d-flex justify-content-center align-items-center flex-column mt-3">
+          <span style="color: #fff; font-size: 12px; font-weight: 700; margin-right: 5px;">Time Remaining</span>
+          <span class="countdown">{{countdown}}</span>
+        </div>
+      </div>
+
+      <div class="Sport-header mt-1">
+        <div>Tennis</div>
+        <span class="material-symbols-outlined" (click)="isTvActive = !isTvActive">
+          tv
+          </span>
+      </div>
+
+      <div *ngIf="isTvActive" class="tv-score-box">
+        <div class="tv-score-toggle">
+          <span 
+            [class.active]="selectedToogleTab === 'score'" 
+            (click)="selectedToogleTab = 'score'">Live Score</span>
+            
+          <span 
+            [class.active]="selectedToogleTab === 'watch'" 
+            (click)="selectedToogleTab = 'watch'">Watch Live</span>
+        </div>
+
+        <div *ngIf="selectedToogleTab === 'score'" class="score-card mb-2">
+          <iframe
+            [src]="scoreurl"
+            class="score-iframe w-100"
+            height="100%"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+
+        <div *ngIf="selectedToogleTab === 'watch'" class="video-card" style="height: 410px;">
+          <iframe
+            class="video-card"
+            [src]="videourl"
+            width="100%"
+            style="height: 410px;"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+      </div>
+
+      <div class="bg-container">
+
+        <div class="top-toggles">
+          <span 
+            [class.active]="activeTab === 'All'" 
+            (click)="setActiveTab('All')">All</span>
+        
+          <span 
+            [class.active]="activeTab === 'Match'" 
+            (click)="setActiveTab('Match')">Match</span>
+        
+          <!-- <span 
+            [class.active]="activeTab === 'Bookmaker'" 
+            (click)="setActiveTab('Bookmaker')">Bookmaker</span>
+        
+          <span 
+            [class.active]="activeTab === 'Fancy'" 
+            (click)="setActiveTab('Fancy')">Fancy</span> -->
+        </div>
+
+
+      <div *ngIf="(activeTab == 'All' || activeTab== 'Match') && markets.length>0">
+      <div>
+        <div class="heading">Match Odds <span class="material-symbols-outlined" (click)="openRulesbook()">
+          info
+          </span></div>
+      </div>
+      <div class="card">
+        <table>
+          <colgroup>
+            <col style="width: 60%">
+            <col style="width: 20%">
+            <col style="width: 20%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th><div class="min-max-div"><span>Min/Max</span><span>100-100000</span></div></th>
+              <th class="back-tab">Back</th>
+              <th class="lay-tab">Lay</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr>
+              <td class="runner-name"><div><span>{{ market[0].runner1 }}</span> <span *ngIf="market[0].exp_amount1 != 0" [class.text-danger]="market[0].exp_amount1 < 0"
+                [class.text-success]="market[0].exp_amount1 >= 0">{{market[0].exp_amount1}}</span></div></td>
+              <ng-container *ngIf="market[0].is_suspended0 == 0; else suspended">
+              <td class="back-tab" [class.disabled]="market[0].back0_price == 0" (click)="
+              openDialog(
+                'match_odd',
+                'Back',
+                market[0].back0_price,
+                market[0].back0_size,
+                market[0].runner1,
+                1
+              )
+            "><div><span>{{ market[0].back0_price }}</span> <span>{{ market[0].back0_size }}</span></div></td>
+              <td class="lay-tab" [class.disabled]="market[0].lay0_price == 0" (click)="
+              openDialog(
+                'match_odd',
+                'Lay',
+                market[0].lay0_price,
+                market[0].lay0_size,
+                market[0].runner1,
+                1
+              )
+            "><div><span>{{ market[0].lay0_price }}</span> <span>{{ market[0].lay0_size }}</span></div></td>
+              </ng-container>
+
+              <ng-template aria-colspan="2" #suspended>
+                <td colspan="2" class="suspended-wrapper">
+                  <div class="prices">
+                    <div class="back-tab suspended-tab"><span>{{ market[0].back0_price }}</span> <span>{{ market[0].back0_size }}</span></div>
+                    <div class="lay-tab suspended-tab"><span>{{ market[0].lay0_price }}</span> <span>{{ market[0].lay0_size }}</span></div>
+                  </div>
+                  <div class="overlay">Suspended</div>
+                </td>
+              </ng-template>
+              
+            </tr>
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'match_odd' && betslip_odd_runner== market[0].runner1 && betdata.type== 'Back'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'match_odd' && betslip_odd_runner== market[0].runner1 && betdata.type== 'Lay'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="runner-name"><div><span>{{ market[0].runner2 }}</span> <span *ngIf="market[0].exp_amount2 != 0" [class.text-danger]="market[0].exp_amount2 < 0"
+                [class.text-success]="market[0].exp_amount2 >= 0">{{ market[0].exp_amount2 }}</span> </div></td>
+              <ng-container *ngIf="market[0].is_suspended1 == 0; else suspended">
+              <td class="back-tab" [class.disabled]="market[0].back1_price == 0" (click)="
+              openDialog(
+                'match_odd',
+                'Back',
+                market[0].back1_price,
+                market[0].back1_size,
+                market[0].runner2,
+                2
+              )
+            "><div><span>{{ market[0].back1_price }}</span> <span>{{ market[0].back1_size }}</span></div></td>
+              <td class="lay-tab" [class.disabled]="market[0].lay1_price == 0" (click)="
+              openDialog(
+                'match_odd',
+                'Lay',
+                market[0].lay1_price,
+                market[0].lay1_size,
+                market[0].runner2,
+                2
+              )
+            "><div><span>{{ market[0].lay1_price }}</span> <span>{{ market[0].lay1_size }}</span></div></td>
+              </ng-container>
+
+              <ng-template aria-colspan="2" #suspended>
+                <td colspan="2" class="suspended-wrapper">
+                  <div class="prices">
+                    <div class="back-tab suspended-tab"><span>{{ market[0].back1_price }}</span> <span>{{ market[0].back1_size }}</span></div>
+                    <div class="lay-tab suspended-tab"><span>{{ market[0].lay1_price }}</span> <span>{{ market[0].lay1_size }}</span></div>
+                  </div>
+                  <div class="overlay">Suspended</div>
+                </td>
+              </ng-template>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'match_odd' && betslip_odd_runner== market[0].runner2 && betdata.type== 'Back'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'match_odd' && betslip_odd_runner== market[0].runner2 && betdata.type== 'Lay'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+            
+            <tr *ngIf="market[0].back2_price != null">
+              <td class="runner-name"><div><span>Draw</span> <span *ngIf="market[0].exp_amount3 != 0" [class.text-danger]="market[0].exp_amount3 < 0"
+                [class.text-success]="market[0].exp_amount3 >= 0">{{ market[0].exp_amount3 }}</span> </div></td>
+              <ng-container *ngIf="market[0].is_suspended2 == 0; else suspended">
+              <td class="back-tab" [class.disabled]="market[0].back2_price == 0" (click)="
+              openDialog(
+                'match_odd',
+                'Back',
+                market[0].back2_price,
+                market[0].back2_size,
+                'Draw',
+                3
+              )
+            "><div><span>{{ market[0].back2_price }}</span> <span>{{ market[0].back2_size }}</span></div></td>
+              <td class="lay-tab" [class.disabled]="market[0].lay2_price == 0" (click)="
+              openDialog(
+                'match_odd',
+                'Lay',
+                market[0].lay2_price,
+                market[0].lay2_size,
+                'Draw',
+                3
+              )
+            "><div><span>{{ market[0].lay2_price }}</span> <span>{{ market[0].lay2_size }}</span></div></td>
+              </ng-container>
+
+              <ng-template aria-colspan="2" #suspended>
+                <td colspan="2" class="suspended-wrapper">
+                  <div class="prices">
+                    <div class="back-tab suspended-tab"><span>{{ market[0].back2_price }}</span> <span>{{ market[0].back2_size }}</span></div>
+                    <div class="lay-tab suspended-tab"><span>{{ market[0].lay2_price }}</span> <span>{{ market[0].lay2_size }}</span></div>
+                  </div>
+                  <div class="overlay">Suspended</div>
+                </td>
+              </ng-template>
+              
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'match_odd' && betslip_odd_runner== 'Draw' && betdata.type== 'Back'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'match_odd' && betslip_odd_runner== 'Draw' && betdata.type== 'Lay'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+      <!-- new bookmaker -->
+      <!-- <div *ngIf="(activeTab == 'All' || activeTab== 'Bookmaker') && book_maker_odd.length > 0">
+      <div class="mt-2">
+        <div class="heading">Bookmaker <span class="material-symbols-outlined" (click)="openRulesbook()">
+          info
+          </span></div>
+      </div>
+      <div class="card">
+        <table>
+          <colgroup>
+            <col style="width: 60%">
+            <col style="width: 20%">
+            <col style="width: 20%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="book-min-max"><div class="min-max-div"><span>Min/Max</span><span>100-100000</span></div></th>
+              <th class="back-tab book-back-tab">Back</th>
+              <th class="lay-tab book-lay-tab">Lay</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr>
+              <td class="runner-name book-runner"><div><span>{{ book_maker_odd[0].runner1 }}</span> <span *ngIf="book_maker_odd[0].exp_amount1 != 0" [class.text-danger]="book_maker_odd[0].exp_amount1 < 0"
+                [class.text-success]="book_maker_odd[0].exp_amount1 >= 0">{{book_maker_odd[0].exp_amount1}}</span></div></td>
+              <ng-container *ngIf="book_maker_odd[0].is_suspended0 == 0 &&
+              book_maker_odd[0].status1 == 'ACTIVE'; else suspended">
+              <td class="back-tab book-back-tab" [class.disabled]="book_maker_odd[0].back0_price == 0" (click)="
+              openDialog(
+                'bookmaker',
+                'Back',
+                book_maker_odd[0].back0_price,
+                book_maker_odd[0].back0_size,
+                book_maker_odd[0].runner1,
+                1,
+                book_maker_odd[0].min,
+                book_maker_odd[0].max
+              )
+            "><div><span>{{ book_maker_odd[0].back0_price }}</span> <span>{{ book_maker_odd[0].back0_size }}</span></div></td>
+              <td class="lay-tab book-lay-tab" [class.disabled]="book_maker_odd[0].lay0_price == 0" (click)="
+              openDialog(
+                'bookmaker',
+                'Lay',
+                book_maker_odd[0].lay0_price,
+                book_maker_odd[0].lay0_size,
+                book_maker_odd[0].runner1,
+                1,
+                book_maker_odd[0].min,
+                book_maker_odd[0].max
+              )
+            "><div><span>{{ book_maker_odd[0].lay0_price }}</span> <span>{{ book_maker_odd[0].lay0_size }}</span></div></td>
+              </ng-container>
+
+              <ng-template aria-colspan="2" #suspended>
+                <td colspan="2" class="suspended-wrapper">
+                  <div class="prices">
+                    <div class="back-tab suspended-tab book-back-tab"><span>{{ book_maker_odd[0].back0_price }}</span> <span>{{ book_maker_odd[0].back0_size }}</span></div>
+                    <div class="lay-tab suspended-tab book-lay-tab"><span>{{ book_maker_odd[0].lay0_price }}</span> <span>{{ book_maker_odd[0].lay0_size }}</span></div>
+                  </div>
+                  <div class="overlay">Suspended</div>
+                </td>
+              </ng-template>
+              
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'bookmaker' && betslip_odd_runner== book_maker_odd[0].runner1 && betdata.type== 'Back'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'bookmaker' && betslip_odd_runner== book_maker_odd[0].runner1 && betdata.type== 'Lay'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="runner-name book-runner"><div><span>{{ book_maker_odd[0].runner2 }}</span> <span *ngIf="book_maker_odd[0].exp_amount2 != 0" [class.text-danger]="book_maker_odd[0].exp_amount2 < 0"
+                [class.text-success]="book_maker_odd[0].exp_amount2 >= 0">{{book_maker_odd[0].exp_amount2}}</span> </div></td>
+              <ng-container *ngIf=" book_maker_odd[0].is_suspended1 == 0 &&
+              book_maker_odd[0].status2 == 'ACTIVE'; else suspended">
+              <td class="back-tab book-back-tab" [class.disabled]="book_maker_odd[0].back1_price == 0" (click)="
+              openDialog(
+                'bookmaker',
+                'Back',
+                book_maker_odd[0].back1_price,
+                book_maker_odd[0].back1_size,
+                book_maker_odd[0].runner2,
+                2,
+                book_maker_odd[0].min,
+                book_maker_odd[0].max
+              )
+            "><div><span>{{ book_maker_odd[0].back1_price }}</span> <span>{{ book_maker_odd[0].back1_size }}</span></div></td>
+              <td class="lay-tab book-lay-tab" [class.disabled]="book_maker_odd[0].lay1_price == 0" (click)="
+              openDialog(
+                'bookmaker',
+                'Lay',
+                book_maker_odd[0].lay1_price,
+                book_maker_odd[0].lay1_size,
+                book_maker_odd[0].runner2,
+                2,
+                book_maker_odd[0].min,
+                book_maker_odd[0].max
+              )
+            "><div><span>{{ book_maker_odd[0].lay1_price }}</span> <span>{{ book_maker_odd[0].lay1_size }}</span></div></td>
+              </ng-container>
+
+              <ng-template aria-colspan="2" #suspended>
+                <td colspan="2" class="suspended-wrapper">
+                  <div class="prices">
+                    <div class="back-tab suspended-tab book-back-tab"><span>{{ book_maker_odd[0].back1_price }}</span> <span>{{ book_maker_odd[0].back1_size }}</span></div>
+                    <div class="lay-tab suspended-tab book-lay-tab"><span>{{ book_maker_odd[0].lay1_price }}</span> <span>{{ book_maker_odd[0].lay1_size }}</span></div>
+                  </div>
+                  <div class="overlay">Suspended</div>
+                </td>
+              </ng-template>
+              
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'bookmaker' && betslip_odd_runner== book_maker_odd[0].runner2 && betdata.type== 'Back'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'bookmaker' && betslip_odd_runner== book_maker_odd[0].runner2 && betdata.type== 'Lay'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="book_maker_odd[0].back2_price != null">
+              <td class="runner-name book-runner"><div><span>Draw</span> <span *ngIf="book_maker_odd[0].exp_amount3 != 0" [class.text-danger]="book_maker_odd[0].exp_amount3 < 0"
+                [class.text-success]="book_maker_odd[0].exp_amount3 >= 0">{{book_maker_odd[0].exp_amount3}}</span> </div></td>
+              <ng-container *ngIf=" book_maker_odd[0].is_suspended3 == 0 &&
+              book_maker_odd[0].status2 == 'ACTIVE'; else suspended">
+              <td class="back-tab book-back-tab" [class.disabled]="book_maker_odd[0].back2_price == 0" (click)="
+              openDialog(
+                'bookmaker',
+                'Back',
+                book_maker_odd[0].back2_price,
+                book_maker_odd[0].back2_size,
+                'Draw',
+                3,
+                book_maker_odd[0].min,
+                book_maker_odd[0].max
+              )
+            "><div><span>{{ book_maker_odd[0].back2_price }}</span> <span>{{ book_maker_odd[0].back2_size }}</span></div></td>
+              <td class="lay-tab book-lay-tab" [class.disabled]="book_maker_odd[0].lay2_price == 0" (click)="
+              openDialog(
+                'bookmaker',
+                'Lay',
+                book_maker_odd[0].lay2_price,
+                book_maker_odd[0].lay2_size,
+                'Draw',
+                3,
+                book_maker_odd[0].min,
+                book_maker_odd[0].max
+              )
+            "><div><span>{{ book_maker_odd[0].lay2_price }}</span> <span>{{ book_maker_odd[0].lay2_size }}</span></div></td>
+              </ng-container>
+
+              <ng-template aria-colspan="2" #suspended>
+                <td colspan="2" class="suspended-wrapper">
+                  <div class="prices">
+                    <div class="back-tab suspended-tab book-back-tab"><span>{{ book_maker_odd[0].back2_price }}</span> <span>{{ book_maker_odd[0].back2_size }}</span></div>
+                    <div class="lay-tab suspended-tab book-lay-tab"><span>{{ book_maker_odd[0].lay2_price }}</span> <span>{{ book_maker_odd[0].lay2_size }}</span></div>
+                  </div>
+                  <div class="overlay">Suspended</div>
+                </td>
+              </ng-template>
+              
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'bookmaker' && betslip_odd_runner== 'Draw' && betdata.type== 'Back'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'bookmaker' && betslip_odd_runner== 'Draw' && betdata.type== 'Lay'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      </div> -->
+
+      <!-- new toss -->
+      <!-- <div  *ngIf="fancies.length > 0 && markets.length > 0">
+      <div class="mt-2">
+        <div class="heading">Which Team Will WIn The Toss <span class="material-symbols-outlined" (click)="openRulesbook()">
+          info
+          </span></div>
+      </div>
+      <div class="card">
+        <div class="toss-container col-sm-12 col-12">
+          <div class="toss-runner col-sm-6 col-6">
+            <div>{{ market[0].runner1 }}</div>
+            <div>
+            <div [class.disabled]="fancies[0].back_price == 0" (click)="
+            openDialog(
+              'fancy',
+              'Back',
+              1.98,
+              fancies[0].back_size,
+              fancies[0].runner_name,
+              1,
+              100,
+              100000
+            )
+          ">
+              <span>1.98</span>
+              <span>{{fancies[0].back_size}}</span>
+            </div>
+          </div>
+          </div>
+
+          <div class="toss-runner col-sm-6 col-6">
+            <div>{{ market[0].runner2 }}</div>
+            <div>
+            <div [class.disabled]="fancies[1].back_price == 0" (click)="
+            openDialog(
+              'fancy',
+              'Back',
+              1.98,
+              fancies[1].back_size,
+              fancies[1].runner_name,
+              1,
+              100,
+              100000
+            )
+          ">
+              <span>1.98</span>
+              <span>{{fancies[1].back_size}}</span>
+            </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div> -->
+
+      <!-- new session -->
+      <!-- <div *ngIf="(activeTab == 'All' || activeTab== 'Fancy') && sessions.length > 0">
+      <div class="mt-2">
+        <div class="fancy-heading">Fancy Bet<span class="material-symbols-outlined" (click)="openRulesbook()">
+          info
+          </span></div>
+      </div>
+      <div class="card">
+        <table>
+          <colgroup>
+            <col class="col-runner" />
+            <col class="col-back" />
+            <col class="col-lay" />
+            <col class="col-extra" /> 
+          </colgroup>
+          <thead>
+            <tr>
+              <th><div class="min-max-div"><span>Min/Max</span><span>100-100000</span></div></th>
+              <th class="lay-tab">No</th>
+              <th class="back-tab">Yes</th>
+              <th class="desktop-only">Min/Max</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <ng-container *ngFor="let session of sessions">
+
+            <tr>
+              <ng-container *ngIf="session.is_active">
+              <td class="session-runner-name"> <div class="d-flex justify-content-between"> <div><span>{{ session.runner_name }}</span> <span *ngIf="session.exp_amount != 0" [class.text-danger]="session.exp_amount != 0"
+                [class.text-success]="session.exp_amount == 0">{{ session.exp_amount }}</span>  </div> <div class="ladder-icon" (click)="openLadder(session.runner_name,session.event_id)"> <span class="book-btn">Book</span> <span class="material-symbols-outlined">
+                info
+                </span></div> </div></td>
+              <ng-container *ngIf="session.game_status != 'SUSPENDED' && !session.is_suspended; else suspended">
+              
+              <td class="lay-tab" [class.disabled]="session.lay_price == 0" (click)="
+              openDialog(
+                'session',
+                'Lay',
+                session.lay_price,
+                session.lay_size,
+                session.runner_name,
+                0,
+                session.min,
+                session.max
+              )
+            "><div><span>{{ session.lay_price }}</span> <span>{{ session.lay_size }}</span></div></td>
+
+            <td class="back-tab" [class.disabled]="session.back_price == 0" (click)="
+            openDialog(
+              'session',
+              'Back',
+              session.back_price,
+              session.back_size,
+              session.runner_name,
+              0,
+              session.min,
+              session.max
+            )
+          "><div><span>{{ session.back_price }}</span> <span>{{session.back_size}}</span></div></td>
+              </ng-container>
+              
+              <ng-template aria-colspan="3" #suspended>
+                <td colspan="2" class="suspended-wrapper">
+                  <div class="prices">
+                    <div class="lay-tab suspended-tab "><span>{{ session.lay_price }}</span> <span>{{ session.lay_size }}</span></div>
+                    <div class="back-tab suspended-tab"><span>{{ session.back_price }}</span> <span>{{ session.back_size }}</span></div>
+                  </div>
+                  <div class="overlay">Suspended</div>
+                </td>
+              </ng-template>
+              <td class="desktop-only"><div><span>100-50000</span></div></td>
+            </ng-container>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'session' && betslip_odd_runner== session.runner_name && betdata.type== 'Back'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+            <tr *ngIf="betslip_visible && betslip_odd_type == 'session' && betslip_odd_runner== session.runner_name && betdata.type== 'Lay'">
+              <td colspan="4" class="betslip">
+                <app-betslip2 [data]="betdata" (closeBetslip)="betslip_visible = false"></app-betslip2>
+              </td>
+            </tr>
+
+          </ng-container>
+
+          </tbody>
+        </table>
+      </div>
+      </div> -->
+
+      </div>

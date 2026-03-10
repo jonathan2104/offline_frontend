@@ -1,0 +1,1334 @@
+<div class="box">
+  <div class="ballbyshow">
+    <h4 class="text-light d-flex">
+      <!-- <div class="material-symbols-outlined">info</div>
+      <div class="ballby ml-1">Ball By Ball</div> -->
+    </h4>
+  </div>
+  <app-animated-progress-bar [value]="counter"></app-animated-progress-bar>
+  <div class="casino-table teenpatti20" *ngIf="live_data.hasOwnProperty('t2')">
+    <div class="casino-video">
+      <div class="casino-video-title">
+        <span class="casino-name"> 32 Cards B</span>
+        <span class="casino-video-rid"
+          >Round ID: {{ this.last_market_id }}</span
+        >
+      </div>
+      <div class="video-box-container">
+        <div class="video-box">
+          <iframe src="https://jmdapi.com/tablevideo/?id=3034"></iframe>
+        </div>
+      </div>
+      <div class="casino-video-cards" [class.hide-cards]="cards[0][0] == 1">
+        <div class="casino-cards-shuffle">
+          <i class="fas fa-grip-lines-vertical"></i>
+        </div>
+        <div class="casino-video-cards-container">
+          <div [class.d-none]="cards[0] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 1"
+                >Player 8:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C1 }}</span
+              >
+            </div>
+            <div *ngFor="let card of cards[0]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+          <div [class.d-none]="cards[1] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 2"
+                >Player 9:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C2 }}</span
+              >
+            </div>
+            <div *ngFor="let card of cards[1]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+          <div [class.d-none]="cards[2] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 3"
+                >Player 10:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C3 }}</span
+              >
+            </div>
+            <div *ngFor="let card of cards[2]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+          <div [class.d-none]="cards[3] == 1">
+            <div class="dealer-name w-100">
+              <span
+                class="font-weight-bold"
+                [class.text-success]="highlight() == 4"
+                >Player 11:
+              </span>
+              <span class="font-weight-bold text-warning">
+                {{ live_data.t1[0].C4 }}
+              </span>
+            </div>
+            <div *ngFor="let card of cards[3]">
+              <span *ngIf="card !== '1'"
+                ><img src="/assets/casino/cards/{{ card }}.png"
+              /></span>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+      <div class="casino-video-right-icons">
+        <div title="Home" class="casino-video-home-icon">
+          <a routerLink="/dashboard/casino" class="" style="color: #fff"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
+        <div
+          title="Rules"
+          class="casino-video-rules-icon"
+          (click)="openCasinoRule()"
+        >
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <div class="casino-detail">
+      <div class="">
+        <div class="col-md-6 border-right d-inline-block">
+          <div class="teen20casino-container d-none-big">
+            <div class="casino-bl-box casino-bl-box-title">
+              <div class="casino-bl-box-item"></div>
+              <div class="casino-bl-box-item">Back</div>
+              <div class="casino-bl-box-item">Lay</div>
+            </div>
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 8</span>
+                <span
+                  [class.d-none]="
+                    exp_amount1 == 0 && live_data.t2[0].gstatus != 'ACTIVE'
+                  "
+                  [class.book-red]="exp_amount1 < 1"
+                  [class.book-green]="exp_amount1 > 1"
+                  >{{ exp_amount1 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[0].gstatus == 'SUSPENDED' ||
+                  live_data.t2[0].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount1 != 0"
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t2[0].b1,
+                    sid: live_data.t2[0].sid,
+                    nat: live_data.t2[0].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[0].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[0].b1 }}</span
+                >
+              </div>
+              <div
+                class="lay casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[0].gstatus == 'SUSPENDED' ||
+                  live_data.t2[0].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount1 != 0"
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t2[0].l1,
+                    sid: live_data.t2[0].sid,
+                    nat: live_data.t2[0].nation,
+                    type: 'Lay',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[0].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[0].l1 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 9</span>
+                <span
+                  [class.d-none]="
+                    exp_amount2 == 0 && live_data.t2[1].gstatus != 'ACTIVE'
+                  "
+                  [class.book-red]="exp_amount2 < 1"
+                  [class.book-green]="exp_amount2 > 1"
+                  >{{ exp_amount2 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[1].gstatus == 'SUSPENDED' ||
+                  live_data.t2[1].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount2 != 0"
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t2[1].b1,
+                    sid: live_data.t2[1].sid,
+                    nat: live_data.t2[1].nation,
+                    type: 'Back',
+                    index: 2
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[1].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[1].b1 }}</span
+                >
+              </div>
+              <div
+                class="lay casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[1].gstatus == 'SUSPENDED' ||
+                  live_data.t2[1].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t2[1].l1,
+                    sid: live_data.t2[1].sid,
+                    nat: live_data.t2[1].nation,
+                    type: 'Lay',
+                    index: 2
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[1].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[1].l1 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 10</span>
+                <span
+                  [class.d-none]="
+                    exp_amount3 == 0 && live_data.t2[2].gstatus != 'ACTIVE'
+                  "
+                  [class.book-red]="exp_amount3 < 1"
+                  [class.book-green]="exp_amount3 > 1"
+                  >{{ exp_amount3 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[2].gstatus == 'SUSPENDED' ||
+                  live_data.t2[2].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount3 != 0"
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t2[2].b1,
+                    sid: live_data.t2[2].sid,
+                    nat: live_data.t2[2].nation,
+                    type: 'Back',
+                    index: 3
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[2].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[2].b1 }}</span
+                >
+              </div>
+              <div
+                class="lay casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[2].gstatus == 'SUSPENDED' ||
+                  live_data.t2[2].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t2[2].l1,
+                    sid: live_data.t2[2].sid,
+                    nat: live_data.t2[2].nation,
+                    type: 'Lay',
+                    index: 3
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[2].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[2].l1 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 11</span>
+                <span
+                  [class.d-none]="
+                    exp_amount4 == 0 && live_data.t2[3].gstatus != 'ACTIVE'
+                  "
+                  [class.book-red]="exp_amount4 < 1"
+                  [class.book-green]="exp_amount4 > 1"
+                  >{{ exp_amount4 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[3].gstatus == 'SUSPENDED' ||
+                  live_data.t2[3].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount4 != 0"
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t2[3].b1,
+                    sid: live_data.t2[3].sid,
+                    nat: live_data.t2[3].nation,
+                    type: 'Back',
+                    index: 4
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[3].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[3].b1 }}</span
+                >
+              </div>
+              <div
+                class="lay casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[3].gstatus == 'SUSPENDED' ||
+                  live_data.t2[3].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eu', live_data.t1[0].mid, {
+                    rate: live_data.t21[3].l1,
+                    sid: live_data.t2[3].sid,
+                    nat: live_data.t2[3].nation,
+                    type: 'Lay',
+                    index: 4
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[3].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[3].l1 }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-inline-block">
+          <div class="teen20casino-container d-none-big">
+            <div class="casino-bl-box casino-bl-box-title">
+              <div class="casino-bl-box-item"></div>
+              <div class="casino-bl-box-item">Odd</div>
+              <div class="casino-bl-box-item">Even</div>
+            </div>
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 8</span>
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[4].gstatus == 'SUSPENDED' ||
+                  live_data.t2[4].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount11 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[4].b1,
+                    sid: live_data.t2[4].sid,
+                    nat: live_data.t2[4].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[4].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[4].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[4].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount11 == 0"
+                  [class.book-red]="exp_amount11 != 0"
+                  >{{ exp_amount11 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[5].gstatus == 'SUSPENDED' ||
+                  live_data.t2[5].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount12 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[5].b1,
+                    sid: live_data.t2[5].sid,
+                    nat: live_data.t2[5].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[5].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[5].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[5].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount12 == 0"
+                  [class.book-red]="exp_amount12 != 0"
+                  >{{ exp_amount12 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 9</span>
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[6].gstatus == 'SUSPENDED' ||
+                  live_data.t2[6].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount13 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[6].b1,
+                    sid: live_data.t2[6].sid,
+                    nat: live_data.t2[6].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[6].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[7].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[6].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount13 == 0"
+                  [class.book-red]="exp_amount13 != 0"
+                  >{{ exp_amount13 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[7].gstatus == 'SUSPENDED' ||
+                  live_data.t2[7].gstatus == 'CLOSED'
+                "
+                 [class.lock-top]="exp_amount14 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[7].b1,
+                    sid: live_data.t2[7].sid,
+                    nat: live_data.t2[7].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[7].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[7].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[7].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount14 == 0"
+                  [class.book-red]="exp_amount14 != 0"
+                  >{{ exp_amount14 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 10</span>
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[8].gstatus == 'SUSPENDED' ||
+                  live_data.t2[8].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount15 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[8].b1,
+                    sid: live_data.t2[8].sid,
+                    nat: live_data.t2[8].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[8].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[8].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[8].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount15 == 0"
+                  [class.book-red]="exp_amount15 != 0"
+                  >{{ exp_amount15 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[9].gstatus == 'SUSPENDED' ||
+                  live_data.t2[9].gstatus == 'CLOSED'
+                "
+                               [class.lock-top]="exp_amount16 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[9].b1,
+                    sid: live_data.t2[9].sid,
+                    nat: live_data.t2[9].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[9].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[9].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[9].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount16 == 0"
+                  [class.book-red]="exp_amount16 != 0"
+                  >{{ exp_amount16 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Player 11</span>
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[10].gstatus == 'SUSPENDED' ||
+                  live_data.t2[10].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount8 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[10].b1,
+                    sid: live_data.t2[10].sid,
+                    nat: live_data.t2[10].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[10].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[10].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[10].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount17 == 0"
+                  [class.book-red]="exp_amount17 != 0"
+                  >{{ exp_amount17 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[11].gstatus == 'SUSPENDED' ||
+                  live_data.t2[11].gstatus == 'CLOSED'
+                "
+                 [class.lock-top]="exp_amount18 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[11].b1,
+                    sid: live_data.t2[11].sid,
+                    nat: live_data.t2[11].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[11].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[11].b1 }}</span
+                >
+                <span
+                  [class.pt-3]="live_data.t2[11].gstatus != 'ACTIVE'"
+                  [class.d-none]="exp_amount18 == 0"
+                  [class.book-red]="exp_amount18 != 0"
+                  >{{ exp_amount18 }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-2">
+        <div class="col-md-6 border-right d-inline-block">
+          <div class="teen20casino-container d-none-big">
+            <div class="casino-bl-box casino-bl-box-title">
+              <div class="casino-bl-box-item"></div>
+              <div class="casino-bl-box-item">Back</div>
+              <div class="casino-bl-box-item">Lay</div>
+            </div>
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Any 3 card Black</span>
+                <span
+                  [class.d-none]="
+                    exp_amount5 == 0 &&
+                    exp_amount6 == 0 &&
+                    live_data.t2[12].gstatus != 'ACTIVE'
+                  "
+                  class="book-red"
+                >
+                  {{ exp_amount5 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[12].gstatus == 'SUSPENDED' ||
+                  live_data.t2[12].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eufancy1', live_data.t1[0].mid, {
+                    rate: live_data.t2[12].b1,
+                    sid: live_data.t2[12].sid,
+                    nat: live_data.t2[12].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[12].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[12].b1 }}</span
+                >
+              </div>
+              <div
+                class="lay casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[12].gstatus == 'SUSPENDED' ||
+                  live_data.t2[12].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eufancy1', live_data.t1[0].mid, {
+                    rate: live_data.t2[12].l1,
+                    sid: live_data.t2[12].sid,
+                    nat: live_data.t2[12].nation,
+                    type: 'Lay',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[12].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[12].l1 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Any 3 card Red</span>
+                <span
+                  [class.d-none]="
+                    exp_amount7 == 0 &&
+                    exp_amount8 == 0 &&
+                    live_data.t2[13].gstatus != 'ACTIVE'
+                  "
+                  class="book-red"
+                  >{{ exp_amount7 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[13].gstatus == 'SUSPENDED' ||
+                  live_data.t2[13].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eufancy1', live_data.t1[0].mid, {
+                    rate: live_data.t2[13].b1,
+                    sid: live_data.t2[13].sid,
+                    nat: live_data.t2[13].nation,
+                    type: 'Back',
+                    index: 2
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[13].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[13].b1 }}</span
+                >
+              </div>
+              <div
+                class="lay casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[13].gstatus == 'SUSPENDED' ||
+                  live_data.t2[13].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eufancy1', live_data.t1[0].mid, {
+                    rate: live_data.t2[13].l1,
+                    sid: live_data.t2[13].sid,
+                    nat: live_data.t2[13].nation,
+                    type: 'Lay',
+                    index: 2
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[13].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[13].l1 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>Two Black Two Red</span>
+                <span
+                  [class.d-none]="
+                    exp_amount9 == 0 &&
+                    exp_amount10 == 0 &&
+                    live_data.t2[26].gstatus != 'ACTIVE'
+                  "
+                  class="book-red"
+                  >{{ exp_amount9 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[26].gstatus == 'SUSPENDED' ||
+                  live_data.t2[26].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eufancy1', live_data.t1[0].mid, {
+                    rate: live_data.t2[26].b1,
+                    sid: live_data.t2[26].sid,
+                    nat: live_data.t2[26].nation,
+                    type: 'Back',
+                    index: 2
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[26].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[26].b1 }}</span
+                >
+              </div>
+              <div
+                class="lay casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[26].gstatus == 'SUSPENDED' ||
+                  live_data.t2[26].gstatus == 'CLOSED'
+                "
+                (click)="
+                  openDialog('card32eufancy1', live_data.t1[0].mid, {
+                    rate: live_data.t2[26].l1,
+                    sid: live_data.t2[26].sid,
+                    nat: live_data.t2[26].nation,
+                    type: 'Lay',
+                    index: 2
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[26].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[26].l1 }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-inline-block">
+          <div class="teen20casino-container d-none-big">
+            <div class="casino-bl-box casino-bl-box-title">
+              <div class="casino-bl-box-item"></div>
+              <div class="casino-bl-box-item">Back</div>
+              <div class="casino-bl-box-item">Back</div>
+            </div>
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>8 & 9 Total</span>
+                <span
+                  [class.d-none]="
+                    exp_amount19 == 0 && live_data.t2[24].gstatus != 'ACTIVE'
+                  "
+                  [class.book-red]="exp_amount19 < 1"
+                  [class.book-green]="exp_amount19 > 1"
+                  >{{ exp_amount19 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[24].gstatus == 'SUSPENDED' ||
+                  live_data.t2[24].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount19 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[24].b1,
+                    sid: live_data.t2[24].sid,
+                    nat: live_data.t2[24].nation,
+                    type: 'Back',
+                    index: 1
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[24].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[24].b1 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[24].gstatus == 'SUSPENDED' ||
+                  live_data.t2[24].gstatus == 'CLOSED'
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[24].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[24].l1 }}</span
+                >
+              </div>
+            </div>
+
+            <div class="casino-bl-box">
+              <div
+                class="casino-bl-box-item casino-odds-name casino-nation-name"
+              >
+                <span>10 & 11 Total</span>
+                <span
+                  [class.d-none]="
+                    exp_amount20 == 0 && live_data.t2[25].gstatus != 'ACTIVE'
+                  "
+                  [class.book-red]="exp_amount20 < 1"
+                  [class.book-green]="exp_amount20 > 1"
+                  >{{ exp_amount20 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[25].gstatus == 'SUSPENDED' ||
+                  live_data.t2[25].gstatus == 'CLOSED'
+                "
+                [class.lock-top]="exp_amount20 != 0"
+                (click)="
+                  openDialog('card32eufancy', live_data.t1[0].mid, {
+                    rate: live_data.t2[25].b1,
+                    sid: live_data.t2[25].sid,
+                    nat: live_data.t2[25].nation,
+                    type: 'Back',
+                    index: 2
+                  })
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[25].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[25].b1 }}</span
+                >
+              </div>
+              <div
+                class="back casino-bl-box-item"
+                [class.suspended]="
+                  live_data.t2[25].gstatus == 'SUSPENDED' ||
+                  live_data.t2[25].gstatus == 'CLOSED'
+                "
+              >
+                <span
+                  class="casino-box-odd"
+                  *ngIf="live_data.t2[25].gstatus == 'ACTIVE'"
+                  >{{ live_data.t2[25].l1 }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="" style="margin-top: 20px">
+        <div class="col-md-12">
+          <!-- Box Code Start Here-->
+          <div
+            style="
+              padding: 5px;
+              width: 100%;
+              display: inline-block;
+              text-align: center;
+            "
+          >
+            <div class="casino-content-table">
+              <div class="m-t-10">
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[14].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[14].b1,
+                        sid: live_data.t2[14].sid,
+                        nat: live_data.t2[14].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">1</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[14].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat7" class="text-danger">{{
+                          exp_amount21
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[15].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[15].b1,
+                        sid: live_data.t2[15].sid,
+                        nat: live_data.t2[15].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">2</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[15].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount22
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[16].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[16].b1,
+                        sid: live_data.t2[16].sid,
+                        nat: live_data.t2[16].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">3</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[16].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount23
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[17].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[17].b1,
+                        sid: live_data.t2[17].sid,
+                        nat: live_data.t2[17].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">4</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[17].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount24
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[18].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[18].b1,
+                        sid: live_data.t2[18].sid,
+                        nat: live_data.t2[18].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">5</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[18].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount25
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[19].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[19].b1,
+                        sid: live_data.t2[19].sid,
+                        nat: live_data.t2[19].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">6</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[19].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount26
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[20].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[20].b1,
+                        sid: live_data.t2[20].sid,
+                        nat: live_data.t2[20].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">7</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[20].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount27
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[21].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[21].b1,
+                        sid: live_data.t2[21].sid,
+                        nat: live_data.t2[21].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">8</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[21].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount28
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[22].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[22].b1,
+                        sid: live_data.t2[22].sid,
+                        nat: live_data.t2[22].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">9</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[22].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount29
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div style="display: inline-block">
+                  <button
+                    class="back-btn back"
+                    style="margin: 0 3px; padding: 0px; position: relative"
+                    [class.suspended]="live_data.t2[23].gstatus != 'ACTIVE'"
+                    (click)="
+                      openDialog('card32eufancy', live_data.t1[0].mid, {
+                        rate: live_data.t2[23].b1,
+                        sid: live_data.t2[23].sid,
+                        nat: live_data.t2[23].nation,
+                        type: 'Back',
+                        index: 1
+                      })
+                    "
+                  >
+                    <span class="x-numbers">0</span>
+                    <div
+                      [class.suspended_style]="
+                        live_data.t2[23].gstatus != 'ACTIVE'
+                      "
+                      style="display: block"
+                    ></div>
+                  </button>
+                  <div class="text-center">
+                    <div class="ubook m-t-5 text-danger">
+                      <b>
+                        <span id="livestat8" class="text-danger">{{
+                          exp_amount30
+                        }}</span></b
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Box Code end here-->
+        </div>
+      </div>
+      <div class="casino-video-last-results d-flex flex-wrap">
+        <span
+          *ngFor="let data of result_history.data"
+          [class.resulta]="data.result == 1 || data.result == 2"
+          [class.resultb]="data.result == 3 || data.result == 4"
+          (click)="openCasinoDetails(data)"
+        >
+          {{ data.result | card32name }}
+        </span>
+      </div>
+      <!-- <div class="mt-4">
+        <h5 class="thead">Pair Plus</h5>
+        <table class="table table-sm">
+          <tr>
+            <td>Pair</td>
+            <td>1 TO 1</td>
+          </tr>
+          <tr>
+            <td>Flush</td>
+            <td>1 TO 4</td>
+          </tr>
+          <tr>
+            <td>Straight</td>
+            <td>1 TO 6</td>
+          </tr>
+          <tr>
+            <td>Trio</td>
+            <td>1 TO 30</td>
+          </tr>
+          <tr>
+            <td>Straight Flush</td>
+            <td>1 TO 40</td>
+          </tr>
+        </table>
+      </div> -->
+    </div>
+  </div>
+</div>

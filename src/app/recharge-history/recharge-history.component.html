@@ -1,0 +1,36 @@
+<div class="content-wrapper" style="min-height: 368px">
+  <div class="container pt-2">
+    <div class="card m-5 p-3">
+      <div class="card-header 3 mb-0 bg-info ">
+        <h3 class="mb-0 float-left text-white">Recharge History</h3>
+        <div class="form-group col-md-6 float-right">
+          <button class="btn btn-success float-right" (click)="rechargeWallet()">Recharge Wallet</button>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <table class="table table-md table-bordered table-striped table-hover clearfix">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Transfer ID</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+
+          </tr>
+          </thead>
+          <tbody>
+        <tr *ngFor="let transactionDetail of transactionDetails; let i = index">
+          <td>{{i +1}}</td>
+          <td>{{transactionDetail.transaction_id}}</td>
+          <td>{{transactionDetail.amount}}</td>
+          <td>{{transactionDetail.status}}</td>
+          <td>{{transactionDetail.date | date:'medium' }}</td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,154 @@
+<div class="container-fluid p-0 m-0">
+  <div class="card border-0 p-0 m-0">
+    <div class="card-header">
+      <span (click)="closeDialog()" class="material-symbols-outlined float-right text-red">
+        cancel
+      </span>
+      <span>Signup</span>
+    </div>
+    <div class="card-body">
+      <form style="min-width: 250px;" [formGroup]="registerForm">
+        <p
+          *ngIf="errorMsg"
+          class="alert alert-danger alert-dismissible fade show"
+        >
+          {{ errorMsg }}
+        </p>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control rounded-pill"
+            formControlName="contact"
+            placeholder="Enter your mobile"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+                (registerFormControl.contact.touched || submitted) &&
+                registerFormControl.contact.errors?.required
+              "
+          >
+              Mobile is required
+            </span>
+          <span
+            class="text-danger"
+            *ngIf="
+                (registerFormControl.contact.touched || submitted) &&
+                registerFormControl.contact.errors?.pattern
+              "
+          >
+              Enter 10 digit contact number
+            </span>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control rounded-pill"
+            formControlName="name"
+            placeholder="Enter your name"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+                (registerFormControl.name.touched || submitted) &&
+                registerFormControl.name.errors?.required
+              "
+          >
+              Name is required
+            </span>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control rounded-pill"
+            formControlName="username"
+            placeholder="Enter your username"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+                (registerFormControl.username.touched || submitted) &&
+                registerFormControl.username.errors?.required
+              "
+          >
+              Username is required
+            </span>
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control rounded-pill"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+                (registerFormControl.password.touched || submitted) &&
+                registerFormControl.password.errors?.required
+              "
+          >
+              Password is required
+            </span>
+        </div>
+        
+        <div *ngif="1<0" class="form-group">
+          <label class="form-control-label">Email</label>
+          <input
+            type="text"
+            class="form-control rounded-pill"
+            formControlName="email"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+                (registerFormControl.email.touched || submitted) &&
+                registerFormControl.email.errors?.required
+              "
+          >
+              Email is required
+            </span>
+          <span
+            class="text-danger"
+            *ngIf="
+                (registerFormControl.email.touched || submitted) &&
+                registerFormControl.email.errors?.email
+              "
+          >
+              Enter proper email
+            </span>
+        </div>
+        <div *ngif="1<0" class="form-group">
+          <label class="form-control-label">Referer Name</label>
+          <input
+            type="text"
+            class="form-control rounded-pill"
+            formControlName="referer_name"
+          />
+        </div>
+
+        <div class="col-lg-12 loginbttm p-0">
+          <div class="col-lg-6 login-btm login-text">
+            <!-- Error Message -->
+          </div>
+          <div
+            style="text-align: center"
+            (click)="register()"
+            class="col-lg-12 login-btm login-button"
+          >
+            <button
+              type="button"
+              style="width: 100%;text-align: center;"
+
+              class="btn btn-block btn-outline-light mt-3"
+            >
+              Sign Up
+            </button>
+            <small>Powered by vegass567</small>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

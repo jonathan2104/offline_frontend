@@ -1,0 +1,426 @@
+<div style="background-color: #fff; min-height: 100vh;">
+    <h2 class="userscreen-title">
+        <button (click)="backClicked()" class="btn-xs back-page">Back</button>
+    </h2>
+   <ng-container *ngIf="!candeposit">
+    <div class="card-header d-flex align-items-center w-100 justify-content-between bg-dark" style="margin-top: -10px;">
+        <h6 id="addAccountButton" class="float-left mb-0 text-light pl-2">Deposit</h6>
+    </div>
+    <div class="deposit-warning">
+        <h4 class="blink">
+        For processing real deposits, please log in using registered mobile number instead of a demo account.
+        </h4>
+        <p class="disclaimer blink">
+        Disclaimer: For faster and more reliable payments, please use the bank transfer option.
+        </p>
+        <button (click)="openWhatsapp()" class="whatsapp-btn blink">WHATSAPP DEPOSIT</button>
+    </div>
+    </ng-container>
+    <ng-container *ngIf="candeposit">
+    <div class="container-fluid">
+        <div class="col-md-12 m-0 p-0">
+            <ng-container *ngIf="amount<1">
+                <div>
+                    <div class="col-md-12 card amount-div"
+                        style="margin-top: 10px;">
+                        <div class="card-body m-0 p-0">
+                            <form id="amountForm" method="post">
+                                <div class="form-group">
+                                    <label>Amount</label>
+                                    <div class="input-group">
+                                        <input type="number"
+                                            class="form-control"
+                                            name="amount" id="amount"
+                                            placeholder="Enter amount"
+                                            #amountInput>
+                                        <div class="input-group-append">
+                                            <button type="button"
+                                                (click)="amountSubmit(amountInput.value)"
+                                                class="input-group-text amountBtn"
+                                                id="basic-addon2"
+                                                style="background: #000;color: #FFFFFF;">
+                                                SUBMIT</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-12 account-list">
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="amount>0">
+                <div>
+                    <button class="btn btn-xxc back_to_amount"
+                        (click)="zeroAmount()">&lt; Back</button>
+                    <nav class="nav nav-pills">
+                        <a class="nav-link" (click)="whatsapp()">
+                            <div class="nav-linkx">
+                                <span class="linkx-text">WHATSAPP DEPOSIT</span>
+                                <br>
+                                <img class="linkx-img"
+                                    src="/assets/icons/whatsapp.png" />
+                            </div>
+                        </a>
+                        <a class="nav-link" *ngFor="let ac of accounts">
+                            <div class="nav-linkx"
+                                (click)="depositPage(getAcName(ac.type),ac)"
+                                [ngClass]="{'active-account': selectedAccountType === ac.accountNo}">
+                                <span class="linkx-text" style="background: transparent;">{{getAcName(ac.type)}}</span>
+                                <br>
+                                <img class="linkx-img" src="{{getAcImg(ac.type)}}" style="background: transparent;" />
+                            </div>
+                        </a>
+                    </nav>
+                </div>
+                <div class="card p-1">
+                    <h5 class="text-center">{{selectedMode}}</h5>
+                    <hr>
+                    <div class="row col-md-12">
+                        <div class="col-md-6">
+                            <div class="row justify-content-center">
+                                <div class="col-md-11">
+                                    <div class="account-data">
+                                        <p class="card-text"
+                                            *ngIf="currentAc.bank_name">
+                                            <b class="bank_name">Bank Name</b> :
+                                            {{currentAc.bank_name}}
+                                            <button
+                                                class="btn btn-sm btn-success">
+                                                <i
+                                                    (click)="copyMessage(currentAc.bank_name)"
+                                                    class="fa-solid fa-copy"></i></button>
+                                        </p>
+                                        <p class="card-text">
+                                            <b class="bank_name">A/C No </b> :
+                                            {{currentAc.accountNo}}
+                                            <button
+                                                class="btn btn-sm btn-success">
+                                                <i
+                                                    (click)="copyMessage(currentAc.accountNo)"
+                                                    class="fa-solid fa-copy"></i></button>
+                                        </p>
+                                        <p class="card-text"
+                                            *ngIf="currentAc.ifscNo">
+                                            <b class="bank_name">IFSC Code </b> :
+                                            {{currentAc.ifscNo}}
+                                            <button
+                                                class="btn btn-sm btn-success">
+                                                <i
+                                                    (click)="copyMessage(currentAc.ifscNo)"
+                                                    class="fa-solid fa-copy"></i></button>
+                                        </p>
+                                        <p class="card-text"
+                                            *ngIf="currentAc.name">
+                                            <b class="bank_name">Account Name </b> :
+                                            {{currentAc.name}}
+                                            <button
+                                                class="btn btn-sm btn-success">
+                                                <i
+                                                    (click)="copyMessage(currentAc.name)"
+                                                    class="fa-solid fa-copy"></i></button>
+                                        </p>
+                                        <p class="card-text">
+                                            <b class="bank_name">Min Amount </b> :
+                                            {{currentAc.minAmount}}
+                                            <button
+                                                class="btn btn-sm btn-success">
+                                                <i
+                                                    (click)="copyMessage(currentAc.minAmount)"
+                                                    class="fa-solid fa-copy"></i></button>
+                                        </p>
+                                        <p class="card-text">
+                                            <b class="bank_name">Max Amount </b> :
+                                            {{currentAc.maxAmount}}
+                                            <button
+                                                class="btn btn-sm btn-success">
+                                                <i
+                                                    (click)="copyMessage(currentAc.maxAmount)"
+                                                    class="fa-solid fa-copy"></i></button>
+                                        </p>
+                                        <div *ngIf="currentAc.qrCode"
+                                            class="text-center">
+                                            <img class="qr-code"
+                                                [src]="backendImg(currentAc.qrCode)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-11">
+                                    <a href="https://www.upitobank.com"
+                                        target="_blank">
+                                        <div class="card">
+                                            <div class="card-body upi-bank">
+                                                <p><b>How To Transfer Upi To
+                                                        Bank
+                                                        <br>CLICK HERE
+                                                        WWW.UPITOBANK.COM</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- <div class="col-md-11">
+                                    <a (click)="whatsapp()" target="_blank">
+                                        <div class="card">
+                                            <div
+                                                class="card-body payment-issues">
+                                                <p><b>FOR PAYMENT RELATED ISSUES
+                                                        CLICK HERE</b>
+                                                    &nbsp;&nbsp;<i
+                                                        class="fa-brands fa-whatsapp my-float"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div> -->
+
+                                <div class="col-md-11" style="width:100%; height: auto; border-radius: 12px;">
+                                    <a (click)="whatsapp()" target="_blank">
+                                      <div class="card" style="border-radius: 12px;">
+                                        <div class="card-body payment-issues p-0" style="background-color:#21AF31; border-radius: 10px;">
+                                          <img src="assets/images/deposit-help.png" alt="WhatsApp Icon" style="width: 100%; height: 100%; vertical-align: middle; margin-right: 8px;">
+                                        </div>
+                                      </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <form id="amountForm" [formGroup]="depositForm">
+                                <p *ngIf="errorMsg"
+                                    class="alert alert-danger m-1 p-1">
+                                    {{ errorMsg }}
+                                </p>
+                                <input type="hidden" formControlName="method">
+                                <!-- <div class="form-group">
+                                    <label>Unique Transaction Reference <span
+                                            style="color:red;">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"
+                                            formControlName="transaction_id"
+                                            name="transaction_id"
+                                            placeholder="6 to 12 Digit UTR Number">
+                                        <span class="text-danger"
+                                            *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.required">
+                                            UTR/Ref. No. is required
+                                        </span>
+                                        <span class="text-danger"
+                                            *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.minlength">
+                                            UTR Number must be 12 digits
+                                        </span>
+                                        <span class="text-danger"
+                                            *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.maxlength">
+                                            UTR Number must be 12 digits
+                                        </span>
+                                        <span class="text-danger"
+                                            *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.pattern">
+                                            UTR Number must contain only digits
+                                        </span>
+                                    </div>
+                                </div> -->
+
+
+                                <div class="form-group">
+                                    <label>Unique Transaction Reference <span style="color:red;">*</span></label>
+                                    <div class="input-group">
+                                      <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        formControlName="transaction_id" 
+                                        name="transaction_id" 
+                                        placeholder="6 to 12 Digit UTR Number">
+                                    </div>
+                                    <!-- Wrap error messages in a separate div for better control -->
+                                    <div class="error-messages">
+                                      <span 
+                                        class="text-danger" 
+                                        *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.required">
+                                        UTR/Ref. No. is required
+                                      </span>
+                                      <span 
+                                        class="text-danger" 
+                                        *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.minlength">
+                                        UTR Number must be 12 digits
+                                      </span>
+                                      <span 
+                                        class="text-danger" 
+                                        *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.maxlength">
+                                        UTR Number must be 12 digits
+                                      </span>
+                                      <span 
+                                        class="text-danger" 
+                                        *ngIf="depositFormControl.transaction_id.touched && depositFormControl.transaction_id.errors?.pattern">
+                                        UTR Number must contain only digits
+                                      </span>
+                                    </div>
+                                  </div>
+                                  
+                                <div class="form-group">
+                                    <label>Upload Your Payment Proof <span
+                                            style="color:red;">[Required]</span></label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control"
+                                            formControlName="depo_proof"
+                                            (change)="onFileSelected($event)">
+                                        <span
+                                            class="text-danger"
+                                            *ngIf="
+                                        (depositFormControl.depo_proof.touched ) &&
+                                        depositFormControl.depo_proof.errors?.required">
+                                            Proof is required
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Amount <span
+                                            style="color:red;">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"
+                                            formControlName="amount" readonly>
+                                    </div>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                        class="custom-control-input error"
+                                        name="terms_condition" id="termsCheck"
+                                        (change)="onTermsChange($event)">
+                                    <label class="custom-control-label"
+                                        for="termsCheck">I have read and agree
+                                        with
+                                        <span class="terms-condition">the terms
+                                            of
+                                            payment and withdrawal
+                                            policy.</span></label>
+                                    <label *ngIf="!terms"
+                                        id="terms_condition-error"
+                                        style="color:red;"
+                                        for="terms_condition">Please check terms
+                                        and
+                                        condition</label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button [disabled]="!terms || clicked" type="submit"
+                                        (click)="addDepositRequest()"
+                                        id="depositBtn"
+                                        class="btn btn-xxc btn-block">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body text-left text-card1"
+                            style="font-size: 10px !important;color: red;">
+                            <p>1. Deposit money only in the below available
+                                accounts
+                                to get the fastest
+                                credits
+                                and avoid possible delays.
+                            </p>
+                            <p>2. Deposits made 45 minutes after the account
+                                removal
+                                from the site are
+                                valid
+                                &amp; will be added to their wallets.
+                            </p>
+                            <p>3. Site is not responsible for money deposited to
+                                Old, Inactive or Closed
+                                accounts.
+                            </p>
+                            <p>4. After deposit, add your UTR and amount to
+                                receive
+                                balance. </p>
+                            <p>5. NEFT receiving time varies from 40 minutes to
+                                2
+                                hours. </p>
+                            <p>6. In case of account modification: payment valid
+                                for
+                                1 hour after
+                                changing account details in deposit page.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="overflow-auto redtablehead">
+                        <table
+                            class="table table-sm table-bordered table-striped table-hover clearfix">
+                            <thead style="background-color: #466698;">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Method</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Transition no</th>
+                                    <th>Reject Reason</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center"
+                                *ngIf="deposit_requests.length>0 || deposit_requests !=null">
+                                <tr
+                                    *ngFor="let deposit_request of deposit_requests | paginate: { itemsPerPage,currentPage }; let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{deposit_request.method}}</td>
+                                    <td>{{deposit_request.amount}}</td>
+                                    <!-- <td>{{deposit_request.status == 0 ? 'Pending' :
+                                        (deposit_request.status == -1 ? 'Declined' :
+                                        'Approved')}}</td> -->
+
+                                    <td>
+                                        <span
+                                            [ngClass]="{
+                                                'status-pending': deposit_request.status == 0,
+                                                'status-declined': deposit_request.status == -1,
+                                                'status-approved': deposit_request.status == 1
+                                              }">
+                                            {{ deposit_request.status == 0 ?
+                                            'Pending' : (deposit_request.status
+                                            ==
+                                            -1 ? 'Declined' : 'Approved') }}
+                                        </span>
+                                    </td>
+
+                                    <td>{{deposit_request.transaction_id ?? ''
+                                        }}</td>
+                                    <td>{{deposit_request.reject_reason ?? ''
+                                        }}</td>
+                                    <td>{{deposit_request.created_at | date :
+                                        "MMM/dd/YYYY h:mma \'(IST)\'" : "IST"
+                                        }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="entries-pagination-wrapper">
+                            <div class="entries-wrapper">
+                              <label class="color-hh2" for="itemsPerPage">Show</label>
+                              <select
+                                id="itemsPerPage"
+                                [(ngModel)]="itemsPerPage"
+                                (change)="onEntriesChange()"
+                              >
+                                <option *ngFor="let option of entriesOptions" [value]="option">
+                                  {{ option }}
+                                </option>
+                              </select>
+                              <span class="color-hh2">entries</span>
+                            </div>
+                            <div class="pagination-wrapper">
+                              <pagination-controls
+                                (pageChange)="currentPage = $event"
+                              ></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </ng-container>
+</div>

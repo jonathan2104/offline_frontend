@@ -1,0 +1,55 @@
+<div class="content-wrapper" style="min-height: 368px">
+    <div class="pt-2 pb-2">
+        <div class="card m-2">
+            <div class="card-body" style="padding: 5px;">
+                <h1 style="text-decoration: underline;" class="card-title text-center">
+                  International Casino
+                </h1>
+                <div *ngIf="is_active; else notActive" id="game_container">
+                  <div *ngIf="isloading; else gamelist">
+                    <mat-spinner diameter="40"></mat-spinner> 
+                  </div>
+                  <ng-template #gamelist>
+                    <h2>Lobbies</h2>
+                  <div class="list" style="display: flex; overflow-y:hidden;  white-space: nowrap;  max-height: 100vh; overflow-y: auto; " >
+
+                    <div *ngFor="let game of gameList" class="col-lg-2 col-md-3 col-6 p-0" (click)="openGametab(game)">
+                      <!-- <img class="game_banner" (click)="openNewGameTab(game.uuid)" src="{{game.banner}}" /> -->
+                      <img class="game_banner" [src]="game.url_thumb" alt="{{ game.game_name }}" /> 
+                    </div>
+
+                  </div>
+                  <h2>Slots <button *ngIf="showSlots" class="btn btn-default btn-sm"><span (click)="showSlots=false" class="material-symbols-outlined"> arrow_back </span></button></h2>
+                  <ng-container *ngIf="!showSlots">
+                    <div class="list" style="display: flex; overflow-y:hidden;  white-space: nowrap;  max-height: 100vh; overflow-y: auto; " >
+
+                      <div *ngFor="let category of slotcategories" class="col-lg-2 col-md-3 col-6 p-0" (click)="openSlotsGames(category.provider_name)">
+                        <img class="game_banner" [src]="category.imageUrl" alt="category.provider_name" /> 
+                        <p class="text-center">{{category.provider_name}}</p>
+                      </div>
+  
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="showSlots">
+                    <div class="list" style="display: flex; overflow-y:hidden;  white-space: nowrap;  max-height: 100vh; overflow-y: auto; " >
+
+                      <div *ngFor="let game of slotGames" class="col-lg-2 col-md-3 col-6 p-0" (click)="openGametab(game,true)">
+                        <img class="game_banner" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ9xNcWTDKqvLSbF9iDhGKhbQ-L-bhLx71QQ&usqp=CAU" alt="category.provider" /> 
+                        <p class="text-center">{{game.game_name}}</p>
+                      </div>
+  
+                    </div>
+                  </ng-container>
+                  </ng-template>
+                </div>
+
+                <ng-template #notActive>
+                  <div class="pt-4 text-center" id="contact_us">
+                    <h3 class="contact_notice">Notice: Your casino account is not active, click to active.</h3>
+                    <br>
+                    <button type="button" [disabled]="clicked" (click)="activateAccount(); clicked = true;" class="btn btn-primary btn-lg mt-3 text-dark">Activate account</button>
+                  </div>
+                </ng-template>
+        </div>
+    </div>
+</div>

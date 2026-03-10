@@ -1,0 +1,86 @@
+<h2 class="userscreen-title"><button (click)="backClicked()" class="btn-xs back-page">Back</button></h2>
+<div class="container-fluid">
+  <ng-container *ngIf="!canwithdrawal">
+    <div class="card-header p-2 d-flex align-items-center w-100 justify-content-between bg-dark">
+        <h6 id="addAccountButton" class="float-left mb-0 text-light pl-2">Withdrawal</h6>
+    </div>
+    <div class="withdrawal-warning">
+        <h4 class="blink">
+        For processing real withdrawals, please log in using registered mobile number instead of a demo account.
+        </h4>
+        <p class="disclaimer blink">
+        Disclaimer: For faster and more reliable payments, please use the bank transfer option.
+        </p>
+        <button (click)="openWhatsapp()" class="whatsapp-btn blink">WHATSAPP WITHDRAWAL</button>
+    </div>
+    </ng-container>
+    <ng-container *ngIf="canwithdrawal">
+    <div class="card">
+      <div class="card-header p-2 d-flex align-items-center w-100 justify-content-between">
+        <h6 id="addAccountButton" class="float-left mb-0">Withdraw Requests</h6>
+        <div class="form-group mb-0 text-right">
+          <button class="btn btn-success btn-sm " style="background: #dc3545;" (click)="addWithdrawRequest()">Add Withdraw</button>
+        </div>
+      </div>
+      <div class="card-body redtablehead">
+        <div class="card mb-2 text-card-box">
+            <div class="card-body p-2 text-left text-card" style="font-size: 10px !important;color: red;">
+                <p>1. This form is for withdrawing the amount from the main wallet only.</p>
+                <p>2. The bonus wallet amount cannot be withdrawn by this form.</p>
+                <p>3. Do not put Withdraw request without betting with deposit amount. Such activity may
+                    be identified as Suspicious</p>
+                <p>4. If multiple users are using same withdraw account then all the linked users will
+                    be blocked.</p>
+                <p>5. Maximum Withdraw time is 45 minutes then only complain on WhatsApp number.</p>
+            </div>
+        </div>
+        <!-- Help Box Section -->
+        <div class="col-md-11 mb-4" style="width:100%; height: auto; border-radius: 12px;max-width: 300px;">
+            <a (click)="whatsapp()" target="_blank">
+              <div class="card" style="border-radius: 12px;">
+                <div class="card-body payment-issues p-0" style="background-color:#21AF31; border-radius: 10px;">
+                  <img src="assets/images/withdrawal-help.png" alt="WhatsApp Icon" style="width: 100%; height: 100%; vertical-align: middle; margin-right: 8px;">
+                </div>
+              </div>
+            </a>
+        </div>
+        <div class="overflow-auto">
+        <table class="table table-md table-bordered table-striped table-hover clearfix">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Upi</th>
+            <th>Account Name</th>
+            <th>Account No.</th>
+            <th>Bank Name</th>
+            <th>IFSC</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Proofs</th>
+            <th>Date</th>
+            <th>Date Updated</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="withdraw_requests.length>0">
+          <tr *ngFor="let withdraw_request of withdraw_requests; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{withdraw_request.upi}}</td>
+            <td>{{withdraw_request.account_name}}</td>
+            <td>{{withdraw_request.account_id}}</td>
+            <td>{{withdraw_request.bank_name}}</td>
+            <td>{{withdraw_request.ifsc_code}}</td>
+            <td>{{withdraw_request.amount}}</td>
+            <td>{{withdraw_request.status == 0 ? 'Pending' : (withdraw_request.status == -1 ? 'Declined' : 'Approved')}}</td>
+            <td><button (click)="openProofListModal(withdraw_request.id)" class="btn btn-sm btn-primary">view</button></td>
+            <!-- <td>{{withdraw_request.updated_at | date:'medium':'IST' }}</td> -->
+            <td>{{withdraw_request.created_at | date : "MMM/dd/YYYY h:mma \'(IST)\'" : "IST"}}</td>
+            <td>{{withdraw_request.status == 0 ? '-' : withdraw_request.updated_at | date : "MMM/dd/YYYY h:mma \'(IST)\'" : "IST"}}</td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+     </ng-container>
+  </div>
+
